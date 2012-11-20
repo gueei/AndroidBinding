@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<activity xmlns:binding="http://www.gueei.com/android-binding/">
+	<actionBar
+		binding:displayHomeAsUp="FALSE()"
+		binding:displayShowTitle="TRUE()"
+		binding:displayShowHome="TRUE()"
+		>
+	</actionBar>
+	<rootView
+	    binding:dataSource="."
+		binding:layoutId="@layout/${rootview_layout}"/>
+	<optionsMenu
+	    binding:dataSource="."
+	    binding:menu="@menu/${optionsmenu}"/>
+</activity>
