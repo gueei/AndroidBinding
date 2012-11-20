@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- WARNING: Eclipse auto-generated file.
-              Any modifications will be overwritten.
-              To include a user specific buildfile here, simply create one in the same
-              directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. -->
 <project basedir="." default="Generate Wiki" name="ABDocumentation">
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="../../../../../Program Files/eclipse"/>
@@ -11,15 +6,27 @@
     <property name="target" value="1.6"/>
     <property name="source" value="1.6"/>
     
-    <target depends="build" name="Generate Wiki">
-        <javadoc
-            destdir="docs">
-            <fileset dir="../../AndroidBindingMaster/Core/AndroidBinding/src">
+    <target depends="build" name="JarDoclet">
+        <jar destfile="./jar/DocmentationDoclet.jar"
+            basedir="./bin">
+        </jar>
+    </target>
+    
+    <path id="doclet.path">
+        <fileset dir="./jar/">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+    
+    <target depends="JarDoclet" name="Generate Wiki">
+        <javadoc>
+            <doclet name="gueei.binding.documentation.ConverterDoclet"
+                pathref="doclet.path">
+            </doclet>
+            <fileset dir="../../../AndroidBindingMaster/Core/AndroidBinding/src">
                 <include name="**/*.java"/>
-                <exclude name="**/*.template"/>
             </fileset>
         </javadoc>
-            
     </target>
     
     <path id="ABDocumentation.classpath">
