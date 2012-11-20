@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Mon Oct 22 14:22:24 CST 2012
+onejar.license.required=true
+manifest.classpath=
+manifest.removesigners=false
+onejar.checkbox=false
+jarname=C\:\\Users\\andy\\Dropbox\\RELEASE\\android-binding-v0.6-preview.jar
+manifest.mergeall=false
+manifest.mainclass=
+manifest.file=<createnew>
+jarname.isextern=true
+onejar.expand=
+excludes=<jar|annotations.jar>;<jar|android-support-v4.jar>;<jar|android-support-v4.jar>
+includes=
