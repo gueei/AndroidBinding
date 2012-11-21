@@ -1,7 +1,7 @@
 ---
 layout: master
-title: Another test
-permalink: converter/another.html
+title: Converter Template test
+permalink: converter/converter.html
 
 converter:
     name: AFTERCOMMAND
@@ -29,9 +29,9 @@ parameters:
 {% for item in page.parameters %}
 <span class="type">{{ item.type }}</span>&nbsp;
 <span class="paraname" id="param-{{item.name}}">{{ item.name }}</span>
-<% if forloop.last %>
-<% else %>,
-<% endif %>
+{% if forloop.last %}
+{% else %},
+{% endif %}
 {% endfor %}
 )
 </div>
