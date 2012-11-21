@@ -37,10 +37,12 @@ layout: master
                 <table class="dynamic-object-detail">
                     <tbody>
                         {% for i in item.items %}
+                            <tr>
                             <th>{{ i.name }}</th>
                             <td>
                             {% if i.optional == 1 %}(optional)<br/>{% endif %}{{ i.comment }}
                             </td>
+                            </tr>
                         {% endfor %}
                     </tbody>
                 </table>
