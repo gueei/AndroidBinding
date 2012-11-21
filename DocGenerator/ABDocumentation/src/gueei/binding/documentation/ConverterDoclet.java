@@ -97,9 +97,29 @@ public class ConverterDoclet {
 	    		writer.println("        type: " + text[offsetIndex + 1]);
 	    		writer.println("        type_short: " + ShortTypeName(text[offsetIndex + 1]));
 	    		writer.println("        comment: " + CommentString(text, offsetIndex + 2));
+	    		if (text[offsetIndex + 1].equals("DynamicObject")){
+	    			writeDynamicObjectParams(writer, tags);
+	    		}
 	    		if (offsetIndex>0){
 	    			writer.println("        optional: 1");
 	    		}
+	    	}
+	    }
+    }
+
+	private static void writeDynamicObjectParams(PrintWriter writer,
+            Hashtable<String, ArrayList<Tag>> tags) {
+	    if (tags.containsKey("@item")){
+	    	Tag[] paramTags = tags.get("@item").toArray(new Tag[0]);
+	    	writer.println("        items: ");
+	    	for(int j=0; j<paramTags.length; j++){
+	    		int offset = 0;
+	    		String[] itemText = paramTags[j].text().split(" ");
+	    		if (itemText[0].equals("@optional")) offset = 1;
+	    		writer.println("          - name: " + itemText[offset]);
+	    		writer.println("            type: " + itemText[offset + 1]);
+	    		writer.println("            type_short: " + ShortTypeName(itemText[offset + 1]));
+	    		writer.println("            comment: " + CommentString(itemText, offset + 2));
 	    	}
 	    }
     }

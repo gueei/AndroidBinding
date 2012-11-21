@@ -14,6 +14,27 @@ converters:
         type: DynamicObject
         type_short: DynamicObject
         comment: ""
+        items: 
+          - name: template
+            type: gueei.binding.viewAttributes.templates.Layout
+            type_short: Layout
+            comment: ""
+          - name: source
+            type: Object
+            type_short: Object
+            comment: ""
+          - name: spinnerTemplate
+            type: gueei.binding.viewAttributes.templates.Layout
+            type_short: Layout
+            comment: ""
+          - name: enable
+            type: String
+            type_short: String
+            comment: "child property that determines the enabled state of the item "
+          - name: filter
+            type: android.widget.Filter
+            type_short: Filter
+            comment: "filter supplies to adapter "
   - name: AFTERCOMMAND
     description: "Trigger the provided animation after the command is executed. <br/> This is NOT compatible with the newer Property-based animation"
     return: 
@@ -200,6 +221,19 @@ converters:
         type: DynamicObject
         type_short: DynamicObject
         comment: ""
+        items: 
+          - name: id
+            type: integer
+            type_short: integer
+            comment: "Android Id value of the widget "
+          - name: attr
+            type: Attribute
+            type_short: Attribute
+            comment: "name of that widget "
+          - name: statement
+            type: Binding
+            type_short: Binding
+            comment: "Statement to be injected "
   - name: ISNULL
     description: "Test if the argument is null <br/>"
     return: 
