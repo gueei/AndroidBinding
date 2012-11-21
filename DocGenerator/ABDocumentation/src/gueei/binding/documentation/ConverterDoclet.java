@@ -120,6 +120,9 @@ public class ConverterDoclet {
 	    		writer.println("            type: " + itemText[offset + 1]);
 	    		writer.println("            type_short: " + ShortTypeName(itemText[offset + 1]));
 	    		writer.println("            comment: " + CommentString(itemText, offset + 2));
+	    		if (offset>0){
+	    			writer.println("            optional: 1");
+	    		}
 	    	}
 	    }
     }
