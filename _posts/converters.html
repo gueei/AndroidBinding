@@ -4,7 +4,7 @@ title: Converters
 permalink: converters/conv.html
 converters:
   - name: ADAPTER
-    description: ADAPTER accepts only one argument, and it must be DynamicObject  It will return a simple adapter, the same parameters to gueei.binding.collections.Utility.getSimpleAdapter
+    description: ADAPTER accepts only one argument
     return: 
         type: android.widget.Adapter
         type_short: Adapter
@@ -15,7 +15,7 @@ converters:
         type_short: DynamicObject
         comment: 
   - name: AFTERCOMMAND
-    description: Trigger the provided animation after the command is executed.   This is NOT compatible with the newer Property-based animation
+    description: Trigger the provided animation after the command is executed.
     return: 
         type: gueei.binding.viewAttributes.view.AnimationTrigger
         type_short: AnimationTrigger
@@ -24,13 +24,9 @@ converters:
       - name: animationId
         type: integer,
         type_short: integer,
-        comment: specify by "@anim/animation" 
+        comment: specify by 
       - name: command
         type: gueei.binding.Command
         type_short: Command
         comment: 
-      - name: @optional
-        type: condition
-        type_short: condition
-        comment: boolean 
 ---
