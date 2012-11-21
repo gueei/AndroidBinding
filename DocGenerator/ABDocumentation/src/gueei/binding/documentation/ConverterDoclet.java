@@ -48,7 +48,7 @@ public class ConverterDoclet {
 			writer.println("---");
 			writer.println("layout: converter");
 			writer.println("title: Converters");
-			writer.println("permalink: converters/index.html");
+			writer.println("permalink: converters/conv.html");
 			writer.println("converters:");
 
 			for(ClassDoc doc : converters){
@@ -69,8 +69,13 @@ public class ConverterDoclet {
 	    String name = doc.name();
 	    Hashtable<String, ArrayList<Tag>> tags = organizeTags(doc.tags());
 
+	    if (!(tags.containsKey("@return") && tags.containsKey("@arg"))){
+	    	return;
+	    }
+	    
 	    writer.println("  - name: " + name);
-	    writer.println("    description: " + doc.commentText().replace("\n", "<br/>"));
+	    writer.println("    description: " + doc.commentText().replace("\n", " "));
+	    
 	    if (tags.containsKey("@return")){
 		    Tag[] returnTags = tags.get("@return").toArray(new Tag[0]);
 		    writer.println("    return: ");
