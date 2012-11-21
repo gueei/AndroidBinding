@@ -41,7 +41,7 @@ public class ConverterDoclet {
 
 	private static void outputConverters(File destDir) {
 		try {
-			File output = new File(destDir.getAbsolutePath(), "converters.html");
+			File output = new File(destDir.getAbsolutePath(), "2012-11-21-converters.html");
 	        output.createNewFile();
 			PrintWriter writer = new PrintWriter(output);
 			

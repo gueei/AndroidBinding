@@ -1,30 +1,323 @@
 ---
-layout: master
+layout: converter
 title: Converters
 permalink: converters/conv.html
-
 converters:
-  - name: AFTERCOMMAND
-    description: Trigger the provided animation..
-    usage: 
-      - animationId command condition
-      - animationId command
+  - name: ADAPTER
+    description: ADAPTER accepts only one argument, and it must be DynamicObject  It will return a simple adapter, the same parameters to gueei.binding.collections.Utility.getSimpleAdapter:
     return: 
-        type: gueei.binding.viewAttribute.view.AnimationTrigger
+        type: android.widget.Adapter
+        type_short: Adapter
+        comment: 
+    parameters: 
+      - name: params
+        type: DynamicObject
+        type_short: DynamicObject
+        comment: 
+  - name: AFTERCOMMAND
+    description: Trigger the provided animation after the command is executed.   This is NOT compatible with the newer Property-based animation
+    return: 
+        type: gueei.binding.viewAttributes.view.AnimationTrigger
         type_short: AnimationTrigger
         comment: 
-    parameters:
+    parameters: 
       - name: animationId
-        type_short: int
-        type: int
-        comment: specify by "@anim/animation"
+        type: integer,
+        type_short: integer,
+        comment: specify by "@anim/animation" 
       - name: command
-        type_short: Command
         type: gueei.binding.Command
+        type_short: Command
         comment: 
-      - name: condition
-        optional: 1
-        type_short: boolean
+      - name: @optional
+        type: condition
+        type_short: condition
+        comment: boolean 
+  - name: ALT_TEMPLATE
+    description: Alternate Layout Template.  <br/>  You can supply more than one templates to it, and it will output them alternatively, according to position <br/>  For example, if you provide 3 templates to it, binding:itemTemplate="ALT(A,B,C)" then <br/>  the 1,4,7... item in ListView will have A template, and 2,5,8 will have B etc.
+    return: 
+        type: gueei.binding.viewAttributes.templates.Layout
+        type_short: Layout
+        comment: 
+    parameters: 
+      - name: layout
+        type: gueei.binding.viewAttributes.templates.Layout
+        type_short: Layout
+        comment: Note layout can be supplied in @package:layout/id format 
+  - name: AND
+    description: Converter to perform logical AND operation.  It allows 1 or more arguments, if any argument is false, then it will be false
+    return: 
         type: boolean
+        type_short: boolean
         comment: 
+    parameters: 
+      - name: arg
+        type: boolean
+        type_short: boolean
+        comment: 
+  - name: ARG
+    description: Passing extra arguments to command.  Since command's invoke is invoke(View, args), by using this, it will shift the original args to right,   so that the extra arguments supplied will always be the first few arguments when command is invoked. <br/>  For example, if you bind onChecked="Fire", your Fire command will receive (View, boolean)   (the same as http://developer.android.com/reference/android/widget/CompoundButton.OnCheckedChangeListener.html) <br/>  But if you bind onChecked="ARG(Fire, 1, 2)", you will receive (View, integer, integer, boolean) in the invoke <br/>  You can supply any number of extra arguments
+    return: 
+        type: command
+        type_short: command
+        comment: gueei.binding.Command 
+    parameters: 
+      - name: command
+        type: gueei.binding.Command
+        type_short: Command
+        comment: 
+      - name: arg
+        type: Object
+        type_short: Object
+        comment: 
+  - name: ARGB
+    description: Covert to Color value of three components or four components  If only three arguments specified, color will be RGB  if four arguments provided, color will be ARGB
+    return: 
+        type: integer
+        type_short: integer
+        comment: Android color-coded Integer 
+    parameters: 
+      - name: @optional
+        type: rValue
+        type_short: rValue
+        comment:  integer Integer value from 0-255, if obmitted, it is assumed to be 255 
+      - name: aValue
+        type: integer
+        type_short: integer
+        comment: Integer value from 0-255, the R component of color 
+      - name: gValue
+        type: integer
+        type_short: integer
+        comment: Integer value from 0-255, the G component of color 
+      - name: bValue
+        type: integer
+        type_short: integer
+        comment: Integer value from 0-255, the B component of color 
+  - name: CONCAT
+    description: CONCAT the given strings to one string
+    return: 
+        type: String
+        type_short: String
+        comment: 
+    parameters: 
+      - name: str
+        type: String
+        type_short: String
+        comment: 
+  - name: EQUAL
+    description: Converter to perform EQUAL operation. <br/>  It accepts 2 arguments, and perform Object.equals() on them <br/>  Note if both arguments are null, it returns true
+    return: 
+        type: boolean
+        type_short: boolean
+        comment: 
+    parameters: 
+      - name: arg1
+        type: Object
+        type_short: Object
+        comment: 
+      - name: arg2
+        type: Object
+        type_short: Object
+        comment: 
+  - name: FORMAT
+    description: Format behaves similar to String.format(formatstring, item...)  in the Java API. And it also styles the resulting string to HTML rich text
+    return: 
+        type: android.text.Spanned
+        type_short: Spanned
+        comment: formatted with HTML tags in string 
+    parameters: 
+      - name: formatString
+        type: String
+        type_short: String
+        comment: Java-styled format string 
+      - name: str
+        type: String
+        type_short: String
+        comment: If supplied Object, it will call Object.toString() 
+  - name: HTML
+    description: Concat, Styles and Convert HTML Charsequences into Styled Spanned.
+    return: 
+        type: android.text.Spanned
+        type_short: Spanned
+        comment: formatted with HTML tags in string 
+    parameters: 
+      - name: str
+        type: String
+        type_short: String
+        comment: If supplied Object, it will call Object.toString() 
+  - name: IF
+    description: Test the condition, if the condition is true, return arg_if_true, or else return arg_if_false
+    return: 
+        type: boolean
+        type_short: boolean
+        comment: 
+    parameters: 
+      - name: condition
+        type: boolean
+        type_short: boolean
+        comment: 
+      - name: arg_if_true
+        type: Object
+        type_short: Object
+        comment: 
+      - name: arg_if_false
+        type: Object
+        type_short: Object
+        comment: 
+  - name: IF_NULL
+    description: Do test on condition, if it is null, return arg_if_null, else arg_if_not
+    return: 
+        type: Object
+        type_short: Object
+        comment: 
+    parameters: 
+      - name: condition
+        type: boolean
+        type_short: boolean
+        comment: 
+      - name: arg_if_null
+        type: Object
+        type_short: Object
+        comment: 
+      - name: arg_if_not
+        type: Object
+        type_short: Object
+        comment: 
+  - name: INJECT
+    description: INJECT binding statements into layout templates. <br/>  Most probably those templates came from external libraries (e.g. android) that you cannot change <br/>  This is much more convenient than everytime you need to copy those standard templates. <br/>  <br/>    The most common usage is on those templates for spinners, listviews (e.g. @android:layout/simple_list_item1). <br/>  Suppose We need to inject the statement to the textview (@android:id/textview1), then: <br/>  binding:itemTemplate="INJECT(@android:layout/simple_list_item1, { id=@android:id/textview1, attr='text', statement='Name' })" <br/>  Note it is possible to inject more than one attribute, for example you can change the color of the above mentioned text view too: <br/>  binding:itemTemplate="INJECT(@android:layout/simple_list_item1, { id=@android:id/textview1, attr='text', statement='Name' }, { id=@android:id/textview1, attr='backgroundColor', statement='ARGB(255,0,0)' })" <br/>
+    return: 
+        type: gueei.binding.viewAttributes.templates.Layout
+        type_short: Layout
+        comment: 
+    parameters: 
+      - name: layout
+        type: gueei.binding.viewAttributes.templates.Layout
+        type_short: Layout
+        comment: Layout of the template-to-inject 
+      - name: params
+        type: DynamicObject
+        type_short: DynamicObject
+        comment: 
+  - name: ISNULL
+    description: Test if the argument is null <br/>
+    return: 
+        type: boolean
+        type_short: boolean
+        comment: 
+    parameters: 
+      - name: arg
+        type: Object
+        type_short: Object
+        comment: 
+  - name: IS_NOT_NULL
+    description: Inverted result of ISNULL <br/>  return true if the argument is NOT null
+    return: 
+        type: boolean
+        type_short: boolean
+        comment: 
+    parameters: 
+      - name: arg
+        type: Object
+        type_short: Object
+        comment: 
+  - name: LEN
+    description: Length of the given String, if provided is an object, object.toString().length() will be evaluated
+    return: 
+        type: integer
+        type_short: integer
+        comment: 
+    parameters: 
+      - name: str
+        type: String
+        type_short: String
+        comment: 
+  - name: MENU
+    description: Use exclusively for contextMenu attribute
+    return: 
+        type: gueei.binding.menu.ContextMenuBinder
+        type_short: ContextMenuBinder
+        comment: 
+    parameters: 
+      - name: menu_xml
+        type: integer
+        type_short: integer
+        comment: XML id of the context menu, e.g. @menu/context_menu 
+      - name: model
+        type: Object
+        type_short: Object
+        comment: View model to bind to the menu, most probably it will be just "." 
+  - name: NOT
+    description: Converter to perform logical NOT operation.  It allows 1 argument only, and it should be in type boolean
+    return: 
+        type: boolean
+        type_short: boolean
+        comment: 
+    parameters: 
+      - name: arg
+        type: boolean
+        type_short: boolean
+        comment: 
+  - name: OR
+    description: Converter to perform logical OR operation.  It allows 1 or more arguments, if any argument is true, then it will be true. <br/>  Return false only if all arguments are false
+    return: 
+        type: boolean
+        type_short: boolean
+        comment: 
+    parameters: 
+      - name: arg
+        type: boolean
+        type_short: boolean
+        comment: 
+  - name: PROP
+    description: Dynamically evaluate the statement for the given view_model
+    return: 
+        type: Object
+        type_short: Object
+        comment: 
+    parameters: 
+      - name: view_model
+        type: Object
+        type_short: Object
+        comment: the Context to evaluate the statement 
+      - name: statement
+        type: String
+        type_short: String
+        comment: 
+  - name: SECTION
+    description: Returns a Single Item Adapter (SingletonAdapter) for the given object. <br/>  This is most useful as declaring header/footer templates for list views, or as divider to divide list in sections
+    return: 
+        type: Adapter
+        type_short: Adapter
+        comment: 
+    parameters: 
+      - name: object
+        type: Object
+        type_short: Object
+        comment: 
+      - name: layout
+        type: gueei.binding.viewAttributes.templates.Layout
+        type_short: Layout
+        comment: 
+  - name: STITCH
+    description: STITCH multiple adapters to one adapter for used in List Views. <br/>
+    return: 
+        type: android.widget.Adapter
+        type_short: Adapter
+        comment: 
+    parameters: 
+      - name: adapter
+        type: android.widget.Adapter
+        type_short: Adapter
+        comment: 
+  - name: TYPEFACE_FROM_ASSET
+    description: Get type face from asset folder
+    return: 
+        type: android.graphics.Typeface
+        type_short: Typeface
+        comment: 
+    parameters: 
+      - name: type_name
+        type: String
+        type_short: String
+        comment: Name of the typeface 
 ---
