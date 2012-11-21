@@ -9,19 +9,18 @@ layout: master
     <span class="converter-name">{{ converter.name }}</span>(
     {% for item in converter.parameters %}
     {% if item.type_short == 'DynamicObject' %}
-        <br/>{
+        <br/>
+        <span class="dynamic-object">{
             {% for i in item.items %}
-                <span class="name">{{ i.name }}</span>=
-                <span class="type dynamic-item">{{ i.type_short }}</span>
+                <span class="name">{{ i.name }}</span>=<span class="type dynamic-item">{{ i.type_short }}</span>
+                {% unless forloop.last %},{% endunless %}
             {% endfor %}
-        }
+        }</span>
     {% else %}
         <span class="type">{{ item.type_short }}</span>&nbsp;
         <span class="paraname" id="param-{{item.name}}">{{ item.name }}</span>
     {% endif %}
-    {% if !forloop.last %}
-    {% else %},
-    {% endif %}
+    {% unless forloop.last %},{% endunless %}
     {% endfor %}
     )
     </div>
@@ -34,8 +33,22 @@ layout: master
     <tr>
         <th>{{ item.name }}</th>
         <td>
-            {% if item.optional == 1 %}(optional){% endif %}
-        {{ item.comment }}</td>
+            {% if item.type_short == 'DynamicObject' %}
+                <table class="dynamic-object-detail">
+                    <tbody>
+                        {% for i in item.items %}
+                            <th>{{ i.name }}</th>
+                            <td>
+                            {% if i.optional == 1 %}(optional)<br/>{% endif %}{{ i.comment }}
+                            </td>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                {% if item.optional == 1 %}(optional)<br/>{% endif %}
+                {{ item.comment }}
+            {% endif %}
+        </td>
     </tr>
     {% endfor %}
     </tbody>

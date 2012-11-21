@@ -382,12 +382,12 @@ div.converter{
 
 div.usage{
   background: rgba(255, 255, 255, 0.7);
-  color: #333333;
   padding: .5em;
 }
 
 .converter-name{
     font-weight: 600;
+  color: #333333;
 }
 
 .description{
@@ -401,4 +401,12 @@ div.usage{
 
 .description h4{
     margin-top: 1em;
+}
+
+span.dynamic-object{
+    font-size: 90%;
+}
+
+.dynamic-item{
+    font-style: italic;
 }
