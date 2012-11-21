@@ -18,15 +18,21 @@
         </fileset>
     </path>
     
+    <path id="ab.source">
+        <dirset dir="../../../AndroidBindingMaster/Core/AndroidBinding/src/">
+            <include name="**"/>
+        </dirset>
+        <dirset dir="../../../AndroidBindingMaster/Core/AndroidBindingV30/src/">
+            <include name="**"/>
+        </dirset>
+        </path>
+    
     <target depends="JarDoclet" name="Generate Wiki">
-        <javadoc>
+        <javadoc sourcepathref="ab.source">
             <doclet name="gueei.binding.documentation.ConverterDoclet"
                 pathref="doclet.path">
             </doclet>
-            <fileset dir="../../../AndroidBindingMaster/Core/AndroidBinding/src">
-                <include name="**/*.java"/>
-            </fileset>
-        </javadoc>
+            </javadoc>
         <copy todir="../../_posts">
             <fileset dir="./output"/>
         </copy>
