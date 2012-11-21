@@ -16,12 +16,22 @@ parameters:
     comment: specify by "@anim/animation"
   - name: command
     type: gueei.binding.Command
-    comment: none
+  - name: condition
+    type: boolean
+    
 ---
 
-## {{ page.converter.name }}
-{{ page.converter.description }}
+<h2>{{ page.converter.name }}</h2>
+<p>{{ page.converter.description }}</p>
 
+<div class="usage">
+{{ page.converter.name }}(
 {% for item in page.parameters %}
-*  {{ item.name }} ({{ item.type }})
+<span class="type">{{ item.type }}</span>&nbsp;
+<span class="paraname" id="param-{{item.name}}">{{ item.name }}</span>
+<% if forloop.last %>
+<% else %>,
+<% endif %>
 {% endfor %}
+)
+</div>
