@@ -25,7 +25,7 @@ layout: master
             {% for i in item.items %}
                 <span class="name">{{ i.name }}</span>=<span class="type dynamic-item">
                 {% if i.type != i.type_short %}<a href="{{ site.baseurl }}/type/{{ i.type }}.html">{{ i.type_short }}</a>
-                {% else %}{{ item.type_short }}
+                {% else %}{{ i.type_short }}
                 {% endif %}
                 </span>
                 {% unless forloop.last %},{% endunless %}
