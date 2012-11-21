@@ -223,11 +223,12 @@ table {
 
 th {
   font-weight: 500;
+  text-align: left;
 }
 
 td {
   border: 1px solid #ebebeb;
-  text-align: center; 
+  text-align: left; 
   font-weight: 300;
 }
 

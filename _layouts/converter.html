@@ -10,9 +10,7 @@ layout: master
     {% for item in converter.parameters %}
     <span class="type">{{ item.type_short }}</span>&nbsp;
     <span class="paraname" id="param-{{item.name}}">{{ item.name }}</span>
-    {% if forloop.last %}
-    {% else %},
-    {% endif %}
+    {% if !forloop.last %},{% endif %}
     {% endfor %}
     )
     </div>
@@ -24,7 +22,9 @@ layout: master
     {% for item in converter.parameters %}
     <tr>
         <th>{{ item.name }}</th>
-        <td>{{ item.comment }}</td>
+        <td>
+            {% if item.optional == 1 %}(optional){% endif %}
+        {{ item.comment }}</td>
     </tr>
     {% endfor %}
     </tbody>
