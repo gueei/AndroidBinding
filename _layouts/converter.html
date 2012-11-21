@@ -2,11 +2,12 @@
 layout: master
 ---
 
+{% for converter in page.converters %}
 <div class="converter">
     <div class="usage">
-    <span class="type return-type">{{ page.converter.return.type_short }}</span>
-    <span class="converter-name">{{ page.converter.name }}</span>(
-    {% for item in page.parameters %}
+    <span class="type return-type">{{ converter.return.type_short }}</span>
+    <span class="converter-name">{{ converter.name }}</span>(
+    {% for item in converter.parameters %}
     <span class="type">{{ item.type_short }}</span>&nbsp;
     <span class="paraname" id="param-{{item.name}}">{{ item.name }}</span>
     {% if forloop.last %}
@@ -16,11 +17,11 @@ layout: master
     )
     </div>
     <div class="description">
-    <p>{{ page.converter.description }}</p>
+    <p>{{ converter.description }}</p>
     <h4>Parameters</h4>
     <table>
     <tbody>
-    {% for item in page.parameters %}
+    {% for item in converter.parameters %}
     <tr>
         <th>{{ item.name }}</th>
         <td>{{ item.comment }}</td>
@@ -29,7 +30,7 @@ layout: master
     </tbody>
     </table>
     <h4>Returns</h4>
-    {{ page.converter.return.comment }}
+    {{ converter.return.comment }}
     </div>
 </div>
-
+{% endfor %}

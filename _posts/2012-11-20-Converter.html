@@ -3,8 +3,8 @@ layout: converter
 title: Converter Template test
 permalink: converter/converter.html
 
-converter:
-    name: AFTERCOMMAND
+converters:
+  - name: AFTERCOMMAND
     description: Trigger the provided animation..
     usage: 
       - animationId command condition
@@ -13,18 +13,17 @@ converter:
         type: gueei.binding.viewAttribute.view.AnimationTrigger
         type_short: AnimationTrigger
         comment: 
-
-parameters:
-  - name: animationId
-    type_short: int
-    type: int
-    comment: specify by "@anim/animation"
-  - name: command
-    type_short: Command
-    type: gueei.binding.Command
-    comment: 
-  - name: condition
-    type_short: boolean
-    type: boolean
-    comment: 
+    parameters:
+      - name: animationId
+        type_short: int
+        type: int
+        comment: specify by "@anim/animation"
+      - name: command
+        type_short: Command
+        type: gueei.binding.Command
+        comment: 
+      - name: condition
+        type_short: boolean
+        type: boolean
+        comment: 
 ---
