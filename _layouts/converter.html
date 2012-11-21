@@ -12,12 +12,12 @@ layout: master
         <br/>
         <span class="dynamic-object">{
             {% for i in item.items %}
-                <span class="name">{{ i.name }}</span>=<span class="type dynamic-item">{{ i.type_short }}</span>
+                <span class="name">{{ i.name }}</span>=<span class="type dynamic-item"><a href="{{ site.baseurl }}/type/{{ item.type }}.html">{{ i.type_short }}</a></span>
                 {% unless forloop.last %},{% endunless %}
             {% endfor %}
         }</span>
     {% else %}
-        <span class="type">{{ item.type_short }}</span>&nbsp;
+        <span class="type"><a href="{{ site.baseurl }}/type/{{ item.type }}.html">{{ item.type_short }}</a></span>&nbsp;
         <span class="paraname" id="param-{{item.name}}">{{ item.name }}</span>
     {% endif %}
     {% unless forloop.last %},{% endunless %}
