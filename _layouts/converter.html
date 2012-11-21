@@ -11,9 +11,10 @@ layout: master
     {% endfor %}
     </ul>
 </div>
-
+<hr/>
 {% for converter in page.converters %}
-<div class="converter" href="{{ converter.name }}">
+<div class="converter">
+    <a name="{{ converter.name }}"/>
     <div class="usage">
     <span class="type return-type">{{ converter.return.type_short }}</span>
     <span class="converter-name">{{ converter.name }}</span>(
