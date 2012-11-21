@@ -2,8 +2,18 @@
 layout: master
 ---
 
+<h2>Built-in Converters</h2>
+
+<div class="TOC">
+    <ul>
+    {% for converter in page.converters %}
+    <li><a href="#{{ converter.name }}">{{ converter.name }}</a></li>
+    {% endfor %}
+    </ul>
+</div>
+
 {% for converter in page.converters %}
-<div class="converter">
+<div class="converter" href="{{ converter.name }}">
     <div class="usage">
     <span class="type return-type">{{ converter.return.type_short }}</span>
     <span class="converter-name">{{ converter.name }}</span>(
