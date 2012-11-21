@@ -3,15 +3,27 @@ layout: master
 title: Converters
 permalink: converters/conv.html
 converters:
-  - name: ADAPTER
-    description: ADAPTER accepts only one argument
+  - name: AFTERCOMMAND
+    description: Trigger the provided animation..
+    usage: 
+      - animationId command condition
+      - animationId command
     return: 
-        type: android.widget.Adapter
-        type_short: Adapter
+        type: gueei.binding.viewAttribute.view.AnimationTrigger
+        type_short: AnimationTrigger
         comment: 
-    parameters: 
-      - name: params
-        type: DynamicObject
-        type_short: DynamicObject
+    parameters:
+      - name: animationId
+        type_short: int
+        type: int
+        comment: specify by "@anim/animation"
+      - name: command
+        type_short: Command
+        type: gueei.binding.Command
+        comment: 
+      - name: condition
+        optional: 1
+        type_short: boolean
+        type: boolean
         comment: 
 ---
