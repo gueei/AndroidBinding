@@ -29,10 +29,11 @@ converters:
         type: gueei.binding.Command
         type_short: Command
         comment: ""
-      - name: @optional
-        type: condition
-        type_short: condition
-        comment: "boolean "
+      - name: condition
+        type: boolean
+        type_short: boolean
+        comment: ""
+        optional: 1
   - name: ALT_TEMPLATE
     description: "Alternate Layout Template.  <br/><br/> You can supply more than one templates to it, and it will output them alternatively, according to position <br/><br/> For example, if you provide 3 templates to it, binding:itemTemplate=\"ALT(A,B,C)\" then <br/><br/> the 1,4,7... item in ListView will have A template, and 2,5,8 will have B etc."
     return: 
@@ -77,10 +78,11 @@ converters:
         type_short: integer
         comment: "Android color-coded Integer "
     parameters: 
-      - name: @optional
-        type: rValue
-        type_short: rValue
-        comment: " integer Integer value from 0-255, if obmitted, it is assumed to be 255 "
+      - name: rValue
+        type: 
+        type_short: 
+        comment: "integer Integer value from 0-255, if obmitted, it is assumed to be 255 "
+        optional: 1
       - name: aValue
         type: integer
         type_short: integer

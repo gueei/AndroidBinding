@@ -90,11 +90,16 @@ public class ConverterDoclet {
 	    	writer.println("    parameters: ");
 	    	Tag[] argTags = tags.get("@arg").toArray(new Tag[0]);
 	    	for(int i=0; i<argTags.length; i++){
+	    		int offsetIndex = 0;
 	    		String[] text = argTags[i].text().split(" ");
-	    		writer.println("      - name: " + text[0]);
-	    		writer.println("        type: " + text[1]);
-	    		writer.println("        type_short: " + ShortTypeName(text[1]));
-	    		writer.println("        comment: " + CommentString(text, 2));
+	    		if (text[0].equals("@optional")) offsetIndex = 1;
+	    		writer.println("      - name: " + text[offsetIndex]);
+	    		writer.println("        type: " + text[offsetIndex + 1]);
+	    		writer.println("        type_short: " + ShortTypeName(text[offsetIndex + 1]));
+	    		writer.println("        comment: " + CommentString(text, offsetIndex + 2));
+	    		if (offsetIndex>0){
+	    			writer.println("        optional: 1");
+	    		}
 	    	}
 	    }
     }
