@@ -48,7 +48,7 @@ public class ConverterDoclet {
 			writer.println("---");
 			writer.println("layout: converter");
 			writer.println("title: Converters");
-			writer.println("permalink: converters/index.html");
+			writer.println("permalink: converters/built-in.html");
 			writer.println("converters:");
 
 			for(ClassDoc doc : converters){
