@@ -74,7 +74,7 @@ public class ConverterDoclet {
 	    }
 	    
 	    writer.println("  - name: " + name);
-	    writer.println("    description: " + doc.commentText().replace("\n", " "));
+	    writer.println("    description: " + formatYamlString(doc.commentText().replace("\n", "<br/>")));
 	    
 	    if (tags.containsKey("@return")){
 		    Tag[] returnTags = tags.get("@return").toArray(new Tag[0]);
@@ -104,7 +104,11 @@ public class ConverterDoclet {
 		for(int i=start; i<delimited.length; i++){
 			output += delimited[i] + " ";
 		}
-		return output;
+		return formatYamlString(output);
+	}
+	
+	private static String formatYamlString(String original){
+		return "\"" + original.replace("\"", "\\\"") + "\"";
 	}
 	
 	private static String ShortTypeName(String TypeName){
