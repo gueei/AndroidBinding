@@ -8,7 +8,7 @@ layout: master
     <span class="type return-type">{{ converter.return.type_short }}</span>
     <span class="converter-name">{{ converter.name }}</span>(
     {% for item in converter.parameters %}
-    {% if item.type_short=="DynamicObject" %}
+    {% if item.type_short== 'DynamicObject' %}
         <br/>{
             {% for i in item.items %}
                 <span class="name">{{ i.name }}</span>=
