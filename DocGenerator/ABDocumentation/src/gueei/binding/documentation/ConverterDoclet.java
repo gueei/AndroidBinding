@@ -67,10 +67,10 @@ public class ConverterDoclet {
 
 	private static void writeConverter(ClassDoc doc, PrintWriter writer) {
 	    String name = doc.name();
-	    writer.println("  - name: " + name);
-	    writer.println("    description: " + doc.commentText().replace("\n", "<br/>"));
 	    Hashtable<String, ArrayList<Tag>> tags = organizeTags(doc.tags());
 
+	    writer.println("  - name: " + name);
+	    writer.println("    description: " + doc.commentText().replace("\n", "<br/>"));
 	    if (tags.containsKey("@return")){
 		    Tag[] returnTags = tags.get("@return").toArray(new Tag[0]);
 		    writer.println("    return: ");
@@ -80,6 +80,17 @@ public class ConverterDoclet {
 		    	writer.println("        type_short: " + ShortTypeName(text[0]));
 		    	writer.println("        comment: " + CommentString(text, 1));
 		    }
+	    }
+	    if (tags.containsKey("@arg")){
+	    	writer.println("    parameters: ");
+	    	Tag[] argTags = tags.get("@arg").toArray(new Tag[0]);
+	    	for(int i=0; i<argTags.length; i++){
+	    		String[] text = argTags[i].text().split(" ");
+	    		writer.println("      - name: " + text[0]);
+	    		writer.println("        type: " + text[1]);
+	    		writer.println("        type_short: " + ShortTypeName(text[1]));
+	    		writer.println("        comment: " + CommentString(text, 2));
+	    	}
 	    }
     }
 	
