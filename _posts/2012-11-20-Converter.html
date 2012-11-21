@@ -9,29 +9,50 @@ converter:
     usage: 
       - animationId command condition
       - animationId command
+    return: 
+        type: gueei.binding.viewAttribute.view.AnimationTrigger
+        type_short: AnimationTrigger
+        comment: 
 
 parameters:
   - name: animationId
+    type_short: int
     type: int
     comment: specify by "@anim/animation"
   - name: command
+    type_short: Command
     type: gueei.binding.Command
+    comment: 
   - name: condition
+    type_short: boolean
     type: boolean
-    
+    comment: 
 ---
 
-<h2>{{ page.converter.name }}</h2>
-<p>{{ page.converter.description }}</p>
-
-<div class="usage">
-{{ page.converter.name }}(
-{% for item in page.parameters %}
-<span class="type">{{ item.type }}</span>&nbsp;
-<span class="paraname" id="param-{{item.name}}">{{ item.name }}</span>
-{% if forloop.last %}
-{% else %},
-{% endif %}
-{% endfor %}
-)
+<div class="converter">
+    <div class="usage">
+    <span class="type return-type">{{ page.converter.return.type_short }}</span>
+    {{ page.converter.name }}(
+    {% for item in page.parameters %}
+    <span class="type">{{ item.type_short }}</span>&nbsp;
+    <span class="paraname" id="param-{{item.name}}">{{ item.name }}</span>
+    {% if forloop.last %}
+    {% else %},
+    {% endif %}
+    {% endfor %}
+    )
+    </div>
+    <div class="description">
+    <p>{{ page.converter.description }}</p>
+    <h4>Parameters</h4>
+    <table>
+    {% for item in page.parameters %}
+        <th>{{ item.name }}</th>
+        <td>{{ item.comment }}</td>
+    {% endfor %}
+    </table>
+    <h4>Returns</h4>
+    {{ page.converter.return.comment }}
+    </div>
 </div>
+
