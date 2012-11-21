@@ -22,9 +22,28 @@ converters:
         comment: ""
     parameters: 
       - name: params
-        type: DynamicObject...
-        type_short: 
+        type: DynamicObject
+        type_short: DynamicObject
         comment: ""
+        items: 
+          - name: template
+            type: gueei.binding.viewAttributes.templates.Layout
+            type_short: Layout
+            comment: ""
+          - name: item
+            type: Object
+            type_short: Object
+            comment: "Item View Model "
+          - name: width
+            type: float
+            type_short: float
+            comment: ""
+            optional: 1
+          - name: title
+            type: String
+            type_short: String
+            comment: ""
+            optional: 1
   - name: PAGERADAPTER
     description: "PAGERADAPTER accepts unlimited number of DynamicObjects<br/> It will return a PagerAdapter"
     return: 
@@ -33,9 +52,38 @@ converters:
         comment: ""
     parameters: 
       - name: params
-        type: DynamicObject...
-        type_short: 
+        type: DynamicObject
+        type_short: DynamicObject
         comment: ""
+        items: 
+          - name: template
+            type: gueei.binding.viewAttributes.templates.Layout
+            type_short: Layout
+            comment: ""
+          - name: source
+            type: ObservableCollection
+            type_short: ObservableCollection
+            comment: ""
+          - name: width
+            type: Float
+            type_short: Float
+            comment: ""
+            optional: 1
+          - name: widthField
+            type: String
+            type_short: String
+            comment: "When Set, ignore width "
+            optional: 1
+          - name: title
+            type: String
+            type_short: String
+            comment: ""
+            optional: 1
+          - name: titleField
+            type: String
+            type_short: String
+            comment: "When Set, ignore title "
+            optional: 1
   - name: TYPEFACE_FROM_ASSET
     description: "Get type face from asset folder"
     return: 
