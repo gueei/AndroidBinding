@@ -27,6 +27,9 @@
                 <include name="**/*.java"/>
             </fileset>
         </javadoc>
+        <copy todir="../../_posts">
+            <fileset dir="./output"/>
+        </copy>
     </target>
     
     <path id="ABDocumentation.classpath">

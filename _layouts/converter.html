@@ -10,7 +10,9 @@ layout: master
     {% for item in converter.parameters %}
     <span class="type">{{ item.type_short }}</span>&nbsp;
     <span class="paraname" id="param-{{item.name}}">{{ item.name }}</span>
-    {% if !forloop.last %},{% endif %}
+    {% if !forloop.last %}
+    {% else %},
+    {% endif %}
     {% endfor %}
     )
     </div>
