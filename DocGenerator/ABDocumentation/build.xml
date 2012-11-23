@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project basedir="." default="Generate Wiki" name="ABDocumentation">
+<project basedir="." default="Generate documentation" name="ABDocumentation">
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="../../../../../Program Files/eclipse"/>
     <property name="debuglevel" value="source,lines,vars"/>
@@ -27,9 +27,9 @@
         </dirset>
         </path>
     
-    <target depends="JarDoclet" name="Generate Wiki">
+    <target depends="JarDoclet" name="Generate documentation">
         <javadoc sourcepathref="ab.source">
-            <doclet name="gueei.binding.documentation.ConverterDoclet"
+            <doclet name="gueei.binding.documentation.ViewAttributesDoclet"
                 pathref="doclet.path">
             </doclet>
             </javadoc>
