@@ -29,6 +29,11 @@
     
     <target depends="JarDoclet" name="Generate documentation">
         <javadoc sourcepathref="ab.source">
+            <doclet name="gueei.binding.documentation.ConverterDoclet"
+                pathref="doclet.path">
+            </doclet>
+            </javadoc>
+        <javadoc sourcepathref="ab.source">
             <doclet name="gueei.binding.documentation.ViewAttributesDoclet"
                 pathref="doclet.path">
             </doclet>
