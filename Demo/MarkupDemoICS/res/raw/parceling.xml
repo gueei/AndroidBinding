@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:binding="http://www.gueei.com/android-binding/"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    >
+	<TextView
+		android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:textSize="20dip"
+	    android:text="Following values are persisted (thru bundle). Try to rotate the Phone/Tablet to force the Activity to recreate"
+	/>
+	<TextView
+		android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    binding:text="CONCAT('long: ', SaveLong)"
+	/>
+	<TextView
+		android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    binding:text="CONCAT('This String is decorated with @NoParcel, no saving will be done: ', NoParcelString)"
+	/>
+    <TextView
+    	android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    binding:text="SaveString"
+    />
+    <CheckBox
+    	android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:text="Boolean"
+	    binding:checked="SaveBoolean"
+    />
+	<ListView
+    	android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_weight="1"
+	    binding:itemSource="SaveArrayList"
+	    binding:itemTemplate="@layout/list_item"
+    />
+</LinearLayout>

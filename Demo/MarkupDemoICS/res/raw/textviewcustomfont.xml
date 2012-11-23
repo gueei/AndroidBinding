@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:binding="http://www.gueei.com/android-binding/"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    >
+    <TextView
+    	android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:text="Default font"
+    />
+	<TextView
+		android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:textSize="40dip"
+	    binding:text="DefaultFont"
+	/>
+    <TextView
+    	android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:text="Custom TTF font from asset folder"
+    />
+	<TextView
+		android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:textSize="40dip"
+	    binding:typeface="TYPEFACE_FROM_ASSET('Roboto-BoldCondensedItalic.ttf')"
+	    binding:text="CustomFont"
+	/>	
+
+</LinearLayout>

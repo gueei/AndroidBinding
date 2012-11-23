@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<activity xmlns:binding="http://www.gueei.com/android-binding/">
+	<actionBar
+		binding:displayHomeAsUp="ActionBarViewModel.ShowHomeAsUp"
+		binding:displayShowTitle="ActionBarViewModel.ShowTitle"
+		binding:displayShowHome="ActionBarViewModel.ShowHome"
+		binding:navigationMode="1"
+		binding:listNavigationAdapter="ADAPTER({source=Categories, template=@layout/listnavi_item})"
+		binding:listNavigationOnItemSelected="CategorySelected"
+		binding:listNavigationSelectedItem="SelectedCategory"
+		binding:tabNavigationAdapter="ADAPTER({source=Categories, template=@layout/listnavi_item})"
+		binding:tabNavigationOnItemSelected="CategorySelected"
+		binding:tabNavigationSelectedItem="SelectedCategory"
+		>
+	</actionBar>
+	<rootView
+	    binding:dataSource="."
+		binding:layoutId="@layout/main"/>
+	<optionsMenu
+	    binding:dataSource="ActionBarViewModel"
+	    binding:menu="@menu/optionsmenu"/>
+</activity>

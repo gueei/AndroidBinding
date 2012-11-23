@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:binding="http://www.gueei.com/android-binding/"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    <TextView 
+	    android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:text="The following items are lazy loaded and will not display until scrolling stops"
+    />
+    <ListView
+	    android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	android:fastScrollEnabled="true"
+    	android:textFilterEnabled="true"
+    	android:layout_weight="1"
+    	binding:itemSource="Items"
+    	binding:itemTemplate="@layout/arraylist_item"
+    />
+</LinearLayout>

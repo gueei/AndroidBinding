@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:binding="http://www.gueei.com/android-binding/"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+	<ListView 
+		android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	android:layout_weight="1"
+    	binding:onItemClicked="ToastItem"
+    	binding:clickedItem="ClickedItem"
+    	binding:itemSource="STITCH(
+   				SECTION('Section A: From Array List', @layout/section_name),
+   				ADAPTER({source=SectionAList, template=@layout/list_item}),
+   				SECTION('Section B: Also from Array List', @layout/section_name),
+   				ADAPTER({source=SectionBList, template=ALT_TEMPLATE(@layout/list_item, @layout/list_item2)}),
+    			SECTION('Section C: From another Array List', @layout/section_name),
+    			ADAPTER({source=SectionCList, template=@layout/list_item})
+    		)"
+    />
+</LinearLayout>

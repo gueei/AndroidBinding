@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:binding="http://www.gueei.com/android-binding/"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    <TextView 
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent"        
+        binding:text="HTML(@string/actionmode_example_desc)"
+        />
+    <ListView 
+		android:layout_height="fill_parent"
+		android:layout_width="fill_parent"
+        android:choiceMode="multipleChoiceModal"
+        binding:itemSource="Locations"
+        binding:itemTemplate="@layout/simple_list_item_multiple_choice"
+        binding:modalCheckedItemPositions="CheckedItemPositions"
+        binding:multiChoiceMode="
+        	{menu=@menu/actionmodeexample_menu, 
+        		model=., 
+        		title=FORMAT(@string/actionmode_example_title,CheckedItemCount)}"
+    />
+</LinearLayout>

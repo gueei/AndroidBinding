@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:binding="http://www.gueei.com/android-binding/"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    >
+    <com.gueei.demos.markupDemo.viewModels.CustomViewWidget
+    	android:layout_width="fill_parent"
+	    android:layout_height="60dip"
+	    android:textSize="20dip"
+	    android:text="Here is some secret I want to hide."
+	    binding:mask="Mask"
+    />
+    <TextView
+    	android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+		android:text="
+Enter the character you want to mask\n Only the first character is used\n
+Clear everything to remove mask"
+	/>
+	<EditText
+    	android:layout_width="80dip"
+	    android:layout_height="wrap_content"
+	    android:maxLength="1"
+	    android:gravity="center"
+	    android:inputType="text"
+	    binding:text="Mask"
+	/>
+	<Button 
+    	android:layout_width="80dip"
+	    android:layout_height="wrap_content"
+	    android:text="Clear"
+	    binding:onClick="Clear"
+	/>
+</LinearLayout>

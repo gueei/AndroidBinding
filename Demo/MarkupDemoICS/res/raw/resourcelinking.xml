@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:binding="http://www.gueei.com/android-binding/"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+>
+<TableLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/tableLayout"
+    >
+    <TextView
+    	android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:text="Linking Resource in Markup"
+    />
+    <TableRow
+    	android:background="#333333">
+	    <TextView
+	    	android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:padding="5dip"
+		    android:text="Type (outType)" />
+	    <TextView
+	    	android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:padding="5dip"
+		    android:text="Result" />
+    </TableRow>
+    <TableRow>
+	    <TextView
+	    	android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:padding="5dip"
+		    android:text="String (String)" />
+	    <TextView
+	    	android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:padding="5dip"
+		    binding:text="@string/app_name" />
+    </TableRow>
+    <TableRow>
+	    <TextView
+	    	android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:padding="5dip"
+		    android:text="Put resource in Converter" />
+	    <TextView
+	    	android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:padding="5dip"
+		    binding:text="CONCAT('application name: ', @string/app_name)" />
+    </TableRow>
+    <TableRow>
+	    <TextView
+	    	android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:padding="5dip"
+		    android:text="bool(boolean)" />
+	    <TextView
+	    	android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:padding="5dip"
+		    binding:text="@bool/screen_small" />
+    </TableRow>
+    <TableRow>
+	    <TextView
+	    	android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:padding="5dip"
+		    android:text="color(integer)" />
+	    <TextView
+	    	android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:padding="5dip"
+		    binding:text="@color/opaque_red" />
+    </TableRow>
+    <TableRow>
+	    <TextView
+	    	android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:padding="5dip"
+		    android:text="dimension(TypedValue)" />
+	    <TextView
+	    	android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:padding="5dip"
+		    binding:text="@dimen/font_size" />
+    </TableRow>
+    <TableRow>
+	    <TextView
+	    	android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:padding="5dip"
+		    android:text="Integer(Integer)" />
+	    <TextView
+	    	android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:id="@+id/tvInteger"
+		    android:padding="5dip"
+		    binding:text="@integer/max_speed" />
+    </TableRow>
+    <TableRow>
+	    <TextView
+	    	android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:padding="5dip"
+		    android:text="Id (Integer)" />
+	    <TextView
+	    	android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:padding="5dip"
+		    binding:text="@id/tableLayout" />
+    </TableRow>
+    <TableRow>
+	    <TextView
+	    	android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:padding="5dip"
+		    android:text="Layout (Layout)" />
+	    <TextView
+	    	android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:padding="5dip"
+		    binding:text="@layout/resourcelinking" />
+    </TableRow>
+    <TableRow>
+	    <TextView
+	    	android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:padding="5dip"
+		    android:text="Layout from external" />
+	    <TextView
+	    	android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:padding="5dip"
+		    binding:text="@android:layout/simple_expandable_list_item_1" />
+    </TableRow>
+    <TableRow>
+	    <TextView
+	    	android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:padding="5dip"
+		    android:text="Link with other Widget's Attribute" />
+	    <TextView
+	    	android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:padding="5dip"
+		    binding:text="CONCAT('tvInteger:text=', =id/tvInteger.text)" />
+    </TableRow>
+</TableLayout>
+</ScrollView>

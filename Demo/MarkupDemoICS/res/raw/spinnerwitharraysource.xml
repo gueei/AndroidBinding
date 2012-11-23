@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:binding="http://www.gueei.com/android-binding/"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
+    <Spinner
+    		android:id="@+id/spinner1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            binding:itemTemplate="@layout/simple_spinner_dropdown_item"
+            binding:spinnerTemplate="@layout/simple_spinner_item"
+            binding:itemSource="ContinentNames"
+            />
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            binding:text="CONCAT('Selected position: ', =id/spinner1.selectedPosition, 
+            	'\nThe Following Spinner\\'s selection is linked with the above spinner')"
+            />
+    <Spinner
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            binding:itemTemplate="@layout/simple_spinner_dropdown_item"
+            binding:spinnerTemplate="@layout/simple_spinner_item"
+            binding:itemSource="ContinentNames"
+            binding:selectedPosition="=id/spinner1.selectedPosition"
+            />
+</LinearLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:binding="http://www.gueei.com/android-binding/"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal" >
+    <binding.BindableFrameLayout
+		android:layout_width="@dimen/titles_size"
+		android:layout_height="match_parent"
+		binding:dataSource="SelectedCategory"
+		binding:layoutId="@layout/demos"
+    />
+    <binding.BindableFrameLayout
+		android:layout_height="match_parent"
+		android:layout_width="match_parent"
+		binding:dataSource="CurrentViewModel"
+		binding:layoutId="CurrentLayout"
+    />
+</LinearLayout>

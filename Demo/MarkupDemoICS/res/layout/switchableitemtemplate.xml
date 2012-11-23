@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:binding="http://www.gueei.com/android-binding/"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    <Spinner
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	binding:itemTemplate="@layout/simple_spinner_dropdown_item"
+    	binding:spinnerTemplate="@layout/simple_spinner_item"
+    	binding:itemSource="Templates"
+    	binding:selectedItem="SelectedTemplate"
+    />
+    <Spinner
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	binding:itemTemplate="ItemTemplate"
+    	binding:spinnerTemplate="SpinnerTemplate"
+    	binding:itemSource="Items"
+    />
+    <ListView
+	    android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	binding:itemSource="Items"
+    	binding:itemTemplate="ItemTemplate"
+    />
+</LinearLayout>

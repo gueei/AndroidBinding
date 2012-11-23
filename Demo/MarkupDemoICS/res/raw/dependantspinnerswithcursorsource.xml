@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:binding="http://www.gueei.com/android-binding/"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
+    <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Item"
+            binding:onClick="AddItem"
+            />
+    <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Remove Item"
+            binding:onClick="RemoveItem"
+            />
+    <Spinner
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            binding:itemTemplate="@layout/dependant_spinner_dropdown_item"
+            binding:spinnerTemplate="@layout/dependant_spinner_item"
+            binding:itemSource="MasterCursor"
+            binding:selectedItem="MasterSelected"
+            binding:selectedPosition="MasterPosition"
+			binding:onItemSelected="ChangeDetCursor"
+            />
+    <Spinner
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            binding:itemTemplate="@layout/dependant_spinner_dropdown_item"
+            binding:spinnerTemplate="@layout/dependant_spinner_item"
+            binding:itemSource="DetCursor"
+            binding:selectedItem="DetSelected"
+            binding:selectedPosition="DetPosition"
+            binding:enabled="DetEnabled"
+            />
+    <ListView
+            android:id="@+id/list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            binding:itemSource="Groups"
+            binding:itemTemplate="@layout/dependant_list_item"
+            />
+</LinearLayout>

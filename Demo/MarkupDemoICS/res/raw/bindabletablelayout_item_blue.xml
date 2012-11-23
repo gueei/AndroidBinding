@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:binding="http://www.gueei.com/android-binding/"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:paddingLeft="1dip"
+    android:paddingRight="1dip"
+    android:layout_margin="1dip"
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    binding:text="Name"
+    binding:onClick="Clicked"    
+    android:background="#FF000080"
+/>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:binding="http://www.gueei.com/android-binding/"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    <TableRow>
+	    <ListView
+		    android:layout_width="fill_parent"
+	    	android:layout_height="fill_parent"
+	    	android:choiceMode="multipleChoice"
+	    	android:layout_weight="1"
+	    	binding:checkedItemPositions="CheckedPositions"
+	    	binding:itemSource="GenreList"
+	    	binding:itemTemplate="@layout/simple_list_item_multiple_choice"
+	    />
+	    <ListView
+		    android:layout_width="fill_parent"
+	    	android:layout_height="fill_parent"
+	    	android:choiceMode="multipleChoice"
+	    	android:layout_weight="1"
+	    	binding:checkedItemPositions="CheckedPositions"
+	    	binding:itemSource="GenreList"
+	    	binding:itemTemplate="@layout/simple_list_item_multiple_choice"
+	    />
+    </TableRow>
+</TableLayout>

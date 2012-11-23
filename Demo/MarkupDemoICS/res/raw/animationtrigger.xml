@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:binding="http://www.gueei.com/android-binding/"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    >
+    <TextView
+    	android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    binding:text="CONCAT('Enter Password (password=1234): ', IF(PasswordCorrect, 'password correct', 'not correct'))"
+    />
+	<EditText
+		android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:inputType="number"
+	    android:textSize="30dip"
+	    android:password="true"
+	    binding:text="Password"
+	    binding:animation="AFTERCOMMAND(@anim/shake, CheckPassword, NOT(PasswordCorrect))"
+	/>
+	<Button
+		android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="Verify"
+	    binding:onClick="CheckPassword"
+	/>
+</LinearLayout>

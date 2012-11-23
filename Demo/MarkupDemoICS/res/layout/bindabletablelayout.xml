@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"          
+	xmlns:binding="http://www.gueei.com/android-binding/"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    
+    <TextView
+    	android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="You can add or remove rows/children at runtime or modifiy the colspan or layout id."
+    />  
+    
+    <TextView
+    	android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="Tab item to change a layout id (keeping the values)."
+    />    
+
+    <binding.BindableTableLayout
+    	android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	android:stretchColumns="1"	
+    	binding:rowChild="ROW_CHILD('Children','LayoutId','ColSpan')"    	
+    	binding:itemSource="Rows"       	
+		/>
+    
+    <!-- note: there is no rowspan in android's table -->
+    <!-- ColSpan is optional -->
+    <!-- it's also possible to use a static layout for an item -->
+    <!--    	     	
+    	binding:itemPath="ROW_CHILD('Children', @layout/bindablelinearlayout_item)"
+    -->			
+    
+</LinearLayout>

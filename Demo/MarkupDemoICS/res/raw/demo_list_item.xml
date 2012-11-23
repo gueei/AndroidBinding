@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:binding="http://www.gueei.com/android-binding/"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:orientation="horizontal"
+	>
+	<TextView
+		android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:paddingLeft="10dip"
+	    android:textColor="#f00"
+	    android:minHeight="?android:attr/listPreferredItemHeight"
+	    android:gravity="center_vertical"
+	    binding:visibility="NewAddition"
+	    binding:text="HTML('&lt;sup&gt;*new&lt;/sup&gt;')"
+	/>
+	<TextView 
+	    android:id="@android:id/text1"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:textAppearance="?android:attr/textAppearanceLarge"
+	    android:minHeight="?android:attr/listPreferredItemHeight"
+	    android:gravity="center_vertical"
+	    android:paddingLeft="60dip"
+	    binding:text="Name"
+	/>
+</FrameLayout>

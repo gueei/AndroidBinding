@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:binding="http://www.gueei.com/android-binding/"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    <LinearLayout
+        android:orientation="horizontal"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    >
+    	<Button
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:text="Add Item"
+    		binding:onClick="AddItem"
+    	/>
+    	<Button
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:text="Remove Item"
+    		binding:onClick="RemoveItem"
+    	/>
+    </LinearLayout>
+    <ListView
+    	android:id="@+id/lvItems"
+	    android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	binding:itemSource="Items"
+    	binding:itemTemplate="ALT_TEMPLATE(
+    		@layout/arraylist_item, @layout/arraylist_item1, @layout/arraylist_item2)"
+	    binding:visibility="NOT(EQUAL(=id/lvItems.itemCount, 0))"
+    />
+    <TextView
+    	android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	android:text="The List is currently empty."
+    	binding:visibility="EQUAL(=id/lvItems.itemCount, 0)"
+    />
+</LinearLayout>

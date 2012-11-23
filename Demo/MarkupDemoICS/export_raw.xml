@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="raw" name="Export raw">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../../../Program Files/eclipse"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <target name="raw">
+        <copy todir="./res/raw" overwrite="true">
+            <fileset dir="./res/layout">
+                <include name="*.xml"/>
+            </fileset>
+        </copy>
+        <copy todir="./res/raw" overwrite="true">
+            <fileset dir="./res/xml">
+                <include name="*.xml"/>
+            </fileset>
+        </copy>
+        <copy todir="./res/raw" overwrite="true">
+            <fileset dir="./src">
+                <include name="**/viewModels/*.java"/>
+            </fileset>
+            <chainedmapper>
+            	<mapper type="flatten"/>
+            	<scriptmapper language="javascript">
+            	    var str = source.substring(0, source.indexOf(".java"));
+            	    self.addMappedName(str.toLowerCase() + "_code");
+            	</scriptmapper>
+            </chainedmapper>
+        </copy>
+    </target>
+</project>

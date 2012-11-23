@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:binding="http://www.gueei.com/android-binding/"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"    
+    android:id="@+id/my_parent_id"
+    >
+	<TextView  
+    	android:layout_width="fill_parent" 
+    	android:layout_height="wrap_content" 
+    	android:text="Dynamic Layout - set the layout id to toggle the content (VM conten perserved)."    	    
+    />
+    
+	<binding.BindableFrameLayout
+		android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    binding:layoutId="@layout/bindableframelayout_frame1"
+    />   
+    
+	<binding.BindableFrameLayout
+		android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    binding:layoutId="@layout/bindableframelayout_frame2"
+    />   
+    
+    <binding.BindableFrameLayout
+		android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    binding:layoutId="@layout/bindableframelayout_frame3"
+    />  
+    
+    <binding.BindableFrameLayout
+		android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    binding:onLoad="OnLoad"
+    /> 
+    
+	<TextView  
+    	android:layout_width="fill_parent" 
+    	android:layout_height="wrap_content" 
+    	android:text="This Layout can be toggled:"    	    
+    />
+    
+	<binding.BindableFrameLayout
+		android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_margin="5dip"
+	    binding:layoutId="LayoutId"
+    />      
+    
+    <Button
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Toggle Layout"
+		binding:onClick="ToggleLayout"
+	/>
+     
+</LinearLayout>

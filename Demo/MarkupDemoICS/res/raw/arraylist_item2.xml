@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:binding="http://www.gueei.com/android-binding/"
+    android:id="@android:id/text1"
+    android:background="#666666"
+    android:layout_width="fill_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:paddingLeft="6dip"
+    android:textAppearance="?android:attr/textAppearanceLarge"
+    android:gravity="right"
+    binding:text="Title"
+    binding:onClick="ClickTitle"
+/>

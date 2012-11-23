@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   	<bool name="screen_small">true</bool>
+   	<color name="opaque_red">#f00</color>
+   	<integer name="max_speed">75</integer>
+   	<dimen name="font_size">25dp</dimen>
+</resources>

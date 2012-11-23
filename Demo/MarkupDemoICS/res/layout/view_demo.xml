@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:binding="http://www.gueei.com/android-binding/"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+	<ViewFlipper 
+		android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+		android:layout_weight="1"
+    	binding:childViews="DisplayingView"
+    	binding:displayedChild="DisplayingViewIndex"
+    />
+    <TableLayout
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:stretchColumns="0,1"
+    	android:background="#FFFFFF"
+    	>
+    	<TableRow>
+		    <Button
+				android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="View Demo"
+			    binding:onClick="ViewDemo"
+			    binding:enabled="NOT(EQUAL(DisplayingViewIndex,DemoIndex))"
+			/>
+		    <Button
+				android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="View Markup"
+			    binding:onClick="ViewMarkup"
+			    binding:enabled="com.gueei.demos.markupDemo.converters.NotEqual(DisplayingViewIndex, MarkupIndex)"
+			/>
+			<Button
+				android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="View Model"
+			    binding:onClick="ViewCode"
+			    binding:enabled="com.gueei.demos.markupDemo.converters.NotEqual(DisplayingViewIndex, CodeIndex)"
+			/>
+		</TableRow>
+	</TableLayout>
+</LinearLayout>

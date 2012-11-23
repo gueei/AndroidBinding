@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:binding="http://www.gueei.com/android-binding/"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center|center"
+    >
+    <TextView
+		android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:text="Following is a demo on converters. \n
+    		Converter looks like a function in XML markup, which provide one-way/two-way conversion
+    		of Observable Values.\n"
+    />
+    <TableLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:stretchColumns="0,1">
+    	<TableRow>
+		    <CheckBox
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				binding:text="CONCAT('A is ', A)"
+				binding:checked="A"
+			/>
+		    <CheckBox
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				binding:text="CONCAT('B is ', B)"
+				binding:checked="B"
+			/>
+		</TableRow>
+		<TableRow>
+		    <CheckBox
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:text="NOT(A)"
+				binding:checked="NOT(A)"
+			/>
+		    <CheckBox
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:text="NOT(B)"
+				binding:checked="NOT(B)"
+			/>
+		</TableRow>
+	</TableLayout>
+    <TextView
+		android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	binding:text="CONCAT(
+    		'Demo the nested behavior of Converters.', 
+    		IF(A,'This is shown when A is true','This is shown when A is false')
+    		)"
+    />
+    <TextView
+		android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:text="This is enabled when A=B"
+    	binding:enabled="EQUAL(A,B)"
+    />
+    <TextView
+		android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:text="Converter can be nested. This is enabled when A=NOT(B)"
+    	binding:enabled="EQUAL(A,NOT(B))"
+    />
+    <TextView
+		android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	binding:text="com.gueei.demos.markupDemo.viewModels.Converters$CustomConverter(A)"
+    />
+</LinearLayout>

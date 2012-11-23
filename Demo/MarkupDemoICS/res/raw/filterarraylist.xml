@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:binding="http://www.gueei.com/android-binding/"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    <TextView 
+	    android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:text="filter: "
+    />
+    <EditText 
+	    android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	binding:text="FilterText"
+    />
+    <ListView
+	    android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	android:fastScrollEnabled="true"
+    	android:textFilterEnabled="true"
+    	android:layout_weight="1"
+    	binding:filterConstraint="FilterText"
+    	binding:filter="ListFilter"
+    	binding:itemSource="ListFiltered"
+    	binding:itemTemplate="@layout/filterarraylist_item"
+    />
+</LinearLayout>

@@ -26,7 +26,7 @@ public class CacheHashMap<K, V extends ILazyLoadRowModel> extends HashMap<K, V> 
 	}
 
 	@Override
-	public V put(K key, V value) {
+	public synchronized V put(K key, V value) {
 		// Check whether it is oversize
 		int oversize = keyList.size() - mCacheSize;
 		if (oversize > 0){
@@ -34,7 +34,7 @@ public class CacheHashMap<K, V extends ILazyLoadRowModel> extends HashMap<K, V> 
 			
 			for(int i=0; i<oversize; i++){
 				V rVal = this.get(keyList.get(i));
-				if (rVal.isMapped()) continue;
+				if (rVal != null && rVal.isMapped()) continue;
 				pendingRemove.add(i);
 			}
 			

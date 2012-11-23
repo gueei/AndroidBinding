@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"          
+	xmlns:binding="http://www.gueei.com/android-binding/"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+    	android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="You can add or remove items in the Item Collection or change the layout id at runtime."
+    />  
+    
+    <TextView
+    	android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="Tab item to change a layout id (keeping the values)."
+    />     
+    
+    <binding.BindableLinearLayout
+    	android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	android:orientation="vertical" 
+    	binding:itemLayout="ITEM_LAYOUT('LayoutId')" 
+    	binding:itemSource="Items"
+    /> 
+    	    
+    <!-- it's also possible to use a static layout for an item -->
+    <!--       
+    	binding:itemPath="ITEM_LAYOUT(@layout/binablelinearlayout_item)"  
+    -->			
+    
+</LinearLayout>

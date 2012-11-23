@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:binding="http://www.gueei.com/android-binding/"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    <Spinner
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        binding:adapter="ADAPTER({source=Categories, 
+        	template=INJECT(@android:layout/simple_spinner_item, 
+        		{id=@android:id/text1, attr='text', statement='Name'}),
+        	spinnerTemplate=INJECT(@android:layout/simple_spinner_dropdown_item, 
+        		{id=@android:id/text1, attr='text', statement='Name'})
+        	})"
+        binding:onItemSelected="CategorySelected"
+        binding:selectedItem="SelectedCategory"
+        />
+    <binding.BindableFrameLayout
+		android:layout_width="@dimen/titles_size"
+		android:layout_height="match_parent"
+		binding:dataSource="SelectedCategory"
+		binding:layoutId="@layout/demos"
+    />
+</LinearLayout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<demos>
+    <category name="Layouts">
+        <entry name="ViewPager" vm="ViewPager" layout="viewpager">
+            <raw title="showdemo.xml" name="showdemo" type="Xml"/>
+            <raw title="showdemo_demo.xml" name="showdemo_demo" type="Xml"/>
+            <raw title="showdemo_xml.xml" name="showdemo_xml" type="Xml"/>
+            <raw title="ViewModel" name="showdemoviewmodel_code" type="Java"/>
+        </entry>
+        <entry name="&lt;i&gt;Bindable&lt;/i&gt;FrameLayout" vm=".BindableFrameLayout" layout=".bindableframelayout">
+               	<raw title="Xml" name="main_metadata"/>
+            	<raw title="Java" name="launchviewmodel_code"/>
+        </entry>
+        <entry name="&lt;i&gt;Bindable&lt;/i&gt;LinearLayout" vm=".BindableLinearLayout" layout=".bindablelinearlayout"/>
+        <entry name="&lt;i&gt;Bindable&lt;/i&gt;TableLayout" vm=".BindableTableLayout" layout=".bindabletablelayout"/>
+    </category>
+    <category name="Simple Views">
+        <entry name="View" vm=".View" layout=".view"/>
+        <entry name="TextView" vm=".TextView" layout=".textview"/>
+        <entry name="TextViewCustomFont" vm=".TextViewCustomFont" layout=".textviewcustomfont"/>
+        <entry name="ImageView" vm=".ImageView" layout=".imageview"/>
+        <entry name="ProgressBar" vm=".ProgressBar" layout=".progressbar"/>
+        <entry name="SeekBar" vm=".SeekBar" layout=".seekbar"/>
+        <entry name="RatingBar" vm=".RatingBar" layout=".ratingbar"/>
+        <entry name="CompoundButton" vm=".CompoundButton" layout=".compoundbutton"/>
+        <entry name="CustomView" vm=".CustomView" layout=".customview"/>
+	</category>
+    <category name="Binding Syntaxes">
+        <entry name="Referencing" vm=".Referencing" layout=".referencing"/>
+    </category>
+    <category name="Simple Lists">
+        <entry name="ArrayListAsListViewSource" vm=".ArrayListAsListViewSource" layout=".arraylistaslistviewsource"/>
+        <entry name="SpinnerWithArraySource" vm=".SpinnerWithArraySource" layout=".spinnerwitharraysource"/>
+        <entry name="ListViewWithCursorSource" vm=".ListViewWithCursorSource" layout=".listviewwithcursorsource"/>
+        <entry name="SingleChoiceList" vm=".SingleChoiceList" layout=".singlechoicelist"/>
+        <entry name="MultipleChoiceList" vm=".MultipleChoiceList" layout=".multiplechoicelist"/>
+        <entry name="FilterArrayList" vm=".FilterArrayList" layout=".filterarraylist"/>
+        <entry name="FilterCursorList" vm=".FilterCursorList" layout=".filtercursorlist"/>
+        <entry name="SwitchableItemTemplate" vm=".SwitchableItemTemplate" layout=".switchableitemtemplate"/>
+        <entry name="ListViewIndividualItemControl" vm=".ListViewIndividualItemControl" layout=".listviewindividualitemcontrol"/>
+    </category>
+    <category name="Compound/Nested Lists">
+        <entry name="MasterDetailListView" vm=".MasterDetailListView" layout=".masterdetaillistview"/>
+        <entry name="NestedCursor" vm=".NestedCursor" layout=".nestedcursor"/>
+        <entry name="CursorContentUpdate" vm=".CursorContentUpdate" layout=".cursorcontentupdate"/>
+        <entry name="MultipleAdapters" vm=".MultipleAdapters" layout=".multipleadapters"/>
+    </category>
+    <category name="Other">
+        <entry name="Animation" vm=".AnimationTrigger" layout=".animationtrigger"/>
+        <entry name="Validation" vm="Validation" layout="validation"/>
+    </category>
+</demos>

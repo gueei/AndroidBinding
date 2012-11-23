@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:binding="http://www.gueei.com/android-binding/"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center|center"
+    >
+    <SeekBar
+		android:indeterminateOnly="false"
+		style="?android:attr/progressBarStyleHorizontal"
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+		binding:progress="PrimaryProgress"
+		binding:secondaryProgress="SecondaryProgress"
+		binding:onSeekBarChange="SeekBarChange"
+		/>
+	<TextView
+		android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	binding:text="CONCAT('Primary: ',PrimaryProgress)"
+    />
+	<TextView
+		android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	binding:text="HTML('Seconary (Primary*1.3): ',SecondaryProgress)"
+    />
+</LinearLayout>

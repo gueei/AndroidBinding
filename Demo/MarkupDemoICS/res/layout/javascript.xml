@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:binding="http://www.gueei.com/android-binding/"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    <EditText
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+		android:inputType="textMultiLine"
+		android:lines="10"
+		binding:text="Script"
+    />
+    <Button
+        android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+        android:text="Execute"
+        binding:onClick="Execute" />
+    <TextView 
+        android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+		binding:text="JS(., EvalScript)"
+		/>
+</LinearLayout>

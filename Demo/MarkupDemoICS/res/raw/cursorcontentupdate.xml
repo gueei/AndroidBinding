@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:binding="http://www.gueei.com/android-binding/"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            >
+        <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Add SubItem to Group 1"
+                binding:onClick="AddSubItem"
+                />
+        <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Remove SubItem at position 0 in Group 1"
+                binding:onClick="RemoveSubItem"
+                />
+        <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Restore initial data"
+                binding:onClick="RestoreData"
+                />
+    </LinearLayout>
+    <ExpandableListView
+            android:id="@+id/list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            binding:itemSource="Groups"
+            binding:itemTemplate="ALT_TEMPLATE(@layout/nccu_list_item_1,@layout/nccu_list_item_2)"
+            binding:childItemSource="'SubItems'"
+            binding:childItemTemplate="@layout/nccu_subitem"
+            />
+</LinearLayout>

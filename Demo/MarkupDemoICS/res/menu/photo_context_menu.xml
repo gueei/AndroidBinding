@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:binding="http://www.gueei.com/android-binding/">
+    <item android:id="@+id/share"
+        binding:onClick="ToggleItemVisible"
+        binding:title="CONCAT('Next Item Visible? ', ItemVisible)"
+        android:showAsAction="always|withText" />
+    <item android:id="@+id/share2"
+        android:title="This item depends on ItemVisible"
+        binding:visible="ItemVisible"
+        android:showAsAction="always|withText" />
+</menu>

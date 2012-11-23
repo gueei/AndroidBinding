@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:binding="http://www.gueei.com/android-binding/"
+>
+	<item android:id="@+id/button4"
+		binding:title="CONCAT('ShowHomeAsUp: ',ShowHomeAsUp)"
+		binding:onClick="ToggleShowHomeAsUp"
+		binding:visible="OR(ShowHome, ShowTitle)"
+	/>
+	<item android:id="@+id/button2"
+		binding:title="CONCAT('ShowHome: ',ShowHome)"
+		binding:onClick="ToggleShowHome"
+	/>
+	<item android:id="@+id/button3"
+		binding:title="CONCAT('ShowTitle: ',ShowTitle)"
+		binding:onClick="ToggleShowTitle"
+	/>
+</menu>

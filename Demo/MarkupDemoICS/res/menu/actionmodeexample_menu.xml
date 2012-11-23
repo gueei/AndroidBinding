@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:binding="http://www.gueei.com/android-binding/">
+    <item android:id="@+id/share"
+        binding:title="CONCAT('Total Selections: ', CheckedItemCount)"
+        android:showAsAction="always|withText" />
+    <item android:id="@+id/share2"
+        binding:title="CONCAT('Remove selected items [', CheckedItemCount, ']')"
+        binding:onClick="RemoveItems"
+        android:showAsAction="always|withText" />
+</menu>

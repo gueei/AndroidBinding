@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:binding="http://www.gueei.com/android-binding/"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    >
+    <TextView
+    	android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:text=
+"This is the latest addition in Android-Binding to support options menu. \n
+Unfortunately, due to limitation to Android, all menu items must have a respective id in order to let the binding work. \n
+Press menu button to see the options menu. \n"
+    />
+    <TextView
+    	android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    binding:text="CONCAT('Group buttons visible: ', BrowserVisible)"
+    />
+</LinearLayout>

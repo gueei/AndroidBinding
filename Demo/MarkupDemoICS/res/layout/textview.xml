@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:binding="http://www.gueei.com/android-binding/"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    >
+    <TextView
+    	android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:text="Full name (concatentate the first and second)"
+    />
+	<TextView
+		android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:textSize="40dip"
+	    binding:text="CONCAT(FirstName, ' ', HTML(CONCAT('&lt;i&gt;', LastName, '&lt;/i&gt;')))"
+	/>
+	<TableLayout
+		android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:stretchColumns="1">
+		<TableRow>
+			<TextView
+				android:text="First Name: "
+			/>
+			<EditText
+			    binding:text="FirstName"
+			    binding:onTextChanged="TextChanging"
+			/>
+		</TableRow>
+		<TableRow>
+			<TextView
+				android:text="Last Name: "
+			/>
+			<EditText
+			    binding:text="LastName"
+			    binding:onTextChanged="TextChanging"
+			/>
+		</TableRow>
+	</TableLayout>
+	<TextView
+		android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    binding:text="CONCAT('Text box changed? ', Changed)"
+	/>
+	<!-- 
+	<EditText
+		android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:textSize="40dip"
+	    binding:text="@android:layout/simple_list_item_1"
+	/>
+	 -->
+</LinearLayout>

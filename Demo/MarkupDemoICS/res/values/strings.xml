@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, Launch!</string>
+    <string name="app_name">MarkupDemo</string>
+    <string name="title_source">Source Code</string>
+    <string name="title_actionbar">Action Bar</string>
+	<string-array name="action_list">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+    </string-array>
+	<string name="actionmode_example_desc">This is an example for List View with Action Mode. &lt;br/&gt; You may long click on any item so start the multiple selection action mode. </string>
+	<string name="actionmode_example_title">%s &lt;i&gt;selected&lt;/i&gt;</string>
+	<string name="viewpager_description">This markup demo itself is utilizing View Pager. Swipe this page for source codes.</string>
+</resources>

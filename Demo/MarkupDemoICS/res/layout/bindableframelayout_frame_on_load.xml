@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:binding="http://www.gueei.com/android-binding/"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"        
+    android:layout_height="wrap_content" 
+    android:gravity="center"
+	android:background="#FF001478"
+    >
+    
+	<TextView
+		android:layout_margin="5dip"  
+    	android:layout_width="fill_parent"     	
+    	android:layout_height="wrap_content" 
+    	android:text="frame is loaded by onLoad command"    	
+    />
+      
+</LinearLayout>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:binding="http://www.gueei.com/android-binding/"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center|center"
+    >
+    <CheckBox
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:text="Click to toggle 'A'"
+		binding:checked="A"
+		binding:onCheckedChange="AChanged"
+		/>
+	<EditText
+		android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:inputType="none"
+    	android:text="This is enabled when A is true"
+    	binding:enabled="A"
+    />
+	<EditText
+		android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:inputType="none"
+    	android:text="This is enabled when A is false, using NOT(A)"
+    	binding:enabled="NOT(A)"
+    />
+    <CheckBox
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:text="This one Binds to NOT(A)"
+		binding:checked="NOT(A)"
+		/>
+    <TextView
+		android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	binding:text="CONCAT('CheckBox toggled? ', Changed)"
+    />
+</LinearLayout>

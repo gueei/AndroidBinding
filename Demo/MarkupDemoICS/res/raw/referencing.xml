@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:binding="http://www.gueei.com/android-binding/"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    >
+    <CheckBox
+       	android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:id="@+id/chkbox"
+	    binding:text="IF(=id/chkbox.checked, 'Click to disable', 'Click to enable')"
+    />
+    <EditText
+       	android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    binding:enabled="=id/chkbox.checked"
+	    android:hint="This edit text is enabled only if the check box is enabled.\nSyntax is: =ID.ViewAttribute"
+    />
+    <CheckBox
+       	android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    binding:checked="NOT(=id/chkbox.checked)"
+	    android:text="This one is NOT(=id/chkbox.checked)"
+    />
+</LinearLayout>

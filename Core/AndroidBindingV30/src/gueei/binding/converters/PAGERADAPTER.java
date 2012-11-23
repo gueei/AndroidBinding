@@ -18,7 +18,7 @@ import android.view.ViewGroup;
  * 
  * @usage params
  * 
- * @arg params DynamicObject...
+ * @arg params DynamicObject
  * 
  * @item template gueei.binding.viewAttributes.templates.Layout
  * @item source ObservableCollection

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:binding="http://www.gueei.com/android-binding/"
+	android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <ListView
+        	android:id="@+id/demo_listview"
+        	android:layout_width="match_parent"
+    		android:layout_height="match_parent"
+    		android:layout_weight="1"
+    		android:cacheColorHint="#00000000"
+    		android:choiceMode="singleChoice"
+    		binding:itemSource="Entries"
+    		binding:itemTemplate="INJECT(@android:layout/simple_list_item_1, 
+    			{id=@android:id/text1, attr='text', statement='HTML(Name)'}
+    		)"
+    		binding:checkedItemPosition="SelectedDemoPosition"
+    		binding:onItemClicked="ARG(ShowDemo, =id/demo_listview.clickedItem)"
+    		/>
+</LinearLayout>
