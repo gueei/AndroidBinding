@@ -14,10 +14,8 @@ import gueei.binding.IObservable;
  * But if you bind onChecked="ARG(Fire, 1, 2)", you will receive (View, integer, integer, boolean) in the invoke <br/>
  * You can supply any number of extra arguments
  * 
- * @usage command arg ...
- * 
  * @arg command gueei.binding.Command
- * @arg arg Object
+ * @arg arg... Object
  * 
  * @return command gueei.binding.Command
  * 

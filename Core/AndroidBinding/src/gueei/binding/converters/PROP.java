@@ -6,14 +6,14 @@ import gueei.binding.IObservable;
 import gueei.binding.Undetermined;
 
 /**
- * Dynamically evaluate the statement for the given view_model
+ * Dynamically evaluate the statement for the with the view_model as Object Context
  * 
  * @usage view_model statement
  * 
  * @arg view_model Object the Context to evaluate the statement
  * @arg statement String
  * 
- * @return Object
+ * @return Object evaluated result of the statement
  */
 public class PROP extends Converter<Object> implements Undetermined {
 

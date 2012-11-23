@@ -17,12 +17,12 @@ import android.widget.Filter;
  * @arg params DynamicObject
  * 
  * @item template gueei.binding.viewAttributes.templates.Layout
- * @item source Object
+ * @item source Object item source of the adapter, IObservableCollection
  * @item @optional spinnerTemplate gueei.binding.viewAttributes.templates.Layout
  * @item @optional enable String child property that determines the enabled state of the item
  * @item @optional filter android.widget.Filter filter supplies to adapter
  * 
- * @return android.widget.Adapter
+ * @return android.widget.Adapter 
  * 
  * @author andy
  *

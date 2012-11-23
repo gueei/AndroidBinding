@@ -12,7 +12,7 @@ import gueei.binding.IObservable;
  * @usage rValue gValue bValue
  * @usage aValue rValue gValue bValue
  * 
- * @arg @optional rValue  integer Integer value from 0-255, if obmitted, it is assumed to be 255
+ * @arg @optional rValue integer Integer value from 0-255, if obmitted, it is assumed to be 255
  * @arg aValue integer Integer value from 0-255, the R component of color
  * @arg gValue integer Integer value from 0-255, the G component of color
  * @arg bValue integer Integer value from 0-255, the B component of color

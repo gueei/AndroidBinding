@@ -4,27 +4,24 @@ import gueei.binding.ViewAttribute;
 import android.widget.ProgressBar;
 
 
-public class SecondaryProgressViewAttribute extends ViewAttribute<ProgressBar, Float> {
-	private static final int PROGRESS_MAX = 10000;
-	
+public class SecondaryProgressViewAttribute extends ViewAttribute<ProgressBar, Integer> {
 	public SecondaryProgressViewAttribute(ProgressBar view) {
-		super(Float.class, view, "progress");
+		super(Integer.class, view, "progress");
 		getView().setSecondaryProgress(0);
-		getView().setMax(PROGRESS_MAX);
 	}
 
 	@Override
 	protected void doSetAttributeValue(Object newValue) {
 		if(getView()==null) return;
 		if (newValue == null) return;
-		if (newValue instanceof Float){
-			getView().setSecondaryProgress((int)Math.ceil((Float)newValue * PROGRESS_MAX));
+		if (newValue instanceof Integer){
+			getView().setSecondaryProgress((Integer)newValue);
 		}
 	}
 
 	@Override
-	public Float get() {
+	public Integer get() {
 		if(getView()==null) return null;
-		return (float)getView().getSecondaryProgress() / (float)PROGRESS_MAX;
+		return getView().getSecondaryProgress();
 	}
 }
