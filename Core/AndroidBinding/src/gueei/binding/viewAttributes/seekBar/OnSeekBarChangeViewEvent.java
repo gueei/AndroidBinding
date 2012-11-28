@@ -5,6 +5,21 @@ import gueei.binding.Binder;
 import gueei.binding.listeners.OnSeekBarChangeListenerMulticast;
 import gueei.binding.viewAttributes.ViewEventAttribute;
 
+/**
+ * On Seek Bar Changed View Event. Fires when Seek Bar's changed
+ * 
+ * @name onSeekBarChange
+ * @widget SeekBar
+ * @type Command
+ * 
+ * @accepts	Command
+ * 
+ * @category simple
+ * @related http://developer.android.com/reference/android/widget/SeekBar.html
+ * @related http://developer.android.com/reference/android/widget/SeekBar.OnSeekBarChangeListener.html
+ * 
+ * @author andy
+ */
 public class OnSeekBarChangeViewEvent extends ViewEventAttribute<SeekBar> implements SeekBar.OnSeekBarChangeListener{
 
 	public OnSeekBarChangeViewEvent(SeekBar view) {

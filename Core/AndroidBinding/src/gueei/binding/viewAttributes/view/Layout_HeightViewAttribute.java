@@ -5,7 +5,6 @@ import gueei.binding.ViewAttribute;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 
-
 public class Layout_HeightViewAttribute extends ViewAttribute<View, Integer> {
 
 	public Layout_HeightViewAttribute(View view) {

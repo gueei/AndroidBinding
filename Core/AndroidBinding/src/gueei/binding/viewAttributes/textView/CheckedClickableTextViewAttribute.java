@@ -7,7 +7,6 @@ import gueei.binding.listeners.OnClickListenerMulticast;
 import android.view.View;
 import android.widget.CheckedTextView;
 
-
 public class CheckedClickableTextViewAttribute extends ViewAttribute<CheckedTextView, Boolean>
 	implements View.OnClickListener {
 

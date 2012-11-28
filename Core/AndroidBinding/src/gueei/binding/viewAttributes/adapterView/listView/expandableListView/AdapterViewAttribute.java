@@ -6,6 +6,20 @@ import android.widget.AbsListView;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 
+/**
+ * To Provide adapter to ExpandableListView
+ * 
+ * @name adapter
+ * @widget ExpandableListView
+ * @type ExpandableListAdapter
+ * @accepts	ExpandableListAdapter
+ * @category expandable-list 
+ * @related 
+ * 
+ * @author andy
+ *
+ * @param <T>
+ */
 public class AdapterViewAttribute extends ViewAttribute<ExpandableListView, ExpandableListAdapter> {
 	public AdapterViewAttribute(ExpandableListView view) {
 		super(ExpandableListAdapter.class, view, "adapter");

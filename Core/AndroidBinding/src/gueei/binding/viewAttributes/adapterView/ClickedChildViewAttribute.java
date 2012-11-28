@@ -6,7 +6,19 @@ import gueei.binding.listeners.OnChildClickListenerMulticast;
 import android.view.View;
 import android.widget.ExpandableListView;
 
-
+/**
+ * Clicked Item of Child in Expandable List View
+ * Changes at ExpandableListView.OnChildClickListener.onChildClick()
+ * 
+ * @name clickedChild
+ * @widget ExpandableListView
+ * @type Object
+ * @accepts	Object
+ * @category expandable-list
+ * @related 
+ * 
+ * @author andy
+ */
 public class ClickedChildViewAttribute extends ViewAttribute<ExpandableListView, Object>
 	implements ExpandableListView.OnChildClickListener{
 

@@ -9,6 +9,23 @@ import gueei.binding.DynamicObject;
 import gueei.binding.ViewAttribute;
 import gueei.binding.viewAttributes.view.AnimationTrigger.TriggerListener;
 
+/**
+ * Animation
+ * Accepts the Animation Trigger, which 
+ * Note this is not compatible with HC+ Property Animation
+ * 
+ * @name animation
+ * @widget View
+ * @type gueei.binding.viewAttributes.view.AnimationTrigger
+ * 
+ * @accepts	gueei.binding.viewAttributes.view.AnimationTrigger
+
+ * @category simple
+ * @related http://developer.android.com/reference/android/widget/View.html
+ * @converter AFTERCOMMAND
+ * 
+ * @author andy
+ */
 public class AnimationViewAttribute extends ViewAttribute<View, AnimationTrigger> implements TriggerListener {
 
 	public AnimationViewAttribute(View view) {

@@ -6,9 +6,24 @@ import gueei.binding.listeners.OnSeekBarChangeListenerMulticast;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 
-/*
- * Changed in v0.6
- * Accepts Integer only, works with Max or android:max
+/**
+ * Progress of Progress Bar
+ * equivalent to android:progress
+ * 
+ * Note: Prior to 0.6, this is Float value between 0 and 1, 
+ * but it cause so much trouble to implement and it changes to Integer from now on
+ * secondaryProgress also changes to Integer 
+ * 
+ * @name progress
+ * @widget ProgressBar
+ * @type Integer
+ * 
+ * @accepts	Integer
+ * 
+ * @category simple
+ * @related http://developer.android.com/reference/android/widget/ProgressBar.html
+ * 
+ * @author andy
  */
 public class ProgressViewAttribute extends ViewAttribute<ProgressBar, Integer>
 	implements SeekBar.OnSeekBarChangeListener{

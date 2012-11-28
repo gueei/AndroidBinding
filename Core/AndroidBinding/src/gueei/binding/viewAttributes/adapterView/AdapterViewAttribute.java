@@ -6,6 +6,24 @@ import android.widget.AdapterView;
 import gueei.binding.ViewAttribute;
 import gueei.binding.collections.LazyLoadAdapter;
 
+/**
+ * To Provide adapter to AdapterViews, including subclasses like Spinner, ListView, Gallery etc.
+ * 
+ * @name adapter
+ * @widget AdapterView
+ * @type Adapter
+ * @accepts	Adapter
+ * @category list 
+ * @related
+ * 
+ * @converter ADAPTER
+ * @converter STITCH
+ * @converter SECTION
+ * 
+ * @author andy
+ *
+ * @param <T>
+ */
 public class AdapterViewAttribute<T extends Adapter> extends ViewAttribute<AdapterView<T>, Adapter> {
 	public AdapterViewAttribute(AdapterView<T> view) {
 		super(Adapter.class, view, "adapter");

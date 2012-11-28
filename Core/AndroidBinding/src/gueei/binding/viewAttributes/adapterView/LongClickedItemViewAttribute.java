@@ -7,7 +7,19 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 
-
+/**
+ * Long-Clicked Item in ListView
+ * Changes at ListView.OnItemLongClickListener.onItemLongClick()
+ * 
+ * @name longClickedItem
+ * @widget AdapterView
+ * @type Object
+ * @accepts	Object
+ * @category list
+ * @related 
+ * 
+ * @author andy
+ */
 public class LongClickedItemViewAttribute extends ViewAttribute<AdapterView<?>, Object>
 	implements OnItemLongClickListener{
 

@@ -7,6 +7,18 @@ import gueei.binding.listeners.OnItemLongClickListenerMulticast;
 import gueei.binding.viewAttributes.ViewEventAttribute;
 
 /**
+ * Fires when Item Long-Clicked
+ * Equals to listening to AdapterView.OnItemLongClickListener.onItemLongClick()
+ * 
+ * @name onItemLongClicked
+ * @widget ListView
+ * @type Command
+ * @accepts	Command
+ * @category list
+ * @related 
+ * 
+ * @author andy
+
  * User: =ra=
  * Date: 28.07.11
  * Time: 17:27

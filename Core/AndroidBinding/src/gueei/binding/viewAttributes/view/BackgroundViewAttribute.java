@@ -5,7 +5,25 @@ import gueei.binding.ViewAttribute;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 
-
+/**
+ * Background
+ * Similar to "backgroundColor" attribute, 
+ * but this one accepts Drawable or Drawable Resource Integer (denoted by &#64;drawable/drawableid) 
+ * 
+ * @name background
+ * @widget View
+ * @type Object
+ * 
+ * @accepts	Integer
+ * @accepts Drawable
+ * 
+ * @category simple
+ * @related http://developer.android.com/reference/android/widget/View.html
+ * @related http://developer.android.com/reference/android/graphics/Color.html
+ * @converter ARGB
+ * 
+ * @author andy
+ */
 public class BackgroundViewAttribute extends ViewAttribute<View, Object> {
 
 	public BackgroundViewAttribute(View view) {

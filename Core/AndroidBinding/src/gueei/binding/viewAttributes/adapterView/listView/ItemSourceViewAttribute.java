@@ -14,7 +14,22 @@ import android.widget.Adapter;
 import android.widget.Filter;
 import android.widget.ListView;
 
-
+/**
+ * Item Source of ListView
+ * Supplying the IObservableCollection to this and Item Template together, adapter will be created automatically
+ * Due to the complexity of this API, we recommend to switch to binding:adapter instead of this
+ * e.g.  binding:adapter="ADAPTER({source=..., template=...})
+ * which will give more fine-grain control on adapter generated
+ * 
+ * @name itemSource
+ * @widget ListView
+ * @type Object
+ * @accepts	Object
+ * @category list
+ * @related 
+ * 
+ * @author andy
+ */
 public class ItemSourceViewAttribute extends ViewAttribute<ListView, Object> {
 
 	Layout template, spinnerTemplate;

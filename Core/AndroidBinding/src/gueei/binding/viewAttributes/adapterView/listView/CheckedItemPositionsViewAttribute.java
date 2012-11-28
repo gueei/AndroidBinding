@@ -9,7 +9,23 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-
+/**
+ * Checked Item Positions
+ * Note the name is very similar to checkedItemPosition (without s)
+ * This one only applies to ListViews with CHOIC_MODE_MULTIPLE and return all checked Items' positions in SparseBooleanArray
+ * You need to bind this to IObservable<SparseBooleanArray> and if you need to change the checked items, 
+ * you need to call IObservable<SparseBooleanArray>.set(newArray) instead of just changing the content of the array, 
+ * because SparseBooleanArray is not observable 
+ * 
+ * @name checkedItemPositions
+ * @widget ListView
+ * @type SparseBooleanArray
+ * @accepts	SparseBooleanArray
+ * @category list
+ * @related 
+ * 
+ * @author andy
+ */
 public class CheckedItemPositionsViewAttribute extends ViewAttribute<ListView, SparseBooleanArray>
 	implements OnItemClickListener{
 

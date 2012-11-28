@@ -10,9 +10,33 @@ import gueei.binding.ViewAttribute;
 import android.view.View;
 
 /**
- * Assign a value BACK to the view model
- * @author andy
+ * Assign a value back to View Model
+ * In MVVM, ideally we don't want to let View Model to know much about display logic, 
+ * but the layout XML is supposed to aware of different device configuration
+ * 
+ * for example, we can write
+ * binding:assign="{ displayInNewActivity=TRUE() }"
+ * 
+ * so, in the view model, the displayInActivity will set to true.
+ * 
+ * In this way, we can free the view model from trying to detect what display configuration it is in,
+ * because XML layout/resources can be prepared with different configurations (e.g. -land, -port, -v14 etc)
  *
+ * You can assign to multiple properties, since the accepted parameter is dynamic object:
+ * 
+ * e.g. binding:assign="{ propA = 'AValue', propB = 'BValue', propC = 'CValue' }" 
+ * 
+ * Note: This is currently only attribute that is not related to any view
+ *  
+ * @name assign
+ * @widget View
+ * @type gueei.binding.DynamicObject
+ * 
+ * @accepts	gueei.binding.DynamicObject
+
+ * @category simple special
+ * 
+ * @author andy
  */
 public class AssignViewAttribute extends ViewAttribute<View, DynamicObject> {
 

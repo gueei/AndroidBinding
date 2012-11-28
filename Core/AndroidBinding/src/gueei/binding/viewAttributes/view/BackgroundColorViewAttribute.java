@@ -4,7 +4,23 @@ import gueei.binding.BindingType;
 import gueei.binding.ViewAttribute;
 import android.view.View;
 
+/**
+ * Background Color
+ * Unlike "background" attribute, this only accepts Android Color coded Integer
+ * 
+ * @name backgroundColor
+ * @widget View
+ * @type Integer
+ * 
+ * @accepts	Integer
 
+ * @category simple
+ * @related http://developer.android.com/reference/android/widget/View.html
+ * @related http://developer.android.com/reference/android/graphics/Color.html
+ * @converter ARGB
+ * 
+ * @author andy
+ */
 public class BackgroundColorViewAttribute extends ViewAttribute<View, Integer> {
 
 	public BackgroundColorViewAttribute(View view) {

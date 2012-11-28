@@ -4,6 +4,26 @@ import gueei.binding.ViewAttribute;
 import gueei.binding.menu.ContextMenuBinder;
 import android.view.View;
 
+/**
+ * Context Menu attribute
+ * binds to View.onCreateContextMenu()
+ * 
+ * this is not designed to use alone, check the related "MENU" converter
+ * 
+ * 
+ * @name contextMenu
+ * @widget View
+ * @type ContextMenuBinder
+ * 
+ * @accepts	ContextMenuBinder
+ * 
+ * @category simple
+ * @related http://developer.android.com/reference/android/widget/View.html
+ * @related http://developer.android.com/reference/android/graphics/Color.html
+ * @converter MENU
+ * 
+ * @author andy
+ */
 public class ContextMenuViewAttribute extends ViewAttribute<View, ContextMenuBinder>{
 
 	private ContextMenuBinder mValue;

@@ -2,40 +2,37 @@ package gueei.binding.viewAttributes.textView;
 
 import gueei.binding.BindingType;
 import gueei.binding.ViewAttribute;
-import android.graphics.Color;
 import android.widget.TextView;
 
-
 /**
- * Text Color of Text View
- * Similar to android:textColor
+ * Min Lines of Text View
+ * Similar to android:minLines
  * 
- * @name textColor
+ * @name minLines
  * @widget TextView
  * @type Integer
  * 
  * @accepts	Integer
 
- * @category simple color
+ * @category simple
  * @related http://developer.android.com/reference/android/widget/TextView.html
  * 
  * @author andy
  */
-public class TextColorViewAttribute extends ViewAttribute<TextView, Integer> {
-
-	public TextColorViewAttribute(TextView view) {
-		super(Integer.class, view, "textColor");
+public class MinLinesViewAttribute extends ViewAttribute<TextView, Integer> {
+	public MinLinesViewAttribute(TextView view) {
+		super(Integer.class, view, "minLines");
 	}
 
 	@Override
 	protected void doSetAttributeValue(Object newValue) {
 		if(getView()==null) return;
 		if (newValue==null){
-			getView().setTextColor(Color.RED);
+			getView().setMaxLines(1);
 			return;
 		}
 		if (newValue instanceof Integer){
-			getView().setTextColor((Integer)newValue);
+			getView().setMinLines((Integer)newValue);
 		}
 	}
 

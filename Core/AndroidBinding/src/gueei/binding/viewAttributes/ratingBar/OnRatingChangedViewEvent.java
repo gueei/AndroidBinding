@@ -5,6 +5,21 @@ import gueei.binding.Binder;
 import gueei.binding.listeners.OnRatingBarChangeListenerMulticast;
 import gueei.binding.viewAttributes.ViewEventAttribute;
 
+/**
+ * On Rating Changed View Event. Fires when Rating Bar's rating changed
+ * 
+ * @name onRatingChanged
+ * @widget RatingBar
+ * @type Command
+ * 
+ * @accepts	Command
+ * 
+ * @category simple
+ * @related http://developer.android.com/reference/android/widget/RatingBar.OnRatingBarChangeListener.html
+ * @related http://developer.android.com/reference/android/widget/RatingBar.html
+ * 
+ * @author andy
+ */
 public class OnRatingChangedViewEvent extends ViewEventAttribute<RatingBar> 
 	implements RatingBar.OnRatingBarChangeListener {
 

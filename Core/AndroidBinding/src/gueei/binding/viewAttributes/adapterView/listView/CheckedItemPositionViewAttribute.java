@@ -13,7 +13,21 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-
+/**
+ * Checked Item Position
+ * Note the name is very similar to checkedItemPositions (with s)
+ * This one only applies to ListViews with CHOIC_MODE_SINGLE and return the checked item positions
+ * You can also change the item position by specifying Integer value to binded observable
+ * 
+ * @name checkedItemPosition
+ * @widget ListView
+ * @type Integer
+ * @accepts	Integer
+ * @category list
+ * @related 
+ * 
+ * @author andy
+ */
 public class CheckedItemPositionViewAttribute extends ViewAttribute<ListView, Integer>
 	implements OnItemClickListener, Observer{
 

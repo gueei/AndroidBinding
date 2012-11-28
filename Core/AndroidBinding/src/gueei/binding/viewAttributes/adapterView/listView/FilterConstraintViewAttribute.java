@@ -6,6 +6,22 @@ import android.widget.Adapter;
 import android.widget.Filterable;
 import android.widget.ListView;
 
+/**
+ * Filter constraint
+ * This Char Sequence will be supplied to Filter.filter(constraint) to perform filtering
+ * 
+ * @name filterConstraint
+ * @widget ListView
+ * @type CharSequence
+ * @accepts	CharSequence
+ * 
+ * @category list
+ * @category filter
+ * 
+ * @related http://developer.android.com/reference/android/widget/Filter.html
+ * 
+ * @author andy
+ */
 public class FilterConstraintViewAttribute extends ViewAttribute<ListView, CharSequence>{
 
 	public FilterConstraintViewAttribute(ListView view) {

@@ -3,6 +3,21 @@ package gueei.binding.viewAttributes.view;
 import gueei.binding.ViewAttribute;
 import android.view.View;
 
+/**
+ * Enabled State of View
+ * similar to android:enabled
+ * 
+ * @name enabled
+ * @widget View
+ * @type Boolean
+ * 
+ * @accepts	Boolean
+ * 
+ * @category simple
+ * @related http://developer.android.com/reference/android/widget/View.html
+ * 
+ * @author andy
+ */
 public class EnabledViewAttribute extends ViewAttribute<View, Boolean> {
 
 	public EnabledViewAttribute(View view, String attributeName) {

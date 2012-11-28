@@ -7,7 +7,22 @@ import gueei.binding.listeners.OnRatingBarChangeListenerMulticast;
 import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
 
-
+/**
+ * Rating of Rating Bar
+ * Equivalent to android:rating
+ * 
+ * @name rating
+ * @widget RatingBar
+ * @type Float
+ * 
+ * @accepts	Float
+ * 
+ * @category simple
+ * @related http://developer.android.com/reference/android/widget/RatingBar.OnRatingBarChangeListener.html
+ * @related http://developer.android.com/reference/android/widget/RatingBar.html
+ * 
+ * @author andy
+ */
 public class RatingViewAttribute extends ViewAttribute<RatingBar, Float>
 	implements OnRatingBarChangeListener{
 

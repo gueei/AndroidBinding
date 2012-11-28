@@ -6,6 +6,19 @@ import gueei.binding.viewAttributes.ViewEventAttribute;
 import android.view.View;
 import android.widget.AdapterView;
 
+/**
+ * Fires when Item Clicked
+ * Equals to listening to AdapterView.OnItemClickListener.onItemClick
+ * 
+ * @name onItemClicked
+ * @widget ListView
+ * @type Command
+ * @accepts	Command
+ * @category list
+ * @related 
+ * 
+ * @author andy
+ */
 public class OnItemClickedViewEvent extends ViewEventAttribute<AdapterView<?>>
 	implements AdapterView.OnItemClickListener{
 

@@ -4,9 +4,10 @@ import gueei.binding.ViewAttribute;
 import gueei.binding.viewAttributes.textView.CheckedClickableTextViewAttribute;
 import gueei.binding.viewAttributes.textView.CheckedTextViewAttribute;
 import gueei.binding.viewAttributes.textView.CompoundDrawableViewAttribute;
+import gueei.binding.viewAttributes.textView.MaxLinesViewAttribute;
+import gueei.binding.viewAttributes.textView.MinLinesViewAttribute;
 import gueei.binding.viewAttributes.textView.OnTextChangedViewEvent;
 import gueei.binding.viewAttributes.textView.TextColorViewAttribute;
-import gueei.binding.viewAttributes.textView.TextLinesViewAttribute;
 import gueei.binding.viewAttributes.textView.TextViewAttribute;
 import gueei.binding.viewAttributes.textView.TypefaceViewAttribute;
 import android.view.View;
@@ -36,12 +37,10 @@ public class TextViewProvider extends BindingProvider {
 			return (ViewAttribute<Tv, ?>) attr;
 		}
 		if (attributeId.equals("minLines")){
-			TextLinesViewAttribute attr = new TextLinesViewAttribute((TextView)view, TextLinesViewAttribute.Mode.MinLines);
-			return (ViewAttribute<Tv, ?>) attr;
+			return (ViewAttribute<Tv, ?>) new MinLinesViewAttribute((TextView)view);
 		}
 		if (attributeId.equals("maxLines")){
-			TextLinesViewAttribute attr = new TextLinesViewAttribute((TextView)view, TextLinesViewAttribute.Mode.MaxLines);
-			return (ViewAttribute<Tv, ?>) attr;
+			return (ViewAttribute<Tv, ?>) new MaxLinesViewAttribute((TextView)view);
 		}
 		if (attributeId.equals("textColor")){
 			TextColorViewAttribute attr = new TextColorViewAttribute((TextView)view);

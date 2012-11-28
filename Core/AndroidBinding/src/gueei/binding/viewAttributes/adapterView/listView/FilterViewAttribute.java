@@ -4,6 +4,21 @@ import android.widget.Filter;
 import android.widget.ListView;
 import gueei.binding.ViewAttribute;
 
+/**
+ * Filter for performing filtering on ListViews 
+ * 
+ * @name filter
+ * @widget ListView
+ * @type Filter
+ * @accepts	Filter
+ * 
+ * @category list
+ * @category filter
+ * 
+ * @related http://developer.android.com/reference/android/widget/Filter.html
+ * 
+ * @author andy
+ */
 public class FilterViewAttribute extends ViewAttribute<ListView, Filter> {
 	public FilterViewAttribute(ListView view) {
 		super(Filter.class, view, "filter");

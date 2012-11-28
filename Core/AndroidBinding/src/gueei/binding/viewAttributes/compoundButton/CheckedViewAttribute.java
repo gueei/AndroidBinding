@@ -7,7 +7,21 @@ import gueei.binding.listeners.OnCheckedChangeListenerMulticast;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 
-
+/**
+ * Checked state of Compound Buttons including Check box
+ * 
+ * @name checked
+ * @widget CompoundButton
+ * @type Boolean
+ * 
+ * @accepts	Boolean
+ * @accepts Integer 0: false other: true
+ * 
+ * @category simple
+ * @related http://developer.android.com/reference/android/widget/CompoundButton.html
+ * 
+ * @author andy
+ */
 public class CheckedViewAttribute extends ViewAttribute<CompoundButton, Boolean>
 	implements OnCheckedChangeListener{
 

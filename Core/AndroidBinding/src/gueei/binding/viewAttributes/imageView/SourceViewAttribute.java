@@ -7,7 +7,30 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.widget.ImageView;
 
-
+/**
+ * Source for Image View
+ * You can supply
+ * - Resource Drawable (denoted by drawable/resource)
+ * - Integer Resource Id
+ * - Uri
+ * - Drawable
+ * - Bitmap
+ * to this, but it is "Set" only attribute meaning you cannot get any return from it
+ * 
+ * @name source
+ * @widget ImageView
+ * @type Object
+ * 
+ * @accepts	Drawable
+ * @accepts Bitmap
+ * @accepts Uri
+ * @accepts Integer
+ * 
+ * @category simple
+ * @related http://developer.android.com/reference/android/widget/ImageView.html
+ * 
+ * @author andy
+ */
 public class SourceViewAttribute extends ViewAttribute<ImageView, Object> {
 
 	public SourceViewAttribute(ImageView view) {

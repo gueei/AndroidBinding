@@ -7,6 +7,19 @@ import gueei.binding.Binder;
 import gueei.binding.ViewAttribute;
 import gueei.binding.listeners.OnItemSelectedListenerMulticast;
 
+/**
+ * The Selected Position of Adapter View
+ * similar to calling AdapterView.setSelection() and changes on AdapterView.OnItemSelectedListener
+ * 
+ * @name selectedPosition
+ * @widget ListView
+ * @type Integer
+ * @accepts	Integer
+ * @category list
+ * @related 
+ * 
+ * @author andy
+ */
 public class SelectedPositionViewAttribute extends ViewAttribute<AdapterView<?>, Integer> implements OnItemSelectedListener {
 	public SelectedPositionViewAttribute(AdapterView<?> view) {
 		super(Integer.class, view, "selectedPosition");

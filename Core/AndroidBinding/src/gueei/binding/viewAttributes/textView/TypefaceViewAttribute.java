@@ -5,7 +5,22 @@ import gueei.binding.ViewAttribute;
 import android.graphics.Typeface;
 import android.widget.TextView;
 
+/**
+ * Typeface of Text View
+ * 
+ * @name typeface
+ * @widget TextView
+ * @type Typeface
+ * 
+ * @accepts	Typeface
 
+ * @category simple
+ * @related http://developer.android.com/reference/android/widget/TextView.html
+ * 
+ * @converter TYPEFACE_FROM_ASSET
+ * 
+ * @author andy
+ */
 public class TypefaceViewAttribute extends ViewAttribute<TextView, Typeface> {
 
 	public TypefaceViewAttribute(TextView view) {

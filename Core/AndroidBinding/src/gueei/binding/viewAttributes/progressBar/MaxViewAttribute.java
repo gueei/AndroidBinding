@@ -3,15 +3,26 @@ package gueei.binding.viewAttributes.progressBar;
 import gueei.binding.ViewAttribute;
 import android.widget.ProgressBar;
 
-/*
- * Accepts Float from 0 - 1, and translate the result to a 1000-based fraction
- * as the progress.
- * i.e. progress of progress bar will become 
+/**
+ * Maximum Value of the Progress Bar
+ * equivalent to android:max
+ * 
+ * @name max
+ * @widget ProgressBar
+ * @type Integer
+ * 
+ * @accepts	Integer
+ * 
+ * @category simple
+ * @related http://developer.android.com/reference/android/widget/ProgressBar.html
+ * 
+ * @author andy
  */
+
 public class MaxViewAttribute extends ViewAttribute<ProgressBar, Integer>{
 	
 	public MaxViewAttribute(ProgressBar view) {
-		super(Integer.class, view, "progress");
+		super(Integer.class, view, "max");
 	}
 
 	@Override

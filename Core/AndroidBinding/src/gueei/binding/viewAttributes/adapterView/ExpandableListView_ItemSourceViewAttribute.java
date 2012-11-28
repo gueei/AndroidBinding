@@ -14,7 +14,18 @@ import java.util.Collection;
 import android.widget.Adapter;
 import android.widget.ExpandableListView;
 
-
+/**
+ * Item Source of Expandable List Views
+ * 
+ * @name itemSource
+ * @widget ExpandableListView
+ * @type Object
+ * @accepts	Object
+ * @category expandable-list
+ * @related 
+ * 
+ * @author andy
+ */
 public class ExpandableListView_ItemSourceViewAttribute 
 	extends ViewAttribute<ExpandableListView, Object> {
 	

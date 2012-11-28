@@ -6,6 +6,19 @@ import gueei.binding.Binder;
 import gueei.binding.listeners.OnItemSelectedListenerMulticast;
 import gueei.binding.viewAttributes.ViewEventAttribute;
 
+/**
+ * Fires when Item Selected
+ * Equals to listening to AdapterView.OnItemSelectedListener
+ * 
+ * @name onItemSelected
+ * @widget ListView
+ * @type Command
+ * @accepts	Command
+ * @category list
+ * @related 
+ * 
+ * @author andy
+ */
 public class OnItemSelectedViewEvent extends ViewEventAttribute<AdapterView<?>>
 	implements AdapterView.OnItemSelectedListener{
 

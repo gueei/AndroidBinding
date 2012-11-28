@@ -8,7 +8,19 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 
-
+/**
+ * The Selected Item of Adapter View
+ * similar to AdapterView.getSelectedItem()
+ * 
+ * @name selectedItem
+ * @widget ListView
+ * @type Object
+ * @accepts	Object
+ * @category list
+ * @related 
+ * 
+ * @author andy
+ */
 public class SelectedItemViewAttribute extends ViewAttribute<AdapterView<?>, Object>
 	implements OnItemSelectedListener{
 

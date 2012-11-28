@@ -11,6 +11,19 @@ import gueei.binding.ViewAttribute;
 import gueei.binding.exception.AttributeNotDefinedException;
 import android.widget.Adapter;
 
+/**
+ * Number of Item in the Adapter View
+ * Returns AdapterView.getCount()
+ * 
+ * @name itemCount
+ * @widget AdapterView
+ * @type Integer
+ * @accepts	Integer
+ * @category list
+ * @related 
+ * 
+ * @author andy
+ */
 public class ItemCountViewAttribute extends ViewAttribute<AdapterView<?>, Integer> {
 
 	public ItemCountViewAttribute(AdapterView<?> view) {

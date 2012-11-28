@@ -9,6 +9,24 @@ import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.TextView;
 
+/**
+ * (displayed) Text in Text View
+ * Note that you should supply IObservable<CharSequence> to it in order to allow two-way binding 
+ * Although it accepts String or other object type, it will simply evaluated as Object.toString() 
+ * but changes in the Text View will not reflect in VM unless IObservable<CharSequence> is supplied
+ * 
+ * @name text
+ * @widget TextView
+ * @type CharSequence
+ * 
+ * @accepts	CharSequence
+ * @accepts Object
+
+ * @category simple
+ * @related http://developer.android.com/reference/android/widget/TextView.html
+ * 
+ * @author andy
+ */
 public class TextViewAttribute extends ViewAttribute<TextView, CharSequence> implements TextWatcher {
 
 	private CharSequence mValue = null;

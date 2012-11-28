@@ -7,7 +7,19 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 
-
+/**
+ * Clicked Item in ListView
+ * Changes at ListView.OnItemClickListener.onItemClick()
+ * 
+ * @name clickedItem
+ * @widget AdapterView
+ * @type Object
+ * @accepts	Object
+ * @category list
+ * @related 
+ * 
+ * @author andy
+ */
 public class ClickedItemViewAttribute extends ViewAttribute<AdapterView<?>, Object>
 	implements OnItemClickListener{
 
