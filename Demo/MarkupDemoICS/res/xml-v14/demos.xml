@@ -27,6 +27,7 @@
         <entry name="SeekBar" vm=".SeekBar" layout=".seekbar"/>
         <entry name="RatingBar" vm=".RatingBar" layout=".ratingbar"/>
         <entry name="CompoundButton" vm=".CompoundButton" layout=".compoundbutton"/>
+        <entry name="AutoCompleteTextViews" vm="AutoCompleteTextViews" layout="autocompletetextviews"/>
         <entry name="CustomView" vm=".CustomView" layout=".customview"/>
 	</category>
     <category name="Binding Syntaxes">

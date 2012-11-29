@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:binding="http://www.gueei.com/android-binding/"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    >
+    <TextView
+    	android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:text="Auto Complete: "
+	    />
+        
+    <AutoCompleteTextView
+    	android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    binding:adapter="ADAPTER({
+	    	source=ListFiltered,
+	    	template=@layout/simple_spinner_dropdown_item,
+	    	filter=ListFilter
+	    })"
+    />
+
+    <TextView
+    	android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:text="Multi Auto Complete with Comma Tokenizer: "
+	    />
+        
+    <MultiAutoCompleteTextView
+    	android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    binding:tokenizer="gueei.binding.markupDemoICS.converters.COMMA_TOKENIZER()"
+	    binding:adapter="ADAPTER({
+	    	source=ListFiltered,
+	    	template=@layout/simple_spinner_dropdown_item,
+	    	filter=ListFilter
+	    })"
+    />
+    
+</LinearLayout>

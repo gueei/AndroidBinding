@@ -20,6 +20,7 @@ public class DefaultKernel extends KernelBase  {
 		attrBinder.registerProvider(new AbsSpinnerViewProvider());
 		attrBinder.registerProvider(new ListViewProvider());
 		attrBinder.registerProvider(new AdapterViewProvider());
+		attrBinder.registerProvider(new AutoCompleteTextViewProvider());
 		attrBinder.registerProvider(new TextViewProvider());
 		attrBinder.registerProvider(new ViewProvider());
 		attrBinder.registerProvider(new GenericViewAttributeProvider());
