@@ -1,7 +1,5 @@
 package gueei.binding.v30.app;
 
-import java.lang.ref.WeakReference;
-
 import gueei.binding.AttributeBinder;
 import gueei.binding.Binder;
 import gueei.binding.Binder.InflateResult;
