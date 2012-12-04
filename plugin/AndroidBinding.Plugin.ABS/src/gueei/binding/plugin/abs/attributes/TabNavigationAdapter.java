@@ -8,10 +8,10 @@ import gueei.binding.viewAttributes.ViewEventAttribute;
 import gueei.binding.exception.AttributeNotDefinedException;
 import gueei.binding.v30.BinderV30;
 import gueei.binding.plugin.abs.BindableActionBar;
-import android.app.ActionBar;
-import android.app.ActionBar.Tab;
-import android.app.ActionBar.TabListener;
-import android.app.FragmentTransaction;
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.ActionBar.Tab;
+import com.actionbarsherlock.app.ActionBar.TabListener;
+import android.support.v4.app.FragmentTransaction;
 import android.widget.Adapter;
 
 public class TabNavigationAdapter extends ViewAttribute<BindableActionBar, Adapter> {

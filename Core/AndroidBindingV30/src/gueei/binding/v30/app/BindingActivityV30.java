@@ -30,8 +30,8 @@ import android.view.View;
  *
  */
 public class BindingActivityV30 extends BindingActivity {
-	protected BindableOptionsMenu mBindableOptionsMenuRef;
-	protected BindableActionBar mBindableActionBarRef;
+	protected View mBindableOptionsMenuRef;
+	protected View mBindableActionBarRef;
 	protected View mBindableRootViewRef;
 	
 /*	private Observer optionsMenuSourceObserver = new Observer(){
@@ -81,7 +81,7 @@ public class BindingActivityV30 extends BindingActivity {
 					if (tagName.equals("optionsmenu")){
 						mBindableOptionsMenuRef = createBindableOptionsMenu();
 						if(mBindableOptionsMenuRef != null)
-							Binder.putBindingMapToView(mBindableOptionsMenuRef, 
+							Binder.putBindingMapToView((View)mBindableOptionsMenuRef, 
 									Utility.createBindingMap(Xml.asAttributeSet(parser)));
 					}
 					else if (tagName.equals("rootview")){
@@ -89,7 +89,7 @@ public class BindingActivityV30 extends BindingActivity {
 						Binder.putBindingMapToView((View)mBindableRootViewRef, 
 								Utility.createBindingMap(Xml.asAttributeSet(parser)));
 					}else if (tagName.equals("actionbar")){
-						BindableActionBar bar = createBindableActionBar();
+						View bar = createBindableActionBar();
 						if( bar != null ) {
 							mBindableActionBarRef = bar;							
 							Binder.putBindingMapToView(bar, 
@@ -110,7 +110,7 @@ public class BindingActivityV30 extends BindingActivity {
 	 * Hook to allow custom action bar
 	 * @return
 	 */
-	protected BindableActionBar createBindableActionBar() {
+	protected View createBindableActionBar() {
 		if (VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB || this.getActionBar()==null)
 			return null;
 		return new BindableActionBar(this);
@@ -120,7 +120,7 @@ public class BindingActivityV30 extends BindingActivity {
 		return new BindableRootView(this);
 	}
 
-	protected BindableOptionsMenu createBindableOptionsMenu() {
+	protected View createBindableOptionsMenu() {
 		return new BindableOptionsMenu(this);
 	}
 
@@ -131,7 +131,7 @@ public class BindingActivityV30 extends BindingActivity {
 
 	protected void bindOptionsMenu(Object model){
 		if (mBindableOptionsMenuRef == null ) return;
-		AttributeBinder.getInstance().bindView(this, mBindableOptionsMenuRef, model);
+		AttributeBinder.getInstance().bindView(this, (View)mBindableOptionsMenuRef, model);
 	}
 
 	protected void bindRootView(Object model){
@@ -172,15 +172,15 @@ public class BindingActivityV30 extends BindingActivity {
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		if (mBindableOptionsMenuRef!=null )
-			return mBindableOptionsMenuRef.onCreateOptionsMenu(menu);
+		if (mBindableOptionsMenuRef!=null)
+			return ((BindableOptionsMenu)mBindableOptionsMenuRef).onCreateOptionsMenu(menu);
 		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		if (mBindableOptionsMenuRef!=null)
-			return mBindableOptionsMenuRef.onPrepareOptionsMenu(menu);
+			return ((BindableOptionsMenu)mBindableOptionsMenuRef).onPrepareOptionsMenu(menu);
 		return super.onPrepareOptionsMenu(menu);
 	}
 
@@ -191,7 +191,7 @@ public class BindingActivityV30 extends BindingActivity {
 			return true;
 		}
 		if (mBindableOptionsMenuRef!=null)
-			return mBindableOptionsMenuRef.onOptionsItemSelected(item);
+			return ((BindableOptionsMenu)mBindableOptionsMenuRef).onOptionsItemSelected(item);
 		return super.onOptionsItemSelected(item);
 	}
 }

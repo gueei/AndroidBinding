@@ -15,16 +15,46 @@
     <target name="CopySource">
         <copy todir="./src/gueei/binding/plugin/abs/">
 	        <fileset dir="../../Core/AndroidBindingV30/src/gueei/binding/v30/actionbar/">
+	            <include name="*/**/*.java"/>
+            </fileset>
+        </copy>
+        <copy todir="./src/gueei/binding/plugin/abs/menu/">
+	        <fileset dir="../../Core/AndroidBinding/src/gueei/binding/menu/">
 	            <include name="**/*.java"/>
-	        </fileset>
+            </fileset>
         </copy>
     </target>
     
     <target name="UpdateSource" depends="CopySource">
         <replace dir="./src/gueei/binding/plugin/abs/">
             <include name="**/*.java"/>
-            <replacetoken>gueei.binding.v30.actionbar.</replacetoken>
-            <replacevalue>gueei.binding.plugin.abs.</replacevalue>
+            <replacefilter
+                token="gueei.binding.v30.actionbar."
+                value="gueei.binding.plugin.abs."
+                />
+            <replacefilter
+                token="android.app.ActionBar"
+                value="com.actionbarsherlock.app.ActionBar"
+                />
+            <replacefilter
+                token="android.app.FragmentTransaction"
+                value="android.support.v4.app.FragmentTransaction"
+                />
+        </replace>
+        <replace dir="./src/gueei/binding/plugin/abs/menu/">
+            <include name="**/*.java"/>
+            <replacefilter
+                token="android.view.Menu"
+                value="com.actionbarsherlock.view.Menu"
+                />
+            <replacefilter
+                token="android.view.MenuItem"
+                value="com.actionbarsherlock.view.MenuItem"
+                />
+            <replacefilter
+                token="gueei.binding.menu"
+                value="gueei.binding.plugin.abs.menu"
+                />
         </replace>
     </target>
     

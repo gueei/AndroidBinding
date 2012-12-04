@@ -4,8 +4,8 @@ import gueei.binding.Binder;
 import gueei.binding.BindingType;
 import gueei.binding.ViewAttribute;
 import gueei.binding.plugin.abs.BindableActionBar;
-import android.app.ActionBar;
-import android.app.ActionBar.OnNavigationListener;
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.ActionBar.OnNavigationListener;
 import android.widget.Adapter;
 import android.widget.SpinnerAdapter;
 

@@ -1,6 +1,6 @@
 package gueei.binding.plugin.abs.attributes;
 
-import android.app.ActionBar;
+import com.actionbarsherlock.app.ActionBar;
 import gueei.binding.ViewAttribute;
 import gueei.binding.plugin.abs.BindableActionBar;
 

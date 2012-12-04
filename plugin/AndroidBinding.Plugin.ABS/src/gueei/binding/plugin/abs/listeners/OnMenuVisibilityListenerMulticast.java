@@ -2,7 +2,7 @@ package gueei.binding.plugin.abs.listeners;
 
 import gueei.binding.listeners.ViewMulticastListener;
 import gueei.binding.plugin.abs.BindableActionBar;
-import android.app.ActionBar.OnMenuVisibilityListener;
+import com.actionbarsherlock.app.ActionBar.OnMenuVisibilityListener;
 import android.view.View;
 
 public class OnMenuVisibilityListenerMulticast 

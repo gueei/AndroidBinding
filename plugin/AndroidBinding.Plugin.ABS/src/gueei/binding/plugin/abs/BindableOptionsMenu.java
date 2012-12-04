@@ -1,4 +1,4 @@
-package gueei.binding.menu;
+package gueei.binding.plugin.abs;
 
 import gueei.binding.Binder;
 import gueei.binding.BindingLog;
@@ -6,6 +6,8 @@ import gueei.binding.IBindableView;
 import gueei.binding.IObservable;
 import gueei.binding.ViewAttribute;
 import gueei.binding.labs.EventAggregator;
+import gueei.binding.plugin.abs.menu.AbsMenuBridge;
+import gueei.binding.plugin.abs.menu.IMenuItemChangedCallback;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -18,18 +20,23 @@ import android.content.res.XmlResourceParser;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Xml;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+
+import com.actionbarsherlock.ActionBarSherlock;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 
 // Each OptionsMenuBinder correspond to one AbsMenuBridge xml. 
 // Instance should be kept by the activity
 public class BindableOptionsMenu extends View
 	implements IMenuItemChangedCallback, IBindableView<BindableOptionsMenu>{
 	
-	public BindableOptionsMenu(Activity context) {
+	ActionBarSherlock mSherlock;
+	
+	public BindableOptionsMenu(Activity context, ActionBarSherlock sherlock) {
 		super(context);
-		mActivity = new WeakReference<Activity>(context);;
+		mActivity = new WeakReference<Activity>(context);
+		mSherlock = sherlock;
 	}
 
 	private boolean menuCreated = false;
@@ -41,7 +48,7 @@ public class BindableOptionsMenu extends View
 	private final WeakReference<Activity> mActivity;
 	
 	// Called by owner activity
-    public boolean onCreateOptionsMenu(Menu menu){
+	public boolean onCreateOptionsMenu(Menu menu){
 		Activity activity = mActivity.get();
 		Object model;
 		
@@ -54,7 +61,7 @@ public class BindableOptionsMenu extends View
 		}
 		
 		// First inflate the menu - default action
-		activity.getMenuInflater().inflate(mMenuResId, menu);
+		mSherlock.getMenuInflater().inflate(mMenuResId, menu);
 		
 		if (firstCreate){
 			// Now, parse the menu
@@ -91,22 +98,22 @@ public class BindableOptionsMenu extends View
 		return true;
 	}
 	
-    public boolean onPrepareOptionsMenu(Menu menu){
+	public boolean onPrepareOptionsMenu(Menu menu){
 		for(AbsMenuBridge item: items.values()){
 			item.onPrepareOptionItem(menu);
 		}
 		return true;
 	}
 	
-    public boolean onOptionsItemSelected(MenuItem mi){
+	public boolean onOptionsItemSelected(MenuItem mi){
 		AbsMenuBridge item = items.get(mi.getItemId());
 		if (item!=null){
 			return item.onOptionsItemSelected(mi);
 		}
 		return false;
 	}
-	
-    @Override
+
+	@Override
 	public void onItemChanged(IObservable<?> prop, AbsMenuBridge item) {
 		invalidate();
 	}
@@ -121,7 +128,7 @@ public class BindableOptionsMenu extends View
 			String attributeId) {
 		try{
 			String capId = attributeId.substring(0, 1).toUpperCase() + attributeId.substring(1);
-			String className = "gueei.binding.menu.viewAttributes." + capId;
+			String className = "gueei.binding.plugin.abs.menu.viewAttributes." + capId;
 			return (ViewAttribute<?,?>)Class.forName(className)
 						.getConstructor(BindableOptionsMenu.class)
 						.newInstance(BindableOptionsMenu.this);

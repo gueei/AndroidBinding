@@ -1,6 +1,6 @@
 package gueei.binding.plugin.abs.attributes;
 
-import android.app.ActionBar.OnMenuVisibilityListener;
+import com.actionbarsherlock.app.ActionBar.OnMenuVisibilityListener;
 import gueei.binding.Binder;
 import gueei.binding.plugin.abs.BindableActionBar;
 import gueei.binding.plugin.abs.listeners.OnMenuVisibilityListenerMulticast;
