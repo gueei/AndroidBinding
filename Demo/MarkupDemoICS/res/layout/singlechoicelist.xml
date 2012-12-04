@@ -15,13 +15,15 @@
 		style="?android:attr/progressBarStyleHorizontal"
 		android:layout_height="wrap_content"
 		android:layout_width="fill_parent"
-		binding:progress="SeekPosition"
+		binding:max="=id/genrelist.itemCount"
+		binding:progress="CheckedPosition"
 		/>
     <TextView
 	    android:layout_width="fill_parent"
     	android:layout_height="wrap_content"
-    	binding:text="CONCAT('Selection: ', CheckedPosition)"/>
+    	binding:text="CONCAT('Selection: ', CheckedPosition, ' / ', =id/genrelist.itemCount)"/>
     <ListView
+        android:id="@+id/genrelist"
 	    android:layout_width="fill_parent"
     	android:layout_height="fill_parent"
     	android:choiceMode="singleChoice"

@@ -17,7 +17,8 @@
         android:uiOptions="splitActionBarWhenNarrow" >
         <activity
             android:name=".Launch"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Sherlock">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

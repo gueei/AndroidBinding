@@ -5,7 +5,7 @@ import gueei.binding.collections.ArrayListObservable;
 import gueei.binding.observables.IntegerObservable;
 
 public class SingleChoiceList {
-	public final IntegerObservable CheckedPosition = new IntegerObservable(4);
+	public final IntegerObservable CheckedPosition = new IntegerObservable();
 	
 	public final ArrayListObservable<String> GenreList = 
 		new ArrayListObservable<String>(String.class);
@@ -17,6 +17,7 @@ public class SingleChoiceList {
 	
 	public SingleChoiceList(){
 		GenreList.setArray(GENRES);
+		CheckedPosition.set(4);
 	}
 	
 	public final TwoWayDependentObservable<Float> SeekPosition =
