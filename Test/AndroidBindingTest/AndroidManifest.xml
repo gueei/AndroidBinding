@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="gueei.binding.test">
+    <uses-sdk android:minSdkVersion="4"/>
+    <instrumentation android:name="android.test.InstrumentationTestRunner" android:targetPackage="gueei.binding.test"/>
+    <application android:icon="@drawable/icon" android:label="@string/app_name" android:name="AndroidBindingUnitTestApplication">
+
+    <uses-library android:name="android.test.runner"/>
+    <activity android:label="TestButtonActivity" android:name=".TestButtonActivity"/></application>
+</manifest>

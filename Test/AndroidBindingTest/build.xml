@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="android-binding" default="new-activity" basedir=".">
+    <property name="resource.dir" value="res"/>
+    <property name="classpath" value="android-binding.ant.jar"/>
+
+    <target name="new-activity" description="Use the Task">
+        <taskdef name="read-manifest"
+            classname="gueei.binding.gen.ReadFromManifestTask" classpath="${classpath}"/>
+        <read-manifest dir="."
+            setpackagename="package.name"
+            setsourcefoldername="package.dir"/>
+    	<taskdef name="template" classname="gueei.binding.gen.WriteTemplateTask" classpath="${classpath}"/>
+        <taskdef name="register-activity" classname="gueei.binding.gen.RegisterActivityTask" classpath="${classpath}"/>
+        <input message="Input the new Activity's name" addproperty="activityname"/>
+        <!-- Create Activity File -->
+        <template input="BindingActivityV30.template" dir="${package.dir}" output="${activityname}.java">
+            <entry key="package_name" value="${package.name}"/>
+            <entry key="activity_name" value="${activityname}"/>
+            <entry key="metadata_name" value="*${activityname}_metadata"/>
+        </template>
+        
+        <template input="activity.metadata.ics.xml.template" dir="${resource.dir}/xml-v14" output="*${activityname}_metadata.xml">
+            <entry key="rootview_layout" value="*${activityname}_layout"/>
+            <entry key="optionsmenu" value="*${activityname}_optionsmenu"/>
+        </template>
+        
+        <template input="activity.metadata.froyo.xml.template" dir="${resource.dir}/xml" output="*${activityname}_metadata.xml">
+            <entry key="rootview_layout" value="*${activityname}_layout"/>
+            <entry key="optionsmenu" value="*${activityname}_optionsmenu"/>
+        </template>
+        
+        <template input="activity.optionsmenu.template" dir="${resource.dir}/menu" output="*${activityname}_optionsmenu.xml">
+        </template>
+
+        <template input="activity.layout.template" dir="${resource.dir}/layout" output="*${activityname}_layout.xml">
+        </template>
+
+        <register-activity dir="." activityclassname="${activityname}"/>
+        
+        <echo level="info"
+            message="Generation completed. Refresh your project to see the new files. "/>
+    </target>
+    
+    <target name="create_application_class">
+        <taskdef name="read-manifest"
+            classname="gueei.binding.gen.ReadFromManifestTask" classpath="${classpath}"/>
+        <read-manifest dir="."
+            setpackagename="package.name"
+            setsourcefoldername="package.dir"/>
+    	<taskdef name="register" classname="gueei.binding.gen.RegisterApplicationTask" classpath="${classpath}"/>
+    	<taskdef name="template" classname="gueei.binding.gen.WriteTemplateTask" classpath="${classpath}"/>
+    	<input message="Input the Application Class' name" addproperty="appname"/>
+    	<register dir="." appclassname="${appname}"/>
+    	<template input="application.template" dir="${package.dir}" output="${appname}.java">
+    	    <entry key="package_name" value="${package.name}"/>
+    	    <entry key="app_name" value="${appname}"/>
+    	</template>
+	</target>
+    
+</project>
