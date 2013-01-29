@@ -24,11 +24,12 @@ public abstract class AbsMenuBridge {
 	
 	// Factory method
 	public static AbsMenuBridge create
-		(String nodeName, int id, AttributeSet attrs, Context context, Object model){
+		(String nodeName, int id, AttributeSet attrs, Context context, 
+				Object model, IMenuItemChangedCallback callback){
 		AbsMenuBridge item;
 		
 		if ("item".equals(nodeName)){
-			item = new MenuItemBridge(id, attrs, context, model);
+			item = new MenuItemBridge(id, attrs, context, model, callback);
 		}else if ("group".equals(nodeName)){
 			item = new MenuGroupBridge(id, attrs, context, model);
 		}else{

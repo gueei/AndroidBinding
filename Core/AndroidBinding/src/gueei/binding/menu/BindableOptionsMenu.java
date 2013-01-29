@@ -68,7 +68,7 @@ public class BindableOptionsMenu extends View
 						if (id>0){
 							AttributeSet attrs = Xml.asAttributeSet(parser);
 							AbsMenuBridge item = 
-									AbsMenuBridge.create(nodeName, id, attrs, activity, model);
+									AbsMenuBridge.create(nodeName, id, attrs, activity, model, this);
 							if (item!=null){
 								items.put(id, item);
 							}
@@ -88,6 +88,7 @@ public class BindableOptionsMenu extends View
 			item.onCreateOptionItem(menu);
 		}
 		
+		menuCreated = true;
 		return true;
 	}
 	

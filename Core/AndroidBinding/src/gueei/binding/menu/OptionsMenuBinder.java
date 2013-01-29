@@ -52,7 +52,7 @@ public class OptionsMenuBinder implements IMenuItemChangedCallback{
 						if (id>0){
 							AttributeSet attrs = Xml.asAttributeSet(parser);
 							AbsMenuBridge item = 
-									AbsMenuBridge.create(nodeName, id, attrs, activity, model);
+									AbsMenuBridge.create(nodeName, id, attrs, activity, model, null);
 							if (item!=null){
 								items.put(id, item);
 							}
