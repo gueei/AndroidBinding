@@ -5,6 +5,8 @@ import gueei.binding.collections.ILazyLoadRowModel;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import android.util.Log;
+
 /**
  * A HashMap that will have fixed size,
  * once the allocated size is over, the
@@ -34,6 +36,7 @@ public class CacheHashMap<K, V extends ILazyLoadRowModel> extends HashMap<K, V> 
 			
 			for(int i=0; i<oversize; i++){
 				V rVal = this.get(keyList.get(i));
+				// Log.d("CacheHashMap:put", keyList.get(i) + ":" + rVal);
 				if (rVal != null && rVal.isMapped()) continue;
 				pendingRemove.add(i);
 			}
