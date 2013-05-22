@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:binding="http://www.gueei.com/android-binding/"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+        
+    <binding.TreeViewList
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="vertical"
+        android:smoothScrollbar="true"
+        binding:ensureVisibleNode="EnsureVisibleItem"  				  				  	
+        binding:treeStructure="TREE_STRUCTURE({
+  				root=Items,
+  				
+  				children='Children',
+  				isExpanded='IsExpanded',
+  				templateId='LayoutId',
+  							
+  				wrapperTemplateId=WrapperTemplateLayoutId,
+  				
+  				imgExpanded=@drawable/expanded,
+  				imgCollapsed=@drawable/collapsed,
+  				
+  				spacerWidth=40,
+				treeNodeClicked=OnTreeNodeClicked,
+        		treeNodeLongClicked=OnTreeNodeLongClicked})"
+         />    
+
+    <!-- 
+    	andy: 
+    		i want
+    			spacerWidth="?android:attr/listPreferredItemHeight"
+    			or
+    			spacerWidth=80dp
+    			
+    		go fix the parser :)
+    	
+    	template=@layout/tree_item,
+    	wrapperTemplate=@layout/tree_list_item_wrapper,
+    							
+ 				
+  	-->
+    
+</LinearLayout>

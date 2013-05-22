@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Binding Treeview</string> 
+    <string name="simple_menu_debug">Debug</string>  
+</resources>
