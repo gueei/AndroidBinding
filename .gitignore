@@ -1,4 +1,1 @@
-bin/**
-gen/**
-.metadata/
-.settings/
+.metadata
