@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:binding="http://www.gueei.com/android-binding/"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    
+    <binding.BreadCrumbs 
+        android:layout_width="fill_parent"
+        android:layout_height="?android:attr/listPreferredItemHeight"        
+        android:background="#000000"
+        binding:breadCrumbsStructure="BREADCRUMBS_STRUCTURE({
+  				root=Root,
+  				
+  				menuText='Text',
+  				children='Children',
+  				selectedPosition='SelectedPosition',
+  				templateId='LayoutId',
+  					
+  				wrapperTemplateId=WrapperTemplateLayoutId,
+  				
+  				breadCrumbClicked=OnBreadCrumbClicked,
+        		breadCrumbLongClicked=OnBreadCrumbLongClicked,
+        		
+        		breadCrumbSelected=OnBreadCrumbSelected
+  				
+  				})"
+         />    
+
+    <!--     	
+    	template=@layout/bread_crumb_item,    	 
+    	wrapperTemplate=@layout/bread_crumb_item_wrapper_blue,    	   								
+  	-->
+  	
+    <TextView
+        android:layout_marginTop="50dp"
+        android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:gravity="center"
+    	binding:text="SelectedNodeText"
+        />  	
+        
+ 	<TextView
+ 	    android:layout_marginTop="50dp"
+        android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:gravity="center"
+    	binding:text="SelectedNodeOldPathText"
+        />
+ 	
+ 	<TextView
+ 	    android:layout_marginTop="50dp"
+        android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:gravity="center"
+    	binding:text="SelectedNodeNewPathText"
+        />   	
+    
+</LinearLayout>

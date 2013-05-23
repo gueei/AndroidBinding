@@ -83,11 +83,7 @@ public class TreeViewList extends ListView {
 			OnTreeNodeLongClickedRef.Invoke(TreeViewList.this, e);
 		}
 	};			
-	
-	public TreeViewList(Context context) {
-		super(context);
-	}	
-
+		
 	public Object[] getPath(TreeViewItemWrapper leaf) {
 		if(leaf==null)
 			return null;
@@ -107,6 +103,10 @@ public class TreeViewList extends ListView {
 		}
 		
 		return pathList.toArray();
+	}
+	
+	public TreeViewList(Context context) {
+		super(context);
 	}
 
 	public TreeViewList(Context context, AttributeSet attrs) {
