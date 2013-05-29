@@ -174,7 +174,7 @@ public class TreeViewList extends ListView {
 		}
 		itemSource.clear();
 		
-		if(treeStructure == null || treeStructure.root == null)
+		if(treeStructure == null || treeStructure.root == null || treeStructure.root.get() == null)
 			return;
 		
 		if(treeStructure.wrapperTemplate!=null)
