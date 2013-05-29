@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:binding="http://www.gueei.com/android-binding/"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:baselineAligned="false"
+    android:background="#8cb7d9"
+    android:minHeight="?android:attr/listPreferredItemHeight">
+
+    <LinearLayout
+        android:layout_width="80dip"
+        android:layout_height="fill_parent"
+        android:gravity="right|center_vertical"
+        binding:layout_width="WrapperSpace"
+		>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/collapsed"
+            binding:source="WrapperImage" />
+    </LinearLayout>
+    
+    <binding.BindableFrameLayout
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        binding:layoutId="WrapperNodeLayoutId"
+        binding:dataSource="WrapperNodeDataSource" />
+       
+</LinearLayout>

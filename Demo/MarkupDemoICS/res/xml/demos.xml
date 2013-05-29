@@ -17,7 +17,8 @@
     <category name="Simple Views">
         <entry name="View" vm=".View" layout=".view"/>
         <entry name="TextView" vm=".TextView" layout=".textview"/>
-        <entry name="TextViewCustomFont" vm=".TextViewCustomFont" layout=".textviewcustomfont"/>
+        <entry name="TextViewSpan" vm=".TextViewSpan" layout=".textviewspan"/>
+        <entry name="TextViewCustomFont" vm=".TextViewCustomFont" layout=".textviewcustomfont"/>        
         <entry name="ImageView" vm=".ImageView" layout=".imageview"/>
         <entry name="ProgressBar" vm=".ProgressBar" layout=".progressbar"/>
         <entry name="SeekBar" vm=".SeekBar" layout=".seekbar"/>

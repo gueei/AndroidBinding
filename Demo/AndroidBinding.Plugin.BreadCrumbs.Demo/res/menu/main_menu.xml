@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:binding="http://www.gueei.com/android-binding/" >
+
+    <item
+        android:id="@+id/simple_menu_debug1"
+        android:title="Insert"
+        binding:onClick="OnDebugInsert">
+    </item>
+    
+    <item
+        android:id="@+id/simple_menu_debug2"
+        android:title="Remove"
+        binding:onClick="OnDebugRemove">
+    </item>
+    
+    <item
+        android:id="@+id/simple_menu_debug3"
+        android:title="Clear"
+        binding:onClick="OnDebugClear">
+    </item>    
+    
+    <item
+        android:id="@+id/simple_menu_debug4"
+        android:title="ClearRoot"
+        binding:onClick="OnDebugClearRoot">
+    </item>    
+    
+    <item
+        android:id="@+id/simple_menu_debug5"
+        android:title="Replace"
+        binding:onClick="OnDebugReplace">
+    </item>
+    
+    <item
+        android:id="@+id/simple_menu_debug6"
+        android:title="Swap Layouts"
+        binding:onClick="OnDebugSwapLayouts">
+    </item>     
+    
+	<item
+        android:id="@+id/simple_menu_debug7"
+        android:title="Change WrapperTemplate"       
+        binding:onClick="OnDebugChangeWrapperTemplate">
+    </item> 
+    
+	<item
+        android:id="@+id/simple_menu_debug8"
+        android:title="Set Selected Position"
+        binding:onClick="OnDebugSetSelectedPositon">
+    </item> 	
+    
+		<item
+        android:id="@+id/simple_menu_debug9"
+        android:title="Rebuild Tree"
+        binding:onClick="OnDebugRebuildTree">
+    </item> 
+</menu>

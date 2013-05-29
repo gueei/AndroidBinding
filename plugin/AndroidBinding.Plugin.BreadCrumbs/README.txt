@@ -1,0 +1,1 @@
+devsmartlib taken from: https://github.com/dinocore1/DevsmartLib-Android
