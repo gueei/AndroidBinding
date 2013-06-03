@@ -56,7 +56,7 @@ public class ItemCountViewAttribute extends ViewAttribute<AdapterView<?>, Intege
 				Collection<Object> initiators) {
 			onAdapterChanged((Adapter)adapterAttr.get());
 			initiators.add(this);
-			notifyChanged(this);
+			notifyChanged(initiators);
 		}
 	};
 	
@@ -81,8 +81,8 @@ public class ItemCountViewAttribute extends ViewAttribute<AdapterView<?>, Intege
 
 	@Override
 	public Integer get() {
-		if(getView()==null) return null;
-		return getView().getCount();
+		if(getView()==null || getView().getAdapter()==null) return null;
+		return getView().getAdapter().getCount();
 	}
 
 }
