@@ -69,6 +69,8 @@ public class TabNavigationAdapter extends ViewAttribute<BindableActionBar, Adapt
 				tab.setCustomView(mAdapter.getView(i, null, null));
 				tab.setTabListener(this);
 				bar.addTab(tab, i);
+				
+				ActionBar ab;
 			}
 		}
 
