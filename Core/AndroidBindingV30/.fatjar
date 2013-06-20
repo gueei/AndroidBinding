@@ -1,10 +1,10 @@
 #Fat Jar Configuration File
-#Mon Oct 22 14:22:24 CST 2012
+#Tue Jun 18 14:20:30 CST 2013
 onejar.license.required=true
 manifest.classpath=
 manifest.removesigners=false
 onejar.checkbox=false
-jarname=C\:\\Users\\andy\\Dropbox\\RELEASE\\android-binding-v0.6-preview.jar
+jarname=C\:\\Users\\andy\\Dropbox\\RELEASE\\android-binding-v0.6-develop.jar
 manifest.mergeall=false
 manifest.mainclass=
 manifest.file=<createnew>
