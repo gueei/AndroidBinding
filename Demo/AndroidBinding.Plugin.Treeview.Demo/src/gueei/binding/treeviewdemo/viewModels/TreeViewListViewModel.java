@@ -39,7 +39,7 @@ public class TreeViewListViewModel {
 	public final Command OnTreeNodeClicked = new Command() {		
 		@Override
 		public void Invoke(View view, Object... args) {	
-			if( args.length != 1)
+			if( args.length < 1)
 				return;
 
 			TreeNodeClickEvent e = (TreeNodeClickEvent)args[0];
@@ -61,7 +61,7 @@ public class TreeViewListViewModel {
 	public final Command OnTreeNodeLongClicked = new Command() {		
 		@Override
 		public void Invoke(View view, Object... args) {
-			if( args.length != 1)
+			if( args.length < 1)
 				return;
 			
 			TreeNodeLongClickEvent e = (TreeNodeLongClickEvent)args[0];

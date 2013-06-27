@@ -40,7 +40,7 @@ public class BreadCrumbsViewModel {
 	public final Command OnBreadCrumbClicked = new Command() {			
 		@Override
 		public void Invoke(View view, Object... args) {
-			if( args.length != 1)
+			if( args.length < 1)
 				return;
 
 			BreadCrumbsClickEvent e = (BreadCrumbsClickEvent)args[0];
@@ -62,7 +62,7 @@ public class BreadCrumbsViewModel {
 	public final Command OnBreadCrumbLongClicked = new Command() {			
 		@Override
 		public void Invoke(View view, Object... args) {
-			if( args.length != 1)
+			if( args.length < 1)
 				return;
 			
 			BreadCrumbsLongClickEvent e = (BreadCrumbsLongClickEvent)args[0];
@@ -74,7 +74,7 @@ public class BreadCrumbsViewModel {
 	public final Command OnBreadCrumbSelected = new Command() {			
 		@Override
 		public void Invoke(View view, Object... args) {
-			if( args.length != 1)
+			if( args.length < 1)
 				return;
 			
 			BreadCrumbsSelectedEvent e = (BreadCrumbsSelectedEvent)args[0];
