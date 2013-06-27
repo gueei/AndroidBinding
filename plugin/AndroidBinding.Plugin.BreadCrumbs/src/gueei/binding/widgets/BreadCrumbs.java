@@ -61,7 +61,7 @@ public class BreadCrumbs extends HorizontalListView {
 				BreadCrumbsItemWrapper w = itemSource.get(pos);
 				BreadCrumbsClickEvent e = new BreadCrumbsClickEvent(pos, w.WrapperBreadCrumbDataSource.get());
 						
-				OnBreadCrumbClickedRef.Invoke(BreadCrumbs.this, e);
+				OnBreadCrumbClickedRef.Invoke(BreadCrumbs.this, e, args);
 				if( e.eventHandled)
 					return;
 			}
@@ -83,7 +83,7 @@ public class BreadCrumbs extends HorizontalListView {
 			BreadCrumbsItemWrapper w = itemSource.get(pos);
 			BreadCrumbsLongClickEvent e = new BreadCrumbsLongClickEvent(pos, w.WrapperBreadCrumbDataSource.get());
 						
-			OnBreadCrumbLongClickedRef.Invoke(BreadCrumbs.this, e);			
+			OnBreadCrumbLongClickedRef.Invoke(BreadCrumbs.this, e, args);			
 		}
 	};		
 	

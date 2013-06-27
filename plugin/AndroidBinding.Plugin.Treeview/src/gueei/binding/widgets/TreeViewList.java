@@ -61,7 +61,7 @@ public class TreeViewList extends ListView {
 				TreeViewItemWrapper w = itemSource.get(pos);
 				TreeNodeClickEvent e = new TreeNodeClickEvent(pos, w, TreeViewList.this);
 						
-				OnTreeNodeClickedRef.Invoke(TreeViewList.this, e);
+				OnTreeNodeClickedRef.Invoke(TreeViewList.this, e, args);
 				if( e.ignoreExpandCollapse)
 					return;
 			}
@@ -80,7 +80,7 @@ public class TreeViewList extends ListView {
 			TreeViewItemWrapper w = itemSource.get(pos);				
 			TreeNodeLongClickEvent e = new TreeNodeLongClickEvent(pos, w, TreeViewList.this);		
 			
-			OnTreeNodeLongClickedRef.Invoke(TreeViewList.this, e);
+			OnTreeNodeLongClickedRef.Invoke(TreeViewList.this, e, args);
 		}
 	};			
 		
