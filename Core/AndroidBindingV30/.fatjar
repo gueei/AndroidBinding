@@ -1,14 +1,14 @@
 #Fat Jar Configuration File
-#Tue Jun 18 14:20:30 CST 2013
+#Thu Jul 18 18:37:05 CST 2013
 onejar.license.required=true
 manifest.classpath=
 manifest.removesigners=false
 onejar.checkbox=false
-jarname=C\:\\Users\\andy\\Dropbox\\RELEASE\\android-binding-v0.6-develop.jar
+jarname=C\:\\Users\\andy\\git\\AndroidBinding\\android-binding-v0.6-build718.jar
 manifest.mergeall=false
 manifest.mainclass=
 manifest.file=<createnew>
 jarname.isextern=true
 onejar.expand=
-excludes=<jar|annotations.jar>;<jar|android-support-v4.jar>;<jar|android-support-v4.jar>
+excludes=<jar|android-support-v4.jar>;<jar|android-support-v4.jar>;<jar|annotations.jar>
 includes=

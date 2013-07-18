@@ -1,8 +1,12 @@
 package gueei.binding.converters;
 
+import java.util.Collection;
+
 import gueei.binding.Binder;
 import gueei.binding.Binder.InflateResult;
 import gueei.binding.BindingLog;
+import gueei.binding.CollectionChangedEventArg;
+import gueei.binding.CollectionObserver;
 import gueei.binding.Converter;
 import gueei.binding.DynamicObject;
 import gueei.binding.IObservable;
@@ -42,7 +46,7 @@ public class PAGERADAPTER extends Converter<PagerAdapterObservable> {
 		return new ObsPagerAdapter((DynamicObject)args[0]);
     }
 	
-	private class ObsPagerAdapter extends PagerAdapterObservable{
+	private class ObsPagerAdapter extends PagerAdapterObservable implements CollectionObserver{
 		@Override
         public CharSequence getPageTitle(int position) {
 			if (dobj.observableExists("titleField")){
@@ -68,6 +72,7 @@ public class PAGERADAPTER extends Converter<PagerAdapterObservable> {
 			dobj = obj;
 			try {
 	            col = (IObservableCollection<?>)obj.getObservableByName("source").get();
+	            col.subscribe(this);
             } catch (Exception e) {
             	BindingLog.exception("PAGERADAPTER.ObsPagerAdapter.Constructor", e);
             	throw new RuntimeException();
@@ -105,5 +110,11 @@ public class PAGERADAPTER extends Converter<PagerAdapterObservable> {
         public boolean isViewFromObject(View arg0, Object arg1) {
 			return arg0.equals(arg1);
         }
+
+		@Override
+		public void onCollectionChanged(IObservableCollection<?> collection,
+				CollectionChangedEventArg args, Collection<Object> initiators) {
+			this.notifyDataSetChanged();
+		}
 	}
 }
