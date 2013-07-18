@@ -116,5 +116,15 @@ public class PAGERADAPTER extends Converter<PagerAdapterObservable> {
 				CollectionChangedEventArg args, Collection<Object> initiators) {
 			this.notifyDataSetChanged();
 		}
+
+		@Override
+		public int getItemPosition(Object object) {
+			
+			// TODO: This is quite inefficient, need to improve this
+			for(int i=0; i<col.size(); i++){
+				if (object.equals(col.getItem(i))) return i;
+			}
+			return POSITION_NONE;
+		}
 	}
 }

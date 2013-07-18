@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:binding="http://www.gueei.com/android-binding/"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+	<TextView
+	    android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	binding:text="CONCAT('I am #', PageNumber)"
+	    />
+	<Button
+	    android:layout_width="100dp"
+    	android:layout_height="wrap_content"
+    	android:layout_gravity="center_horizontal"
+    	android:text="Remove Me"
+    	binding:onClick="ARG(Parent.Remove, .)"
+    	/>
+	
+	<EditText
+	    android:id="@+id/page_name"
+	    android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:lines="1"
+    	android:hint="Name the new Page"
+    	/>
+	<Button
+	    android:layout_width="100dp"
+    	android:layout_height="wrap_content"
+    	android:layout_gravity="center_horizontal"
+    	android:text="Add Page"
+    	binding:onClick="ARG(Parent.AddPage, =id/page_name.text)"
+    	/>
+</LinearLayout>

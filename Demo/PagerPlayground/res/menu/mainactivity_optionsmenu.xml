@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:binding="http://www.gueei.com/android-binding/"
+>
+	<item android:id="@+id/button1"
+		android:title="Title"
+	/>
+</menu>
