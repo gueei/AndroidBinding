@@ -97,7 +97,8 @@ public class ArrayListObservable<T>
 	public void setAll(Collection<? extends T> arg0) {		
 		Object [] oldItems = mArray.toArray();
 		mArray.clear();
-		mArray.addAll(arg0);				
+		if(arg0 != null)
+			mArray.addAll(arg0);				
 		CollectionChangedEventArg e = new CollectionChangedEventArg(Action.Replace, mArray, Arrays.asList(oldItems));
 		this.notifyCollectionChanged(e);		
 	}	
