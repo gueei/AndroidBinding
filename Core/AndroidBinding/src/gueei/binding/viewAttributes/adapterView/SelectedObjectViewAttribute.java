@@ -25,7 +25,7 @@ public class SelectedObjectViewAttribute extends ViewAttribute<AdapterView<?>, O
 		
 		int pos = -1;
 		
-		if( newValue != null ) {
+		if( newValue != null && getView().getAdapter() != null) {
 			int c = getView().getAdapter().getCount();
 		
 			for( int i=0; i<c; i++ ) {
