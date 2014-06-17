@@ -19,7 +19,7 @@ public class SelectedObjectViewAttribute extends ViewAttribute<AdapterView<?>, O
 
 	@Override
 	protected void doSetAttributeValue(Object newValue) {	
-		if(getView()==null) return;
+		if(getView()==null || getView().getAdapter()==null) return;
 		Object selected = getView().getSelectedItem();
 		Object o=null;
 		
