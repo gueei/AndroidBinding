@@ -12,10 +12,11 @@ import java.util.ListIterator;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import gueei.binding.IObservableCollection;
 
 public class ArrayListObservable<T> 
 	extends ObservableCollection<T> 
-	implements List<T>, Parcelable{
+	implements List<T>, SpecificTypedObservable , Parcelable{
 	
 	private final Class<T> mType;
 	protected ArrayList<T> mArray;
@@ -34,6 +35,10 @@ public class ArrayListObservable<T>
 			}
 		}
 	}
+
+    public Class<ArrayListObservable> getSpecificType() {
+        return ArrayListObservable.class;
+    }
 	
 	public T getItem(int position) {
 		return mArray.get(position);
