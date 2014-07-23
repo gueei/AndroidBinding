@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import android.content.Context;
+import gueei.binding.collections.SpecificTypedObservable;
 
 public abstract class Attribute<Th, T> extends Observable<T> {
 	
@@ -74,8 +75,12 @@ public abstract class Attribute<Th, T> extends Observable<T> {
 		// So, it assumes two way no matter what
 		if (prop instanceof Undetermined)
 			binding = BindingType.TwoWay;
-		else
-			binding = AcceptThisTypeAs(prop.getType());
+		else {
+            if (prop instanceof SpecificTypedObservable)
+                binding = AcceptThisTypeAs(prop.getType(), ((SpecificTypedObservable) prop).getSpecificType());
+            else
+                binding = AcceptThisTypeAs(prop.getType());
+        }
 		
 		if (binding.equals(BindingType.NoBinding)) return binding;
 		
@@ -98,10 +103,16 @@ public abstract class Attribute<Th, T> extends Observable<T> {
 		// Broadcast initial change
 		notifyChanged(initiators);		
 	}
-	
-	protected BindingType AcceptThisTypeAs(Class<?> type){
-		if (this.getType() != type){
-			if (this.getType().isAssignableFrom(type)){
+
+    protected BindingType AcceptThisTypeAs(Class<?> type) {
+       return AcceptThisTypeAs(type, null);
+    }
+
+	protected BindingType AcceptThisTypeAs(Class<?> type, Class<?> specificType){
+		if (this.getType() != type && this.getType() != specificType){
+            boolean isAssignableFromSpecificType = specificType == null ?
+                    false : this.getType().isAssignableFrom(specificType);
+			if (this.getType().isAssignableFrom(type) || isAssignableFromSpecificType){
 				return BindingType.OneWay;
 			}
 			return BindingType.NoBinding;
