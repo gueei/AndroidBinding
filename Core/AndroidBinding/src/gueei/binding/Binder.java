@@ -48,6 +48,10 @@ public class Binder {
 	public static InflateResult inflateView(Context context, int layoutId, ViewGroup parent, boolean attachToRoot){
 		return _kernel.inflateView(context, layoutId, parent, attachToRoot);
 	}
+
+    public static InflateResult inflateViewFromExistingView(Context context, View view, int layoutId){
+        return _kernel.inflateViewFromExistingView(context, view, layoutId);
+    }
 	
 	public static View bindView(Context context, InflateResult inflatedView, Object model){
 		return _kernel.bindView(context, inflatedView, model);
