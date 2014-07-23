@@ -5,17 +5,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import gueei.binding.AttributeBinder;
-import gueei.binding.AttributeCollection;
+import gueei.binding.*;
 import gueei.binding.Binder.InflateResult;
-import gueei.binding.BindingLog;
-import gueei.binding.BindingMap;
-import gueei.binding.IBindableView;
-import gueei.binding.IKernel;
-import gueei.binding.ISyntaxResolver;
-import gueei.binding.ViewAttribute;
-import gueei.binding.ViewFactory;
-import gueei.binding.ViewTag;
 import gueei.binding.bindingProviders.AbsSpinnerViewProvider;
 import gueei.binding.bindingProviders.AdapterViewProvider;
 import gueei.binding.bindingProviders.CompoundButtonProvider;
@@ -32,6 +23,8 @@ import gueei.binding.bindingProviders.ViewProvider;
 import gueei.binding.exception.AttributeNotDefinedException;
 import gueei.binding.listeners.MulticastListenerCollection;
 import gueei.binding.listeners.ViewMulticastListener;
+
+import java.util.ArrayList;
 
 public abstract class KernelBase implements IKernel {
 
@@ -111,6 +104,39 @@ public abstract class KernelBase implements IKernel {
             	result.processedViews = factory.getProcessedViews();
             	return result;
             }
+
+    @Override
+    public InflateResult inflateViewFromExistingView(Context context,  View view, int layoutId) {
+        LayoutInflater inflater = LayoutInflater.from(context).cloneInContext(context);
+        ViewFactory factory = new ViewFactory(inflater);
+        inflater.setFactory(factory);
+        InflateResult result = new InflateResult();
+        inflater.inflate(layoutId, null, false);
+        result.rootView = view;
+        result.processedViews = getReattachedViews(factory.getProcessedViews(), result.rootView);
+
+        return result;
+    }
+
+    private ArrayList<View> getReattachedViews(ArrayList<View> cloneViews, View rootView) {
+        ArrayList<View> originalControls = new ArrayList<View>();
+
+        for (View cloneView : cloneViews) {
+
+            int cloneId = cloneView.getId();
+            if (cloneId == -1)
+                android.util.Log.e("ANDROID-BINDING","ALL BINDABLE CONTROLS IN ANDROID-BINDING MUST HAVE AN ID!");
+
+            View view = rootView.findViewById(cloneId);
+            if (view != null) {
+                BindingMap bm = Binder.getBindingMapForView(cloneView);
+                Binder.putBindingMapToView(view, bm);
+                originalControls.add(view);
+            }
+        }
+
+        return originalControls;
+    }
 
 	@Override
     public View bindView(Context context, InflateResult inflatedView, Object model) {

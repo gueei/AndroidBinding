@@ -40,7 +40,17 @@ public interface IKernel {
 	 * @return Inflate Result. 
 	 */
 	public InflateResult inflateView(Context context, int layoutId, ViewGroup parent, boolean attachToRoot);
-	/**
+
+    /**
+     * Inflate, and parse the binding information with Android binding
+     * @param context
+     * @param view inflate from this view instance
+     * @param layoutId The xml layout definition (it's not INFLATED FROM this definition)
+     * @return Inflate Result.
+     */
+    public InflateResult inflateViewFromExistingView(Context context,  View view, int layoutId);
+
+    /**
 	 * Returns the binded root view of the inflated view
 	 * @param context
 	 * @param inflatedView The inflated result from inflateView
