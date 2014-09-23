@@ -105,13 +105,13 @@ public class WeakList<E> extends AbstractList<E> {
 			for(int i=0; i<len; i++){
 				if (items.get(i).get() == null){
 					items.remove(i);
-					return remove(object);
+					len--;
 				}
-				if (items.get(i).get().equals(object)){
+				else if (items.get(i).get().equals(object)){
 					items.remove(i);
 					return true;
 				}
-			}
+			}			
 			return false;
 		}
 	}
@@ -125,12 +125,14 @@ public class WeakList<E> extends AbstractList<E> {
 
 	@SuppressWarnings("unchecked")
 	public E[] toItemArray(E[] arr) {
-		int size = this.size();
-		E[] copy = (E[]) Array.newInstance(arr.getClass().getComponentType(), size);
-		WeakReference<E>[] itemArray = items.toArray(new WeakReference[0]);
-    	for(int i=0; i<size; i++){
-    		copy[i] = itemArray[i].get();
-    	}
-		return copy;
+		synchronized(this){
+			int size = this.size();
+			E[] copy = (E[]) Array.newInstance(arr.getClass().getComponentType(), size);
+			WeakReference<E>[] itemArray = items.toArray(new WeakReference[0]);
+	    	for(int i=0; i<size; i++){
+	    		copy[i] = itemArray[i].get();
+	    	}
+			return copy;
+		}
 	}
 }
