@@ -1,4 +1,3 @@
-gen
-/**/*
-
+.settings/**/*
+gen/**/*
 bin/**/*

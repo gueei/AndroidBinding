@@ -55,7 +55,7 @@ public class Observable<T> implements IObservable<T> {
 	public final void notifyChanged(Collection<Object> initiators){
 		initiators.add(this);
 		for(Object o: observers.toArray()){
-			if (initiators.contains(o)) continue;
+			if (initiators.contains(o) || o == null) continue;
 			((Observer)o).onPropertyChanged(this, initiators);
 		}
 	}
@@ -120,5 +120,9 @@ public class Observable<T> implements IObservable<T> {
 	@Override
 	public boolean isNull() {
 		return mValue==null;
+	}
+	
+	public boolean hasObservers() {
+		return observers.size() > 0;
 	}
 }

@@ -19,4 +19,6 @@ public class BindingWidget {
         return dialog;                 
 	}
 	
+	// TODO: add unbind - or create a derived Dialog View with automaticually unbinding.
+	
 }

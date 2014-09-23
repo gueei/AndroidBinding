@@ -71,4 +71,22 @@ public abstract class DependentObservable<T> extends Observable<T> implements Ob
 	public void setDirty(boolean dirty) {
 		this.dirty = dirty;
 	}
+	
+	@Override
+	public  void unsubscribe(Observer o){
+		super.unsubscribe(o);
+		
+		if(hasObservers())
+			return;
+		
+		if(mDependents == null)
+			return;
+		
+		int len = mDependents.length;
+		for(int i=0; i<len; i++){
+			mDependents[i].unsubscribe(this);
+		}
+		
+		mDependents = null;
+	}
 }

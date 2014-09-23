@@ -63,25 +63,36 @@ public abstract class Attribute<Th, T> extends Observable<T> {
 
 	// Set to package internal for debug use
 	Bridge mBridge;
+	BindingType mBindingType = BindingType.NoBinding;
 	
 	public BindingType BindTo(Context context, IObservable<?> prop) {
 		if (prop == null) return BindingType.NoBinding;
-		
-		BindingType binding;
 		
 		// Dirty fix
 		// Since for InnerFieldObservable, it may not know what type of it will be
 		// So, it assumes two way no matter what
 		if (prop instanceof Undetermined)
-			binding = BindingType.TwoWay;
+			mBindingType = BindingType.TwoWay;
 		else
-			binding = AcceptThisTypeAs(prop.getType());
+			mBindingType = AcceptThisTypeAs(prop.getType());
 		
-		if (binding.equals(BindingType.NoBinding)) return binding;
+		if (mBindingType.equals(BindingType.NoBinding)) return mBindingType;
 		
-		onBind(context, prop, binding);
+		onBind(context, prop, mBindingType);
 		
-		return binding;
+		return mBindingType;
+	}
+	
+	public void UnbindAll() {
+		if(mBridge == null)
+			return;		
+		
+		mBridge.unbind();		
+		if (mBindingType.equals(BindingType.TwoWay)) 
+			this.unsubscribe(mBridge);
+		
+		mBridge = null;
+		mBindingType = BindingType.NoBinding;
 	}
 	
 	/*
@@ -122,6 +133,12 @@ public abstract class Attribute<Th, T> extends Observable<T> {
 			mBindedObservable = observable;
 		}
 		
+		public void unbind() {
+			if(mBindedObservable != null)
+				mBindedObservable.unsubscribe(this);
+			mBindedObservable = null;
+		}
+
 		public void onPropertyChanged(IObservable<?> prop,
 				Collection<Object> initiators) {
 			if (prop==mAttribute){

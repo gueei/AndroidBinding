@@ -22,7 +22,16 @@ public abstract class Converter<T> extends TwoWayDependentObservable<T> {
 	public void setContext(Context context){
 		mContext = context;
 	}
+	
 	public Context getContext(){
 		return mContext;
 	}
+	
+	@Override
+	public  void unsubscribe(Observer o){
+		super.unsubscribe(o);
+		if(!hasObservers())
+			setContext(null);
+	}
+	
 }

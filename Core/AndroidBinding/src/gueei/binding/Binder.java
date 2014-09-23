@@ -53,6 +53,10 @@ public class Binder {
 		return _kernel.bindView(context, inflatedView, model);
 	}
 	
+	public static void unbindView(Context context, InflateResult inflatedView){
+		_kernel.unbindView(context, inflatedView);
+	}
+	
 	public static void init(Application application){
 		init(application, new DefaultKernel());
 	}

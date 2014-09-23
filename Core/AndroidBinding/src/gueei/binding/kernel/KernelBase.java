@@ -16,19 +16,6 @@ import gueei.binding.ISyntaxResolver;
 import gueei.binding.ViewAttribute;
 import gueei.binding.ViewFactory;
 import gueei.binding.ViewTag;
-import gueei.binding.bindingProviders.AbsSpinnerViewProvider;
-import gueei.binding.bindingProviders.AdapterViewProvider;
-import gueei.binding.bindingProviders.CompoundButtonProvider;
-import gueei.binding.bindingProviders.ExpandableListViewProvider;
-import gueei.binding.bindingProviders.ImageViewProvider;
-import gueei.binding.bindingProviders.ListViewProvider;
-import gueei.binding.bindingProviders.ProgressBarProvider;
-import gueei.binding.bindingProviders.RatingBarProvider;
-import gueei.binding.bindingProviders.SeekBarProvider;
-import gueei.binding.bindingProviders.TabHostProvider;
-import gueei.binding.bindingProviders.TextViewProvider;
-import gueei.binding.bindingProviders.ViewAnimatorProvider;
-import gueei.binding.bindingProviders.ViewProvider;
 import gueei.binding.exception.AttributeNotDefinedException;
 import gueei.binding.listeners.MulticastListenerCollection;
 import gueei.binding.listeners.ViewMulticastListener;
@@ -119,6 +106,15 @@ public abstract class KernelBase implements IKernel {
     	}
     	return inflatedView.rootView;
     }
+	
+	@Override
+    public void unbindView(Context context, InflateResult inflatedView) {
+		if(inflatedView == null || inflatedView.processedViews == null)
+			return;		
+    	for(View v: inflatedView.processedViews){
+    		AttributeBinder.getInstance().unbindView(context, v);
+    	}
+    }	
 
 	@Override
     public <T extends ViewMulticastListener<?>> T getMulticastListenerForView(

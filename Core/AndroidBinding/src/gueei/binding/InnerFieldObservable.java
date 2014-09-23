@@ -151,7 +151,7 @@ public class InnerFieldObservable<T> implements IObservable<T>, Undetermined{
 	public final void notifyChanged(Collection<Object> initiators){
 		initiators.add(this);
 		for(Object o: observers.toArray()){
-			if (initiators.contains(o)) continue;
+			if (initiators.contains(o) || o == null) continue;
 			((Observer)o).onPropertyChanged(this, initiators);
 		}
 	}

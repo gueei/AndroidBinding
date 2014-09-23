@@ -48,6 +48,7 @@ public interface IKernel {
 	 * @return RootView of the binded view
 	 */
 	public View bindView(Context context, InflateResult inflatedView, Object model);
+	public void unbindView(Context context, InflateResult inflatedView);
 	public <T extends ViewMulticastListener<?>> T getMulticastListenerForView(View view, Class<T> listenerType);
 	public void init(Application application);
 	

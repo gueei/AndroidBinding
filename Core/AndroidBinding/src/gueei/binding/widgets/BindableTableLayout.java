@@ -22,93 +22,97 @@ import gueei.binding.collections.ArrayListObservable;
 import gueei.binding.collections.ObservableCollection;
 import gueei.binding.utility.ObservableCollectionMultiplexer;
 import gueei.binding.utility.ObservableMultiplexer;
-import gueei.binding.utility.WeakList;
 import gueei.binding.viewAttributes.templates.LayoutRowChild;
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-public class BindableTableLayout extends TableLayout implements IBindableView<BindableTableLayout> {
-	private WeakList<Object> currentRowList = null;
-	private CollectionObserver collectionObserver = null;
+public class BindableTableLayout extends TableLayout implements IBindableView<BindableTableLayout>, IBindableLayout  {
+	private ArrayList<Object> mCurrentRowList = null;
+	private SparseArray<List<BindableLayoutContent>> mItemMapList = null;
+	private CollectionObserver mCollectionObserver = null;
 	
-	private ObservableCollection<Object> rowList = null;	
-	private LayoutRowChild rowChild = null;	
-	private boolean updateEnabled = true;	
+	private ObservableCollection<Object> mRowList = null;	
+	private LayoutRowChild mRowChild = null;	
 	
-	private Observer observer = new Observer() {
+	private Observer mObserver = new Observer() {
 		@Override
 		public void onPropertyChanged(IObservable<?> prop, Collection<Object> initiators) {
-			if( initiators == null || currentRowList == null)
+			if( initiators == null || mCurrentRowList == null)
 				return;
 			int pos = -1;
 			
 			for(Object i : initiators) {
-				pos = currentRowList.indexOf(i);
+				pos = mCurrentRowList.indexOf(i);
 				if( pos > 0)
 					break;
 			}
 			if( pos < 0)
 				return;
-			Object parent = currentRowList.get(pos);
+			Object rowData = mCurrentRowList.get(pos);
 			ArrayList<Object> list = new ArrayList<Object>();
-			list.add(parent);
-			removeRows(list);						
-			insertRow(pos, parent);	 
+			list.add(rowData);
+			unbindRow(list);						
+			addTablteRow(pos, rowData);	 
 		}
 	};
 	
-	private ObservableMultiplexer<Object> observableChildLayoutID = new ObservableMultiplexer<Object>(observer);
-	private ObservableMultiplexer<Object> observableChildSpan = new ObservableMultiplexer<Object>(observer);	
-	private ObservableCollectionMultiplexer<Object> observableCollectionRowChildren = new ObservableCollectionMultiplexer<Object>(observer);		
+	private ObservableMultiplexer<Object> mObservableChildLayoutID = new ObservableMultiplexer<Object>(mObserver);
+	private ObservableMultiplexer<Object> mObservableChildSpan = new ObservableMultiplexer<Object>(mObserver);	
+	private ObservableCollectionMultiplexer<Object> mObservableCollectionRowChildren = new ObservableCollectionMultiplexer<Object>(mObserver);		
 	
 	public BindableTableLayout(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		init();
 	}
 
 	public BindableTableLayout(Context context) {
 		super(context);
-		init();
-	}
+	}	
 	
-	private void init() {
+	@Override
+	public void unbind () {		
+		synchronized(this){
+			if(mRowList != null) {
+				mRowList.unsubscribe(mCollectionObserver);
+				mCollectionObserver = null;
+			}
+			
+			if(mItemMapList != null && mItemMapList.size() > 0) {
+				for(int i = mItemMapList.size()-1; i > -1; i--) {
+					unbindAndRemove(i);
+				}
+			}
+			
+			mItemMapList = null;
+			mRowList = null;
+			mObservableChildLayoutID.clear();
+			mObservableChildSpan.clear();
+			mObservableCollectionRowChildren.clear();							
+			mCurrentRowList= null;
+							
+			removeAllViews();
+		}
 	}
 	
 	@Override
 	protected void onDetachedFromWindow() {
-		if(rowList != null) {
-			rowList.unsubscribe(collectionObserver);
-			collectionObserver = null;
-		}
-		
-		rowList = null;
-		observableChildLayoutID.clear();
-		observableChildSpan.clear();
-		observableCollectionRowChildren.clear();							
-		currentRowList= null;
-			
+		unbind();
 		super.onDetachedFromWindow();
 	}
 	
-	private void createItemSourceList(ObservableCollection<Object> newRowList) {		
-		if( rowList != null && collectionObserver != null)
-			rowList.unsubscribe(collectionObserver);
-				
-		collectionObserver = null;
-		rowList = newRowList;
+	private void bind(ObservableCollection<Object> newRowList) {				
+		mRowList = newRowList;
 		
 		if(newRowList==null)
 			return;
-
-		currentRowList = null;	
-		collectionObserver = new CollectionObserver() {
+	
+		mCollectionObserver = new CollectionObserver() {
 			@SuppressWarnings("unchecked")
 			@Override
 			public void onCollectionChanged(
@@ -119,32 +123,19 @@ public class BindableTableLayout extends TableLayout implements IBindableView<Bi
 			}			
 		};
 		
-		rowList.subscribe(collectionObserver);
-		newRowList(rowList);
-	}	
-
-	private void newRowList(ObservableCollection<Object> rows) {		
-		this.removeAllViews();	
+		mRowList.subscribe(mCollectionObserver);
 		
-		observableChildLayoutID.clear();
-		observableChildSpan.clear();
-		observableCollectionRowChildren.clear();		
-						
-		if( rows == null) {
-			currentRowList= null;
-			return;
-		}
+		mObservableChildLayoutID.clear();
+		mObservableChildSpan.clear();
+		mObservableCollectionRowChildren.clear();		
 		
-		currentRowList = new WeakList<Object>();
+		mCurrentRowList = new ArrayList<Object>();
+		mItemMapList = new SparseArray<List<BindableLayoutContent>>();
 				
-		for( int pos=0; pos < rows.size(); pos ++ ) {
-			Object item = rows.getItem(pos);
-			insertRow(pos, item);
-		}
-		
-		for( int pos=0; pos < rows.size(); pos ++ ) {
-			Object item = rows.getItem(pos);
-			currentRowList.add(item);
+		for( int pos=0; pos < newRowList.size(); pos ++ ) {
+			Object rowData = newRowList.getItem(pos);
+			addTablteRow(pos, rowData);
+			mCurrentRowList.add(rowData);
 		}			
 	}	
 	
@@ -156,26 +147,27 @@ public class BindableTableLayout extends TableLayout implements IBindableView<Bi
 		switch( e.getAction()) {
 			case Add:
 				pos = e.getNewStartingIndex();
-				for(Object row : e.getNewItems()) {
-					insertRow(pos, row);
+				for(Object rowData : e.getNewItems()) {
+					addTablteRow(pos, rowData);
 					pos++;
 				}
 				break;
 			case Remove:
-				removeRows(e.getOldItems());	
+				unbindRow(e.getOldItems());	
 				break;
 			case Replace:
-				removeRows(e.getOldItems());	
+				unbindRow(e.getOldItems());	
 				pos = e.getNewStartingIndex();
 				if( pos < 0)
 					pos=0;				
 				for(Object item : e.getNewItems()) {
-					insertRow(pos, item);
+					addTablteRow(pos, item);
 					pos++;
 				}
 				break;
 			case Reset:
-				newRowList(rows);
+				unbind();
+				bind(rows);
 				break;
 			case Move:
 				// currently the observable array list doesn't create this action
@@ -189,7 +181,7 @@ public class BindableTableLayout extends TableLayout implements IBindableView<Bi
 		
 		for( pos=0; pos < rows.size(); pos ++ ) {
 			Object item = rows.getItem(pos);
-			currentRowList.add(item);
+			mCurrentRowList.add(item);
 		}					
 	}	
 
@@ -200,15 +192,19 @@ public class BindableTableLayout extends TableLayout implements IBindableView<Bi
 				protected void doSetAttributeValue(Object newValue) {
 					if( !(newValue instanceof ArrayListObservable<?> ))
 						return;
-					rowList = (ArrayListObservable<Object>)newValue;
+					mRowList = (ArrayListObservable<Object>)newValue;
 					
-					if( rowChild != null )
-						createItemSourceList(rowList);
+					if( mRowChild != null ) {
+						ObservableCollection<Object> list = mRowList;
+						unbind();
+						mRowList = list;
+						bind(mRowList);
+					}
 				}
 
 				@Override
 				public Object get() {
-					return rowList;
+					return mRowList;
 				}				
 	};	
 					
@@ -216,93 +212,66 @@ public class BindableTableLayout extends TableLayout implements IBindableView<Bi
 			new ViewAttribute<BindableTableLayout, Object>(Object.class, BindableTableLayout.this, "RowChild"){
 				@Override
 				protected void doSetAttributeValue(Object newValue) {	
-					rowChild = null;
+					mRowChild = null;
 					if( newValue instanceof LayoutRowChild ) {
-						rowChild = (LayoutRowChild) newValue;
-						if( rowList != null )
-							createItemSourceList(rowList);
-					}
-				}
-
-				@Override
-				public Object get() {
-					return rowChild;
-				}
-	};	
-	
-	private ViewAttribute<BindableTableLayout, Boolean> ItemUpdateEnabledAttribute =
-			new ViewAttribute<BindableTableLayout, Boolean>(Boolean.class, BindableTableLayout.this, "UpdateEnabled"){
-				@Override
-				protected void doSetAttributeValue(Object newValue) {	
-					if( newValue == null ) {
-						updateEnabled = true;
-					}
-					else if( newValue instanceof Boolean ) {
-						Boolean value = (Boolean) newValue;
-						updateEnabled = value; 
-						if(updateEnabled) {
-							BindableTableLayout.this.invalidate();
+						mRowChild = (LayoutRowChild) newValue;
+						if( mRowList != null ){
+							ObservableCollection<Object> current = mRowList;
+							unbind();
+							mRowList = current;
+							bind(mRowList);
 						}
 					}
 				}
 
 				@Override
-				public Boolean get() {
-					return updateEnabled;
+				public Object get() {
+					return mRowChild;
 				}
-	};
+	};	
 	
-	@Override
-	protected void onDraw(Canvas canvas) {
-		if( !updateEnabled )
-			return;
-		super.onDraw(canvas);
-	}	
-	
-	@Override
-	protected void onMeasure (int widthMeasureSpec, int heightMeasureSpec) {
-		if( !updateEnabled )
-			return;
-		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-	}	
 
 	@Override
 	public ViewAttribute<BindableTableLayout, ?> createViewAttribute(String attributeId) {	
 		if (attributeId.equals("itemSource")) return ItemSourceAttribute;
-		if (attributeId.equals("rowChild")) return RowChildAttribute;
-		if (attributeId.equals("updateEnabled")) return ItemUpdateEnabledAttribute;		
+		if (attributeId.equals("rowChild")) return RowChildAttribute;	
 		return null;
 	}	
 	
-	private void insertRow(int pos, Object row) {		
-		if( rowChild == null )
-			return;
-		
-		IObservable<?> childDataSource = null;			
-		InnerFieldObservable<?> ifo = new InnerFieldObservable<Object>(rowChild.getChildDataSource());
-		if (ifo.createNodes(row)) {
-			childDataSource = ifo;	
-		} else {			
-			Object rawField = null;
-			try {
-				rawField = Binder.getSyntaxResolver().getFieldForModel(rowChild.getChildDataSource(), row);
-			} catch (SyntaxResolveException e) {
-				BindingLog.exception("BindableTableLayout.insertRow", e);
-			}
-			if (rawField instanceof IObservable<?>)
-				childDataSource = (IObservable<?>)rawField;
-		}				
-		
-		TableRow trow = createRow(childDataSource, pos, row);
-				 			
-		currentRowList.add(pos, row);
-		this.addView(trow,pos);		
+	private void addTablteRow(int pos, Object rowData) {	
+		synchronized(this){
+			if( mRowChild == null )
+				return;
+			
+			IObservable<?> childDataSource = null;			
+			InnerFieldObservable<?> ifo = new InnerFieldObservable<Object>(mRowChild.getChildDataSource());
+			if (ifo.createNodes(rowData)) {
+				childDataSource = ifo;	
+			} else {			
+				Object rawField = null;
+				try {
+					rawField = Binder.getSyntaxResolver().getFieldForModel(mRowChild.getChildDataSource(), rowData);
+				} catch (SyntaxResolveException e) {
+					BindingLog.exception("BindableTableLayout.insertRow", e);
+				}
+				if (rawField instanceof IObservable<?>)
+					childDataSource = (IObservable<?>)rawField;
+			}				
+			
+			TableRow trow = createAndBindTableRow(childDataSource, pos, rowData);				 		
+			mCurrentRowList.add(pos, rowData);
+			
+			addView(trow,pos);	
+		}
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private TableRow createRow(IObservable<?> childDataSource, int pos, Object row) {
+	private TableRow createAndBindTableRow(IObservable<?> childDataSource, int pos, Object rowData) {
 		TableRow tableRow = new TableRow(getContext());		
 		InnerFieldObservable<?> ifo = null;
+		
+		List<BindableLayoutContent> list = new ArrayList<BindableLayoutContent>();
+		mItemMapList.append(pos, list);
 				
 		if( childDataSource == null) {	
 			TextView textView = new TextView(getContext());
@@ -316,21 +285,21 @@ public class BindableTableLayout extends TableLayout implements IBindableView<Bi
 				ArrayListObservable<?> childItems = (ArrayListObservable<?>)dataSource;
 				
 				// we might have to change the current row if the child datasource changes
-				observableCollectionRowChildren.add(childItems,row);
+				mObservableCollectionRowChildren.add(childItems,rowData);
 				
 				int col = 0;
 			    for( Object childItem : childItems) {					
 					int colSpan = 1;
-					int layoutId = rowChild.getLayoutId();		
-					if( layoutId < 1 && rowChild.getLayoutName() != null ) {									
+					int layoutId = mRowChild.getLayoutId();		
+					if( layoutId < 1 && mRowChild.getLayoutName() != null ) {									
 						IObservable<?> observable = null;
-						ifo = new InnerFieldObservable<Object>(rowChild.getLayoutName() );
+						ifo = new InnerFieldObservable<Object>(mRowChild.getLayoutName() );
 						if (ifo.createNodes(childItem)) {
 							observable = ifo;
 						} else {			
 							Object rawField = null;
 							try {
-								rawField = Binder.getSyntaxResolver().getFieldForModel(rowChild.getLayoutName(), childItem);
+								rawField = Binder.getSyntaxResolver().getFieldForModel(mRowChild.getLayoutName(), childItem);
 							} catch (SyntaxResolveException e) {
 								BindingLog.exception("BindableTableLayout.createRow", e);
 							}
@@ -343,7 +312,7 @@ public class BindableTableLayout extends TableLayout implements IBindableView<Bi
 						if( observable != null) {											
 							Object obj = observable.get();
 							if(obj instanceof Integer) {
-								observableChildLayoutID.add(observable, row);	
+								mObservableChildLayoutID.add(observable, rowData);	
 								layoutId = (Integer)obj;
 							}
 						}
@@ -362,22 +331,26 @@ public class BindableTableLayout extends TableLayout implements IBindableView<Bi
 							for(View view: result.processedViews){
 								AttributeBinder.getInstance().bindView(getContext(), view, childItem);
 							}
-							child = result.rootView;						
+							child = result.rootView;	
+							
+							BindableLayoutContent content = new BindableLayoutContent();
+							content.setInflateResult(result);
+							list.add(content);
 						}						
 					}
 					
 					TableRow.LayoutParams params = null;
 					
 					// check if there is a colspan
-					if( rowChild.getColspanName() != null ) {									
+					if( mRowChild.getColspanName() != null ) {									
 						IObservable<?> observable = null;			
-						ifo = new InnerFieldObservable(rowChild.getColspanName());
+						ifo = new InnerFieldObservable(mRowChild.getColspanName());
 						if (ifo.createNodes(childItem)) {
 							observable = ifo;
 						} else {			
 							Object rawField = null;
 							try {
-								rawField = Binder.getSyntaxResolver().getFieldForModel(rowChild.getColspanName(), childItem);
+								rawField = Binder.getSyntaxResolver().getFieldForModel(mRowChild.getColspanName(), childItem);
 							} catch (SyntaxResolveException e) {
 								BindingLog.exception("BindableTableLayout.createRow", e);
 							}
@@ -390,7 +363,7 @@ public class BindableTableLayout extends TableLayout implements IBindableView<Bi
 						if( observable != null) {											
 							Object obj = observable.get();
 							if(obj instanceof Integer) {
-								observableChildSpan.add(observable, row);
+								mObservableChildSpan.add(observable, rowData);
 								colSpan = (Integer)obj;																	
 							}
 						}
@@ -435,22 +408,40 @@ public class BindableTableLayout extends TableLayout implements IBindableView<Bi
 		return tableRow;
 	}
 	
-	private void removeRows(List<?> deleteList) {
-		if( deleteList == null || deleteList.size() == 0 || currentRowList == null)
-			return;
-		
-		ArrayList<Object> currentPositionList = new ArrayList<Object>(Arrays.asList(currentRowList.toArray()));
-		
-		for(Object row : deleteList){
-			int pos = currentPositionList.indexOf(row);
-			currentRowList.remove(row);
-			observableChildLayoutID.removeParent(row);
-			observableChildSpan.removeParent(row);
-			observableCollectionRowChildren.removeParent(row);
-			currentPositionList.remove(row);
-			if( pos > -1 && pos < this.getChildCount())
-				this.removeViewAt(pos);	
+	private void unbindRow(List<?> deleteList) {
+		synchronized(this){
+			if( deleteList == null || deleteList.size() == 0 || mCurrentRowList == null)
+				return;
+			
+			ArrayList<Object> currentPositionList = new ArrayList<Object>(Arrays.asList(mCurrentRowList.toArray()));
+			
+			for(Object row : deleteList){
+				int pos = currentPositionList.indexOf(row);
+				mCurrentRowList.remove(row);
+				mObservableChildLayoutID.removeParent(row);
+				mObservableChildSpan.removeParent(row);
+				mObservableCollectionRowChildren.removeParent(row);
+				currentPositionList.remove(row);
+				if( pos > -1 && pos < getChildCount()) {
+					unbindAndRemove(pos);
+				}
+			}
 		}
+	}
+
+	private void unbindAndRemove(int pos) {
+		List<BindableLayoutContent> list = mItemMapList.get(pos);
+		
+		if(list != null) {
+			for(int i = 0; i < list.size(); i++) {
+				BindableLayoutContent content = list.get(i);
+			    if(content==null)
+			    	continue;
+			    Binder.unbindView(getContext(), content.getInflateResult());
+			}
+		}
+		
+		removeViewAt(pos);	
 	}
 
 }

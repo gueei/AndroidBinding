@@ -7,19 +7,17 @@ import gueei.binding.ViewAttribute;
 import gueei.binding.Binder.InflateResult;
 import gueei.binding.viewAttributes.templates.SingleTemplateLayout;
 import android.content.Context;
-import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 
-public class BindableFrameLayout extends FrameLayout implements IBindableView<BindableFrameLayout>{
-	
-	private int LayoutId = 0;
-	private Object dataSource = null;
-	private boolean updateEnabled = true;
-	private InflateResult inflateResult = null;
 
-	public BindableFrameLayout(Context context, AttributeSet attrs,
-			int defStyle) {
+// TODO: add a transition manager
+
+public class BindableFrameLayout extends FrameLayout implements IBindableView<BindableFrameLayout>, IBindableLayout{
+	
+	private BindableLayoutContent mBindableLayoutContent = new BindableLayoutContent();
+
+	public BindableFrameLayout(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 	}
 
@@ -32,12 +30,15 @@ public class BindableFrameLayout extends FrameLayout implements IBindableView<Bi
 	}
 	
 	@Override
-	protected void onDetachedFromWindow() {
-		LayoutId = 0;
-		dataSource = null;
-		inflateResult = null;
-		super.onDetachedFromWindow();
+	public void unbind () {	
+		unbind(true);
 	}
+	
+	@Override
+	protected void onDetachedFromWindow() {
+		unbind(false);
+		super.onDetachedFromWindow();
+	}	
 
 	private ViewAttribute<?, Object> LayoutIdViewAttribute =
 		new ViewAttribute<BindableFrameLayout, Object>(Object.class, BindableFrameLayout.this, "LayoutId"){
@@ -60,11 +61,10 @@ public class BindableFrameLayout extends FrameLayout implements IBindableView<Bi
 							
 			@Override
 			public Object get() {
-				return LayoutId;
+				return mBindableLayoutContent.getLayoutId();
 			}
 	};
-		
-	
+			
 	private ViewAttribute<?, Object> DataSourceViewAttribute =
 		new ViewAttribute<BindableFrameLayout, Object>( Object.class, BindableFrameLayout.this, "DataSource"){
 			@Override
@@ -74,7 +74,7 @@ public class BindableFrameLayout extends FrameLayout implements IBindableView<Bi
 
 			@Override
 			public Object get() {
-				return dataSource;
+				return mBindableLayoutContent.getDataSource();
 			}
 	};
 	
@@ -103,89 +103,78 @@ public class BindableFrameLayout extends FrameLayout implements IBindableView<Bi
 				return null;
 			}				
 	};	
-	
-	private ViewAttribute<BindableFrameLayout, Boolean> ItemUpdateEnabledAttribute =
-			new ViewAttribute<BindableFrameLayout, Boolean>(Boolean.class, BindableFrameLayout.this, "UpdateEnabled"){
-				@Override
-				protected void doSetAttributeValue(Object newValue) {	
-					if( newValue == null ) {
-						updateEnabled = true;
-					}
-					else if( newValue instanceof Boolean ) {
-						Boolean value = (Boolean) newValue;
-						updateEnabled = value; 
-						if(updateEnabled) {
-							BindableFrameLayout.this.invalidate();
-						}
-					}
-				}
-
-				@Override
-				public Boolean get() {
-					return updateEnabled;
-				}
-	};
-	
-	@Override
-	protected void onDraw(Canvas canvas) {
-		if( !updateEnabled )
-			return;
-		super.onDraw(canvas);
-	}	
-	
-	@Override
-	protected void onMeasure (int widthMeasureSpec, int heightMeasureSpec) {
-		if( !updateEnabled )
-			return;
-		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-	}		
-	
+		
 	public ViewAttribute<?, ?> createViewAttribute(
 			String attributeName) {
 		if (attributeName.equals("layoutId")) return LayoutIdViewAttribute;
 		if (attributeName.equals("dataSource")) return DataSourceViewAttribute;		
 		if (attributeName.equals("onLoad")) return OnLoadAttribute;
-		if (attributeName.equals("updateEnabled")) return ItemUpdateEnabledAttribute;
 		
 		return null;
 	}
 
-	protected void setDatasource(Object newValue) {
-		if(dataSource!=null) 
-			inflateResult = null; // inflate new 
-		dataSource = newValue;
-		rebind();
+	protected void setDatasource(Object dataSource) {	
+		synchronized(this){
+			if(dataSource != null && mBindableLayoutContent.getDataSource() == dataSource)
+				return;
+			
+			int layoutId = mBindableLayoutContent.getLayoutId();		
+			unbind(true);		
+			mBindableLayoutContent.setDataSource(dataSource);
+			mBindableLayoutContent.setLayoutId(layoutId);
+					
+			if(dataSource == null)
+				return;
+			
+			bind(true);	
+		}
+	}
+
+	protected void setLayoutId(int layoutId) {
+		synchronized(this){
+			if( mBindableLayoutContent.getLayoutId() == layoutId )
+				return;
+			
+			Object dataSource = mBindableLayoutContent.getDataSource();
+			unbind(true);
+			mBindableLayoutContent.setDataSource(dataSource);
+			mBindableLayoutContent.setLayoutId(layoutId);
+			bind(true);
+		}
+	}
+	
+	protected void bind(boolean addView){
+		if (mBindableLayoutContent.getLayoutId()<=0)
+			return;
+		
+		if(mBindableLayoutContent.getInflateResult()==null||mBindableLayoutContent.getDataSource()==null) {
+			InflateResult result = Binder.inflateView(getContext(), mBindableLayoutContent.getLayoutId(), this, false);
+			mBindableLayoutContent.setInflateResult(result);
+		}
+		
+		if(addView)
+			addView(mBindableLayoutContent.getInflateResult().rootView);
+		
+		if (mBindableLayoutContent.getDataSource()==null){
+			Binder.bindView(getContext(), mBindableLayoutContent.getInflateResult(), null);
+		}else if (mBindableLayoutContent.getDataSource().getClass().isArray()){
+			Object[] sources = (Object[])mBindableLayoutContent.getDataSource();
+			for(int i=0; i<sources.length; i++){
+				Binder.bindView(getContext(), mBindableLayoutContent.getInflateResult(), sources[i]);
+			}
+		}else{
+			Binder.bindView(getContext(), mBindableLayoutContent.getInflateResult(), mBindableLayoutContent.getDataSource());
+		}
+
 		refreshDrawableState();
 	}
 
-	// TODO: add layout caching
-	// TODO: add a binding:useLayoutCaching="true" attribute
-	// TODO: add a transition manager
-	protected void setLayoutId(int layoutId) {
-		if( LayoutId != layoutId ) {
-			LayoutId = layoutId;
-			inflateResult = null; // inflate new
-			rebind();
-			refreshDrawableState();
-		}		
-	}
-	
-	protected void rebind(){
-		BindableFrameLayout.this.removeAllViews();
-		if (LayoutId<=0) return;
-		if(inflateResult==null||dataSource==null)
-			inflateResult= Binder.inflateView(BindableFrameLayout.this.getContext(), LayoutId, BindableFrameLayout.this, false);							
-		BindableFrameLayout.this.addView(inflateResult.rootView);
-		if (dataSource==null){
-			Binder.bindView(BindableFrameLayout.this.getContext(), inflateResult, null);
-		}else if (dataSource.getClass().isArray()){
-			Object[] sources = (Object[])dataSource;
-			for(int i=0; i<sources.length; i++){
-				Binder.bindView(BindableFrameLayout.this.getContext(), inflateResult, sources[i]);
-			}
-		}else{
-			Binder.bindView(BindableFrameLayout.this.getContext(), inflateResult, dataSource);
-		}
+	protected void unbind(boolean removeAllViews){
+		InflateResult inflateResult = mBindableLayoutContent.getInflateResult();
+		Binder.unbindView(getContext(), inflateResult);
+		mBindableLayoutContent.clear();		
+		if(removeAllViews)			
+			removeAllViews();
 	}
 }
 

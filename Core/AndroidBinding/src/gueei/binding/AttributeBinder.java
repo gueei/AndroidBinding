@@ -3,6 +3,7 @@ package gueei.binding;
 import gueei.binding.ISyntaxResolver.SyntaxResolveException;
 import gueei.binding.bindingProviders.BindingProvider;
 import gueei.binding.exception.AttributeNotDefinedException;
+import gueei.binding.widgets.IBindableLayout;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -60,6 +61,24 @@ public class AttributeBinder {
 			bindAttributeWithModel(context, view, entry.getKey(), entry.getValue(), model);
 		}
 	}
+	
+	public void unbindView(Context context, View view) {
+		BindingMap map = Binder.getBindingMapForView(view);
+		
+		for(Entry<String, String> entry: map.getMapTable().entrySet()){
+			ViewAttribute<?, ?> attr;
+			try {
+				attr = Binder.getAttributeForView(view, entry.getKey());
+				if(view instanceof IBindableLayout) {
+					((IBindableLayout)view).unbind();
+				}				
+				attr.UnbindAll();
+			} catch (AttributeNotDefinedException e) {
+				continue;
+			}
+
+		}
+	}	
 
 	public boolean bindAttributeWithModel(Context context, 
 			View view, String viewAttributeName, String statement, Object model) {
