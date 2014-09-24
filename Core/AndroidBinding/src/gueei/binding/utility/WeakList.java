@@ -106,8 +106,11 @@ public class WeakList<E> extends AbstractList<E> {
 				return false;
 
 			int i=-1;
-			while(i<len) {
+			while(true) {
 				i++;
+				
+				if(i==len)
+					break;
 				
 				// remove null entries (this can happen thru GC calls)
 				if (items.get(i).get() == null){
