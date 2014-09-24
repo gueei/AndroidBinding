@@ -101,17 +101,30 @@ public class WeakList<E> extends AbstractList<E> {
 	@Override
 	public boolean remove(Object object) {
 		synchronized(this){
-			int len = items.size();
-			for(int i=0; i<len; i++){
+			int len = items.size();			
+			if(len == 0)
+				return false;
+
+			int i=-1;
+			while(i<len) {
+				i++;
+				
+				// remove null entries (this can happen thru GC calls)
 				if (items.get(i).get() == null){
 					items.remove(i);
 					len--;
+					if(len == 0)
+						break;					
+					i--;
+					continue;
 				}
-				else if (items.get(i).get().equals(object)){
+				
+				if (items.get(i).get().equals(object)){
 					items.remove(i);
 					return true;
-				}
-			}			
+				}				
+			}
+						
 			return false;
 		}
 	}
