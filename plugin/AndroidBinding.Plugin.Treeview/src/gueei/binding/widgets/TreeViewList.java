@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import gueei.binding.AttributeBinder;
+import gueei.binding.BindingLog;
 import gueei.binding.CollectionChangedEventArg;
 import gueei.binding.CollectionObserver;
 import gueei.binding.Command;
@@ -17,6 +18,7 @@ import gueei.binding.widgets.treeview.TreeStructure;
 import gueei.binding.widgets.treeview.TreeViewItemWrapper;
 import gueei.binding.widgets.treeview.Utility;
 import android.content.Context;
+import android.content.res.Resources;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ListView;
@@ -217,9 +219,29 @@ public class TreeViewList extends ListView {
 		
 		if(treeStructure != null && treeStructure.spacerWidth != null) {
 			try {
-				Integer width = Integer.parseInt(treeStructure.spacerWidth.get().toString().trim());
-				spacerWidth = width;
-			} catch(Exception e) { }
+				String space = treeStructure.spacerWidth.get().toString().trim();			
+				space = space.toLowerCase();		
+				
+				android.util.Log.v("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy", space);
+				
+				if(space.endsWith("px")) {
+					space = space.substring(0, space.lastIndexOf("px"));
+					spacerWidth = Integer.parseInt(space);
+				} else if(space.endsWith("dp")) {
+					space = space.substring(0, space.lastIndexOf("dp"));
+					spacerWidth = Integer.parseInt(space);
+					
+					// http://stackoverflow.com/questions/8295986/how-to-calculate-dp-from-pixels-in-android-programmatically
+					spacerWidth = (int)(spacerWidth * Resources.getSystem().getDisplayMetrics().density);					
+				} else {
+					spacerWidth = Integer.parseInt(space);
+					BindingLog.warning("TreeViewList", "treeStructure.spacerWidth has no dimension - either use dp or px");
+				}				
+			} catch(Exception e) { 
+				BindingLog.exception("TreeViewList.setSpacerWidth", e);
+			}
+			
+			android.util.Log.v("Xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", ""+spacerWidth);
 		}
 	}
 	

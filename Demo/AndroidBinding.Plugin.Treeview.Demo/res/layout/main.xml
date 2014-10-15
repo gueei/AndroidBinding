@@ -23,7 +23,7 @@
   				imgExpanded=@drawable/expanded,
   				imgCollapsed=@drawable/collapsed,
   				
-  				spacerWidth=40,
+  				spacerWidth='40dp',
 				treeNodeClicked=OnTreeNodeClicked,
         		treeNodeLongClicked=OnTreeNodeLongClicked})"
          />    
