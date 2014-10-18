@@ -222,8 +222,6 @@ public class TreeViewList extends ListView {
 				String space = treeStructure.spacerWidth.get().toString().trim();			
 				space = space.toLowerCase();		
 				
-				android.util.Log.v("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy", space);
-				
 				if(space.endsWith("px")) {
 					space = space.substring(0, space.lastIndexOf("px"));
 					spacerWidth = Integer.parseInt(space);
@@ -240,8 +238,6 @@ public class TreeViewList extends ListView {
 			} catch(Exception e) { 
 				BindingLog.exception("TreeViewList.setSpacerWidth", e);
 			}
-			
-			android.util.Log.v("Xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", ""+spacerWidth);
 		}
 	}
 	
